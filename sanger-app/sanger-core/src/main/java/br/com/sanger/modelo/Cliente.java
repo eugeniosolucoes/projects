@@ -9,6 +9,7 @@ import br.com.sanger.modelo.transporte.local.TransporteLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -28,7 +29,7 @@ public abstract class Cliente extends Pessoa implements Serializable {
 
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
     private Endereco endereco;
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -21,7 +21,9 @@ public class ClientePessoaFisica extends Cliente implements Fisica, Serializable
 
     @Column( unique = true )
     private String cpf;
-    
+
+    @Column( unique = true )
+    private String nome;
 
     public ClientePessoaFisica() {
     }
@@ -69,4 +71,14 @@ public class ClientePessoaFisica extends Cliente implements Fisica, Serializable
     public void setCpf( String cpf ) {
         this.cpf = cpf;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome( String nome ) {
+        this.nome = nome;
+    }
+    
+    
 }

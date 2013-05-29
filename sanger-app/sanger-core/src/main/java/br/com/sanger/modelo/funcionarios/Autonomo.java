@@ -21,6 +21,8 @@ public class Autonomo extends Funcionario implements Fisica, Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String nome;
+    
     @Column( unique = true )
     private String cpf;
 
@@ -98,4 +100,14 @@ public class Autonomo extends Funcionario implements Fisica, Serializable {
     public void setCpf( String cpf ) {
         this.cpf = cpf;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome( String nome ) {
+        this.nome = nome;
+    }
+    
+    
 }

@@ -21,6 +21,9 @@ public class ClientePessoaJuridica extends Cliente implements Juridica, Serializ
 
     private String cnpj;
 
+    @Column( unique = true )
+    private String nome;
+
     @Column( name = "INSCRICAO_ESTADUAL" )
     private String inscricaoEstadual;
 
@@ -82,4 +85,14 @@ public class ClientePessoaJuridica extends Cliente implements Juridica, Serializ
     public void setInscricaoEstadual( String inscricaoEstadual ) {
         this.inscricaoEstadual = inscricaoEstadual;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome( String nome ) {
+        this.nome = nome;
+    }
+    
+    
 }

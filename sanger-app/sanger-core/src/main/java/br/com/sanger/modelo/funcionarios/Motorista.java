@@ -8,6 +8,7 @@ import br.com.sanger.modelo.Fisica;
 import br.com.sanger.modelo.transporte.local.TransporteLocal;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -25,6 +26,8 @@ public class Motorista extends Funcionario implements Fisica, Serializable {
     private String habilitacao;
 
     private String pronturario;
+    
+    private String nome;    
 
     public Motorista() {
     }
@@ -99,4 +102,13 @@ public class Motorista extends Funcionario implements Fisica, Serializable {
     public void setCpf( String cpf ) {
         this.cpf = cpf;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome( String nome ) {
+        this.nome = nome;
+    }
+    
 }

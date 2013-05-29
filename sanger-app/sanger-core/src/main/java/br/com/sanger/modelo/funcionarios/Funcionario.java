@@ -6,6 +6,7 @@ package br.com.sanger.modelo.funcionarios;
 
 import br.com.sanger.modelo.Pessoa;
 import br.com.sanger.modelo.apoio.Endereco;
+import br.com.sanger.modelo.transporte.Transporte;
 import br.com.sanger.modelo.transporte.local.TransporteLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -84,6 +85,5 @@ public abstract class Funcionario extends Pessoa implements Serializable {
     public void setEndereco( Endereco endereco ) {
         this.endereco = endereco;
     }
-    
     
 }

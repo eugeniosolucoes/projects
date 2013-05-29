@@ -21,6 +21,8 @@
     <class>br.com.sanger.modelo.transporte.interestadual.TransporteInterestadual</class>
     <class>br.com.sanger.modelo.transporte.local.TransporteLocal</class>
     <class>br.com.sanger.modelo.transporte.interestadual.Inventario</class>
+    <class>br.com.sanger.modelo.transporte.VeiculoDeTransporte</class>
+    <class>br.com.sanger.modelo.transporte.apoio.VeiculoDeTransporte</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

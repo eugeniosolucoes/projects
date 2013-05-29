@@ -8,10 +8,8 @@ import br.com.sanger.modelo.IEntidade;
 import br.com.sanger.modelo.transporte.Automovel;
 import br.com.sanger.modelo.transporte.Transporte;
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *

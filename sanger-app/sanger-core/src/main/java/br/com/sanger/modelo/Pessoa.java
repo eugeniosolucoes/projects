@@ -24,9 +24,6 @@ public abstract class Pessoa implements IEntidade<Long>, Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     protected Long id;
 
-    @Column( unique = true )
-    protected String nome;
-
     @Column( name = "TELEFONE_RESIDENCIAL" )
     private String telefoneResidencial;
 
@@ -69,14 +66,6 @@ public abstract class Pessoa implements IEntidade<Long>, Serializable {
     @Override
     public String toString() {
         return "br.com.sanger.modelo.pessoas.Pessoa[ id=" + id + " ]";
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome( String nome ) {
-        this.nome = nome;
     }
 
     public String getTelefoneResidencial() {

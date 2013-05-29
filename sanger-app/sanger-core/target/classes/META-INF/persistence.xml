@@ -3,7 +3,6 @@
   <persistence-unit name="SANGER_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.com.sanger.modelo.Cliente</class>
-    <class>br.com.sanger.modelo.Pessoa</class>
     <class>br.com.sanger.modelo.apoio.Endereco</class>
     <class>br.com.sanger.modelo.clientes.ClientePessoaFisica</class>
     <class>br.com.sanger.modelo.clientes.ClientePessoaJuridica</class>
@@ -13,16 +12,15 @@
     <class>br.com.sanger.modelo.seguranca.Direito</class>
     <class>br.com.sanger.modelo.seguranca.Perfil</class>
     <class>br.com.sanger.modelo.seguranca.Usuario</class>
+    <class>br.com.sanger.modelo.transporte.Automovel</class>
     <class>br.com.sanger.modelo.transporte.Destinatario</class>
-    <class>br.com.sanger.modelo.transporte.Nota</class>
     <class>br.com.sanger.modelo.transporte.Recibo</class>
     <class>br.com.sanger.modelo.transporte.apoio.Localizacao</class>
     <class>br.com.sanger.modelo.transporte.apoio.Simbolo</class>
-    <class>br.com.sanger.modelo.transporte.interestadual.Bem</class>
-    <class>br.com.sanger.modelo.transporte.interestadual.Item</class>
-    <class>br.com.sanger.modelo.transporte.local.TransporteLocal</class>
+    <class>br.com.sanger.modelo.transporte.automovel.TransporteAutomovel</class>
     <class>br.com.sanger.modelo.transporte.interestadual.TransporteInterestadual</class>
-    <class>br.com.sanger.modelo.transporte.Automovel</class>
+    <class>br.com.sanger.modelo.transporte.local.TransporteLocal</class>
+    <class>br.com.sanger.modelo.transporte.interestadual.Inventario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -32,7 +30,6 @@
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
       <!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
-      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

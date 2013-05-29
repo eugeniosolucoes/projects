@@ -4,24 +4,22 @@
  */
 package br.com.sanger.modelo.transporte.interestadual;
 
+import br.com.sanger.modelo.IEntidade;
+import br.com.sanger.modelo.transporte.apoio.Localizacao;
+import br.com.sanger.modelo.transporte.apoio.Simbolo;
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import br.com.sanger.modelo.IEntidade;
-import br.com.sanger.modelo.transporte.apoio.Localizacao;
-import br.com.sanger.modelo.transporte.apoio.Simbolo;
-
 /**
  *
  * @author eugenio
  */
 @Entity
-public class Bem implements IEntidade<Long>, Serializable {
+public class Inventario implements IEntidade<Long>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,9 +27,11 @@ public class Bem implements IEntidade<Long>, Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
-    private double quantidade;
+    private Integer numero;
+    
+    private Integer quantidade;
 
-    private double seguro;
+    private Double seguro;
 
     private String descricao;
 
@@ -41,6 +41,9 @@ public class Bem implements IEntidade<Long>, Serializable {
     @ManyToOne
     private Simbolo simbolo;
 
+    @ManyToOne
+    private TransporteInterestadual transporteInterestadual;
+    
     @Override
     public Long getId() {
         return id;
@@ -61,10 +64,10 @@ public class Bem implements IEntidade<Long>, Serializable {
     @Override
     public boolean equals( Object object ) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if ( !( object instanceof Bem ) ) {
+        if ( !( object instanceof Inventario ) ) {
             return false;
         }
-        Bem other = (Bem) object;
+        Inventario other = (Inventario) object;
         if ( ( this.id == null && other.id != null ) || ( this.id != null && !this.id.equals( other.id ) ) ) {
             return false;
         }
@@ -74,22 +77,6 @@ public class Bem implements IEntidade<Long>, Serializable {
     @Override
     public String toString() {
         return "br.com.sanger.modelo.pessoas.inventarios.Bem[ id=" + id + " ]";
-    }
-
-    public double getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade( double quantidade ) {
-        this.quantidade = quantidade;
-    }
-
-    public double getSeguro() {
-        return seguro;
-    }
-
-    public void setSeguro( double seguro ) {
-        this.seguro = seguro;
     }
 
     public String getDescricao() {
@@ -115,4 +102,37 @@ public class Bem implements IEntidade<Long>, Serializable {
     public void setSimbolo( Simbolo simbolo ) {
         this.simbolo = simbolo;
     }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade( Integer quantidade ) {
+        this.quantidade = quantidade;
+    }
+
+    public Double getSeguro() {
+        return seguro;
+    }
+
+    public void setSeguro( Double seguro ) {
+        this.seguro = seguro;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero( Integer numero ) {
+        this.numero = numero;
+    }
+
+    public TransporteInterestadual getTransporteInterestadual() {
+        return transporteInterestadual;
+    }
+
+    public void setTransporteInterestadual( TransporteInterestadual transporteInterestadual ) {
+        this.transporteInterestadual = transporteInterestadual;
+    }
+    
 }

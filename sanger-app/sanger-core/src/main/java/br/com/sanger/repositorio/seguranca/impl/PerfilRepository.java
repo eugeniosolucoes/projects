@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import br.com.sanger.modelo.IEntidade;
 import br.com.sanger.modelo.seguranca.Direito;
 import br.com.sanger.modelo.seguranca.Perfil;
-import br.com.sanger.repositorio.impl.AbstractRepository;
+import br.com.sanger.repositorio.AbstractRepository;
 
 /**
  *

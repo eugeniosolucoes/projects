@@ -18,7 +18,7 @@ public class ClientePessoaFisicaServiceTest {
     public ClientePessoaFisicaServiceTest() {
     }
 
-    //@Test
+    @Test
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         ClientePessoaFisica obj = new ClientePessoaFisica("eugenio", "123");
@@ -32,7 +32,7 @@ public class ClientePessoaFisicaServiceTest {
         instance.salvar(obj1);
     }
 
-    //@Test
+    @Test
     public void testEditar() throws Exception {
         System.out.println("editar");
         ClientePessoaFisicaService instance = new ClientePessoaFisicaService();
@@ -47,6 +47,18 @@ public class ClientePessoaFisicaServiceTest {
 
     }
 
+    @Test
+    public void testListar() throws Exception {
+        System.out.println("listar");
+        ClientePessoaFisicaService instance = new ClientePessoaFisicaService();
+        List<ClientePessoaFisica> lista = instance.listar();
+        for ( ClientePessoaFisica obj : lista ) {
+            System.out.println(obj.getNome());
+            System.out.println(obj.getEndereco().getLogradouro());
+        }
+    }
+    
+    //@Test
     public void testExcluir() throws Exception {
         System.out.println("excluir");
         ClientePessoaFisicaService instance = new ClientePessoaFisicaService();
@@ -59,18 +71,4 @@ public class ClientePessoaFisicaServiceTest {
 
     }
 
-    @Test
-    public void testListar() throws Exception {
-        System.out.println("listar");
-        ClientePessoaFisicaService instance = new ClientePessoaFisicaService();
-        List<ClientePessoaFisica> lista = instance.listar();
-
-        for ( ClientePessoaFisica obj : lista ) {
-
-            System.out.println(obj);
-            System.out.println(obj.getEndereco());
-        }
-
-
-    }
 }

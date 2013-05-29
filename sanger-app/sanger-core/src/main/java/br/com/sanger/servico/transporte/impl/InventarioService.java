@@ -4,7 +4,7 @@
  */
 package br.com.sanger.servico.transporte.impl;
 
-import br.com.sanger.modelo.transporte.interestadual.TransporteInterestadual;
+import br.com.sanger.modelo.transporte.interestadual.Inventario;
 import br.com.sanger.repositorio.transporte.impl.InventarioRepository;
 import br.com.sanger.servico.GenericService;
 import br.com.sanger.servico.excecoes.ServicoException;
@@ -13,14 +13,14 @@ import br.com.sanger.servico.excecoes.ServicoException;
  *
  * @author eugenio
  */
-public class InventarioService extends GenericService<TransporteInterestadual> {
+public class InventarioService extends GenericService<Inventario> {
 
     public InventarioService() {
         super( new InventarioRepository() );
     }
 
     @Override
-    public void salvar( TransporteInterestadual obj ) throws Exception {
+    public void salvar( Inventario obj ) throws Exception {
         try {
             super.salvar( obj );
         } catch ( Exception e ) {
@@ -29,7 +29,7 @@ public class InventarioService extends GenericService<TransporteInterestadual> {
     }
 
     @Override
-    public void editar( TransporteInterestadual obj ) throws Exception {
+    public void editar( Inventario obj ) throws Exception {
         try {
             super.editar( obj );
         } catch ( Exception e ) {
@@ -38,7 +38,7 @@ public class InventarioService extends GenericService<TransporteInterestadual> {
     }
 
     @Override
-    public void validacao( TransporteInterestadual obj ) throws Exception {
+    public void validacao( Inventario obj ) throws Exception {
         if ( obj == null ) {
             throw new IllegalStateException( "Objeto nulo!" );
         }

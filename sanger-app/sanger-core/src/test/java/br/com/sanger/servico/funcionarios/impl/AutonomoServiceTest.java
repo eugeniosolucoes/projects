@@ -18,7 +18,7 @@ public class AutonomoServiceTest {
     public AutonomoServiceTest() {
     }
 
-    //@Test
+    @Test
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         Autonomo obj = new Autonomo("eugenio", "123");
@@ -32,7 +32,7 @@ public class AutonomoServiceTest {
         instance.salvar(obj1);
     }
 
-    //@Test
+    @Test
     public void testEditar() throws Exception {
         System.out.println("editar");
         AutonomoService instance = new AutonomoService();
@@ -46,7 +46,21 @@ public class AutonomoServiceTest {
         }
 
     }
+    
+    @Test
+    public void testListar() throws Exception {
+        System.out.println("listar");
+        AutonomoService instance = new AutonomoService();
+        List<Autonomo> lista = instance.listar();
 
+        for(Autonomo obj : lista){
+            
+            System.out.println(obj.getNome());
+            System.out.println(obj.getEndereco().getLogradouro());
+        }
+    }
+    
+    //@Test
     public void testExcluir() throws Exception {
         System.out.println("excluir");
         AutonomoService instance = new AutonomoService();
@@ -59,19 +73,5 @@ public class AutonomoServiceTest {
         
     }
     
-    @Test
-    public void testListar() throws Exception {
-        System.out.println("listar");
-        AutonomoService instance = new AutonomoService();
-        List<Autonomo> lista = instance.listar();
-
-        for(Autonomo obj : lista){
-            
-            System.out.println(obj);
-            System.out.println(obj.getEndereco());
-        }
-        
-        
-    }
 
 }

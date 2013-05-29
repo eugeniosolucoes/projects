@@ -33,13 +33,13 @@ public class Recibo implements IEntidade<Long>, Serializable {
     @Temporal( javax.persistence.TemporalType.DATE )
     private Date emissao;
 
-    private double quantia;
+    private Double quantia;
 
-    private String extenso;
+    private String quantiaPorExtenso;
 
     private String referente;
 
-    private String pagamento;
+    private String formaDePagamento;
 
     @ManyToOne
     private Cliente cliente;
@@ -87,20 +87,20 @@ public class Recibo implements IEntidade<Long>, Serializable {
         this.emissao = emissao;
     }
 
-    public double getQuantia() {
+    public Double getQuantia() {
         return quantia;
     }
 
-    public void setQuantia( double quantia ) {
+    public void setQuantia( Double quantia ) {
         this.quantia = quantia;
     }
 
-    public String getExtenso() {
-        return extenso;
+    public String getQuantiaPorExtenso() {
+        return quantiaPorExtenso;
     }
 
-    public void setExtenso( String extenso ) {
-        this.extenso = extenso;
+    public void setQuantiaPorExtenso( String quantiaPorExtenso ) {
+        this.quantiaPorExtenso = quantiaPorExtenso;
     }
 
     public String getReferente() {
@@ -111,12 +111,12 @@ public class Recibo implements IEntidade<Long>, Serializable {
         this.referente = referente;
     }
 
-    public String getPagamento() {
-        return pagamento;
+    public String getFormaDePagamento() {
+        return formaDePagamento;
     }
 
-    public void setPagamento( String pagamento ) {
-        this.pagamento = pagamento;
+    public void setFormaDePagamento( String formaDePagamento ) {
+        this.formaDePagamento = formaDePagamento;
     }
 
     public Cliente getCliente() {

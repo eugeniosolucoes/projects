@@ -26,6 +26,18 @@ public class Motorista extends Funcionario implements Fisica, Serializable {
 
     private String pronturario;
 
+    public Motorista() {
+    }
+
+    public Motorista( String nome ) {
+        this.nome = nome;
+    }
+
+    public Motorista( String nome, String cpf ) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
     @OneToMany( mappedBy = "motorista" )
     private List<TransporteLocal> servicos;
 

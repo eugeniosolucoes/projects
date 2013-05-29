@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 import br.com.sanger.modelo.transporte.apoio.Simbolo;
-import br.com.sanger.repositorio.impl.AbstractRepository;
+import br.com.sanger.repositorio.AbstractRepository;
 
 /**
  *

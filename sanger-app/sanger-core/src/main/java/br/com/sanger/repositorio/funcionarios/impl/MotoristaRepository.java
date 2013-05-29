@@ -4,11 +4,10 @@
  */
 package br.com.sanger.repositorio.funcionarios.impl;
 
+import br.com.sanger.modelo.funcionarios.Motorista;
+import br.com.sanger.repositorio.AbstractRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-
-import br.com.sanger.modelo.funcionarios.Motorista;
-import br.com.sanger.repositorio.impl.AbstractRepository;
 
 /**
  *

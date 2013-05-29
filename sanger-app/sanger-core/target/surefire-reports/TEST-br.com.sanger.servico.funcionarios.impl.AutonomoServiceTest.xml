@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.032" errors="0" skipped="0" tests="1" name="br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest">
+<testsuite failures="0" time="1.63" errors="0" skipped="0" tests="3" name="br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_31\jre\bin"/>
@@ -13,8 +13,9 @@
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="test" value="br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\cpo-202\Documents\NetBeansProjects\sanger-app"/>
+    <property name="user.dir" value="C:\Users\cpo-202\Documents\NetBeansProjects\git\projects\sanger-app\sanger-core"/>
     <property name="java.runtime.version" value="1.6.0_31-b05"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_31\jre\lib\endorsed"/>
@@ -35,14 +36,14 @@
     <property name="user.home" value="C:\Users\cpo-202"/>
     <property name="user.timezone" value="America/Sao_Paulo"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
-    <property name="file.encoding" value="Cp1252"/>
     <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="Cp1252"/>
     <property name="user.name" value="cpo-202"/>
     <property name="java.class.path" value="D:\Program Files\NetBeans 7.2.1\java\maven\boot\plexus-classworlds-2.4.jar"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.6.0_31\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest test-compile surefire:test"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -59,5 +60,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="0.032" classname="br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest" name="testListar"/>
+  <testcase time="1.459" classname="br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest" name="testSalvar"/>
+  <testcase time="0.105" classname="br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest" name="testEditar"/>
+  <testcase time="0.03" classname="br.com.sanger.servico.funcionarios.impl.AutonomoServiceTest" name="testListar"/>
 </testsuite>

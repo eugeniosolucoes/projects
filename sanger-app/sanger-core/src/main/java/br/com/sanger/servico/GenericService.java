@@ -7,7 +7,7 @@ package br.com.sanger.servico;
 import java.util.List;
 
 import br.com.sanger.modelo.IEntidade;
-import br.com.sanger.repositorio.impl.AbstractRepository;
+import br.com.sanger.repositorio.AbstractRepository;
 import br.com.sanger.servico.excecoes.ServicoException;
 
 /**

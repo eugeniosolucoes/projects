@@ -8,15 +8,16 @@ import br.com.sanger.modelo.Fisica;
 import br.com.sanger.modelo.transporte.local.TransporteLocal;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author eugenio
  */
 @Entity
+@XmlRootElement
 public class Motorista extends Funcionario implements Fisica, Serializable {
 
     private static final long serialVersionUID = 1L;

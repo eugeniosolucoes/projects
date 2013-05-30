@@ -71,4 +71,5 @@ public abstract class Cliente extends Pessoa implements Serializable {
         this.endereco = endereco;
     }
     
+    
 }

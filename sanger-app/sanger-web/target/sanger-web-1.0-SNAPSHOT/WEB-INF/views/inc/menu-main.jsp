@@ -19,8 +19,8 @@
                             <li><a href="<c:url value='/clientepessoajuridica/listar' />">Cliente (Pessoa Jurídica)</a></li>
                             <li><a href="<c:url value='/autonomo/listar' />">Autonomo</a></li>
                             <li><a href="<c:url value='/motorista/listar' />">Motorista</a></li>
-                            <li><a href="<c:url value='/veiculo/listar' />">Veículo</a></li>
-                            <li><a href="<c:url value='/simbologia/listar' />">Estado das Peças (Simbologia)</a></li>
+                            <li><a href="<c:url value='/veiculodetransporte/listar' />">Veículo de Transporte</a></li>
+                            <li><a href="<c:url value='/simbolo/listar' />">Estado das Peças (Simbologia)</a></li>
                             <li><a href="<c:url value='/localizacao/listar' />">Estado das Peças (Localização)</a></li>
                         </ul>
                     </li>                     

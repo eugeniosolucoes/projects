@@ -41,22 +41,20 @@
             <div class="hero-unit">
 
 
-                <a class="btn btn-large btn-block btn-primary" href="<c:url value='/autonomo/novo' />" >Cadastrar Autonomo</a>
+                <a class="btn btn-large btn-block btn-primary" href="<c:url value='/localizacao/novo' />" >Cadastrar Localização</a>
                 <div class="btn-block" ></div>
                 <c:choose>
                     <c:when test="${ not empty lista}">
                         <table id="tbl_sanger">
                             <thead>
                                 <tr>
-                                    <th>CPF</th>
-                                    <th>Nome</th>
+                                    <th>Descrição</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${lista}" var="autonomo" >
+                                <c:forEach items="${lista}" var="localizacao" >
                                     <tr>
-                                        <td><a href="<c:url value='/autonomo/${autonomo.id}' />">${autonomo.cpf}</a></td>
-                                        <td><a href="<c:url value='/autonomo/${autonomo.id}' />">${autonomo.nome}</a></td>
+                                        <td><a href="<c:url value='/localizacao/${localizacao.id}' />">${localizacao.descricao}</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

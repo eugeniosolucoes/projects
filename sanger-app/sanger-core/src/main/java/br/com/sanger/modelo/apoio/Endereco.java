@@ -12,9 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import br.com.sanger.modelo.IEntidade;
-import br.com.sanger.modelo.Pessoa;
-import br.com.sanger.modelo.funcionarios.Autonomo;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -42,6 +39,10 @@ public class Endereco implements IEntidade<Long>, Serializable {
     private String cidade;
 
     private Estado estado;
+
+    public Endereco() {
+        estado = Estado.RJ;
+    }
 
     @Override
     public Long getId() {

@@ -4,9 +4,10 @@
  */
 package br.com.sanger.modelo.transporte;
 
-import br.com.sanger.modelo.apoio.Endereco;
-import javax.persistence.Column;
+import br.com.sanger.modelo.apoio.Estado;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 
 /**
@@ -16,59 +17,34 @@ import javax.persistence.OneToOne;
 @Entity
 public class VeiculoDeTransporte extends Veiculo {
 
-    private String proprietario;
+    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false, orphanRemoval = true )
+    private Proprietario proprietario;
 
-    @OneToOne
-    private Endereco endereco;
+    private String cidade;
 
-    @Column( name = "TELEFONE_RESIDENCIAL" )
-    private String telefoneResidencial;
+    private Estado estado;
 
-    @Column( name = "TELEFONE_MOVEL" )
-    private String telefoneMovel;
+    public String getCidade() {
+        return cidade;
+    }
 
-    @Column( name = "TELEFONE_COMERCIAL" )
-    private String telefoneComercial;
+    public void setCidade( String cidade ) {
+        this.cidade = cidade;
+    }
 
-    public String getProprietario() {
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado( Estado estado ) {
+        this.estado = estado;
+    }
+
+    public Proprietario getProprietario() {
         return proprietario;
     }
 
-    public void setProprietario( String proprietario ) {
+    public void setProprietario( Proprietario proprietario ) {
         this.proprietario = proprietario;
     }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco( Endereco endereco ) {
-        this.endereco = endereco;
-    }
-
-    public String getTelefoneResidencial() {
-        return telefoneResidencial;
-    }
-
-    public void setTelefoneResidencial( String telefoneResidencial ) {
-        this.telefoneResidencial = telefoneResidencial;
-    }
-
-    public String getTelefoneMovel() {
-        return telefoneMovel;
-    }
-
-    public void setTelefoneMovel( String telefoneMovel ) {
-        this.telefoneMovel = telefoneMovel;
-    }
-
-    public String getTelefoneComercial() {
-        return telefoneComercial;
-    }
-
-    public void setTelefoneComercial( String telefoneComercial ) {
-        this.telefoneComercial = telefoneComercial;
-    }
-    
-    
 }

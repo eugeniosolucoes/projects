@@ -4,15 +4,13 @@
  */
 package br.com.sanger.modelo.transporte.apoio;
 
+import br.com.sanger.modelo.IEntidade;
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import br.com.sanger.modelo.IEntidade;
 
 /**
  *

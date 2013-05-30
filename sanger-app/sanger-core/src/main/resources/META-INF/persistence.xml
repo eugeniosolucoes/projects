@@ -23,6 +23,7 @@
     <class>br.com.sanger.modelo.transporte.interestadual.Inventario</class>
     <class>br.com.sanger.modelo.transporte.VeiculoDeTransporte</class>
     <class>br.com.sanger.modelo.transporte.apoio.VeiculoDeTransporte</class>
+    <class>br.com.sanger.modelo.transporte.Proprietario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -32,7 +33,7 @@
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
       <!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
-      <property name="eclipselink.ddl-generation" value="create-tables"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

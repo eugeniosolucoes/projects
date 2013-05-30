@@ -18,7 +18,7 @@ public class AutonomoServiceTest {
     public AutonomoServiceTest() {
     }
 
-    @Test
+    //@Test
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         Autonomo obj = new Autonomo("eugenio", "123");
@@ -32,7 +32,7 @@ public class AutonomoServiceTest {
         instance.salvar(obj1);
     }
 
-    @Test
+    //@Test
     public void testEditar() throws Exception {
         System.out.println("editar");
         AutonomoService instance = new AutonomoService();

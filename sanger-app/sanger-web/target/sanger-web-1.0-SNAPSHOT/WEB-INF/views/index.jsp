@@ -23,9 +23,6 @@
 
         <div class="container">
 
-            <div class="mensagem clearfix"><!-- printf("Bem-vindo, %s", $controle->exibir_usuario()--></div>
-            <!-- exibir_mensagens() -->
-
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
                 <h3>SANGER-RIO</h3>

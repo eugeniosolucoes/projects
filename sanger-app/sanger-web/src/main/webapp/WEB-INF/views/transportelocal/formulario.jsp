@@ -84,7 +84,20 @@
                             </select>
                         </div>
                         <div id="tabs-4">
-                            Equipe de trabalho
+                            <div>Inventariante</div>
+                            <select id="inventariantes-disponiveis" name="_inventariante" style="width: 100%" >
+                                <c:forEach var="autonomo" items="${ajudantes}">
+                                    <option value="${autonomo.id}" ${autonomo.id == transportelocal.inventariante.id ? 'selected' : ''}>${autonomo.nome}</option>
+                                </c:forEach>
+                            </select>
+                            <button type="button" class="btn-block" id="btn-adicionar">Adicionar</button>
+                            <div>Ajudantes Selecionados</div>
+                            <select id="ajudantes-selecionados" name="ajudantes_selecionados" size="10" style="width: 100%" multiple="multiple">
+                                <c:forEach var="autonomo" items="${transportelocal.ajudantes}">
+                                    <option value="${autonomo.id}">${autonomo.nome}</option>
+                                </c:forEach>
+                            </select>
+                            <button type="button" class="btn-block" id="btn-remover" >Remover</button>
                         </div>
                         <div id="tabs-5">  
                             Especificações
@@ -131,6 +144,7 @@
                     document.forms[0].method = 'post';
                     var indice = $("#tabs").tabs("option", "active");
                     document.getElementById('tabIndex').value = indice;
+                    $('#ajudantes-selecionados option').prop('selected', 'selected');
                     document.forms[0].submit();
                 });
 
@@ -139,13 +153,26 @@
                 });
 
                 $("#btn-excluir").click(function() {
-                    excluir('o transportelocal ', '<c:url value="/transportelocal/excluir/${transportelocal.id}" />');
+                    excluir('o Transporte Local:  ${transportelocal.cliente.nome} -> ${transportelocal.destinatario.nome} ', '<c:url value="/transportelocal/excluir/${transportelocal.id}" />');
 
                 });
 
                 $("#btn-listar").click(function() {
                     window.location.assign('<c:url value="/transportelocal/listar" />');
                 });
+
+                $("#btn-adicionar").click(function() {
+                    var itens = $('#inventariantes-disponiveis').find("option");
+                    if(itens.length > 1) {
+                        var selecionados = $('#inventariantes-disponiveis').find(":selected");
+                        $('#ajudantes-selecionados').append(selecionados);
+                    }
+                });
+                
+                $("#btn-remover").click(function() {
+                    var selecionados = $('#ajudantes-selecionados').find(":selected");
+                    $('#inventariantes-disponiveis').append(selecionados);
+                });                
 
                 show_message('${tipoMensagem}', '${mensagem}');
 

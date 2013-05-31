@@ -16,9 +16,9 @@ import br.com.sanger.servico.funcionarios.impl.AutonomoService;
 import br.com.sanger.servico.funcionarios.impl.MotoristaService;
 import br.com.sanger.servico.transporte.impl.TransporteLocalService;
 import br.com.sanger.servico.transporte.impl.VeiculoDeTransporteService;
+import br.com.sanger.util.MyStrings;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TransporteLocalController extends GenericController<TransporteLocal> {
 
     List<Cliente> clientes;
-
-    List<Autonomo> autonomos;
 
     List<Motorista> motoristas;
 
@@ -61,9 +59,11 @@ public class TransporteLocalController extends GenericController<TransporteLocal
     public String editar( @PathVariable Long id, Model model ) {
         model.addAttribute( "tabIndex", 0 );
         try {
+            obj.setId( id );
             carregarListas( model );
         } catch ( Exception ex ) {
-            Logger.getLogger( TransporteLocalController.class.getName() ).log( Level.SEVERE, null, ex );
+            model.addAttribute( "tipoMensagem", Mensagem.TYPE_ERROR );
+            model.addAttribute( "mensagem", MyStrings.cleanMessage( ex.getMessage() ) );
         }
         return super.editar( id, model );
     }
@@ -81,7 +81,8 @@ public class TransporteLocalController extends GenericController<TransporteLocal
         try {
             carregarListas( model );
         } catch ( Exception ex ) {
-            Logger.getLogger( TransporteLocalController.class.getName() ).log( Level.SEVERE, null, ex );
+            model.addAttribute( "tipoMensagem", Mensagem.TYPE_ERROR );
+            model.addAttribute( "mensagem", MyStrings.cleanMessage( ex.getMessage() ) );
         }
         return super.formulario( model );
     }
@@ -97,34 +98,67 @@ public class TransporteLocalController extends GenericController<TransporteLocal
     public String salvar( TransporteLocal obj, @RequestParam String tabIndex, Model model ) {
         model.addAttribute( "tabIndex", tabIndex );
         try {
-            carregarListas( model );
             getObjetos( obj );
+            servico.salvar( obj );
+            model.addAttribute( "tipoMensagem", Mensagem.TYPE_SUCCESS );
+            model.addAttribute( "mensagem", "Registro salvo com sucesso!" );
+            carregarListas( model );
         } catch ( Exception ex ) {
-            Logger.getLogger( TransporteLocalController.class.getName() ).log( Level.SEVERE, null, ex );
+            model.addAttribute( "tipoMensagem", Mensagem.TYPE_ERROR );
+            model.addAttribute( "mensagem", MyStrings.cleanMessage( ex.getMessage() ) );
         }
-        return super.salvar( obj, tabIndex, model );
+        model.addAttribute( entidade, obj );
+        return entidade + "/formulario";
     }
 
     private void carregarListas( Model model ) throws Exception {
         clientes = new ClienteService().listar();
-        autonomos = new AutonomoService().listar();
+        List<Autonomo> ajudantes = ( (TransporteLocalService) servico ).autonomosNaoAdicionados( obj );
         motoristas = new MotoristaService().listar();
         veiculos = new VeiculoDeTransporteService().listar();
         model.addAttribute( "clientes", clientes );
-        model.addAttribute( "autonomos", autonomos );
+        model.addAttribute( "ajudantes", ajudantes );
         model.addAttribute( "motoristas", motoristas );
         model.addAttribute( "veiculos", veiculos );
         model.addAttribute( "estados", Estado.values() );
     }
 
     private void getObjetos( TransporteLocal obj ) throws Exception {
+
+        List<Autonomo> ajudantes = new AutonomoService().listar();
+
         Cliente cliente = new ClientePessoaFisica();
         cliente.setId( Long.valueOf( request.getParameter( "_cliente" ) ) );
         cliente = (Cliente) getEntidade( cliente, clientes );
+
+        Autonomo inventariante = new Autonomo();
+        String inventarianteID = request.getParameter( "_inventariante" );
+
+        if ( inventarianteID != null ) {
+            inventariante.setId( Long.valueOf( inventarianteID ) );
+            inventariante = ajudantes.get( ajudantes.indexOf( inventariante ) );
+            obj.setInventariante( inventariante );
+        }
+       
         VeiculoDeTransporte veiculo = new VeiculoDeTransporte();
         veiculo.setId( Long.valueOf( request.getParameter( "_veiculoDeTransporte" ) ) );
         veiculo = (VeiculoDeTransporte) getEntidade( veiculo, veiculos );
+
         obj.setCliente( cliente );
         obj.setVeiculoDeTransporte( veiculo );
+
+        String[] ajudantesID = request.getParameterValues( "ajudantes_selecionados" );
+
+        if ( ajudantesID != null ) {
+            obj.setAjudantes( new ArrayList<Autonomo>() );
+
+            for ( String id : ajudantesID ) {
+                Autonomo a = new Autonomo();
+                a.setId( Long.valueOf( id ) );
+                a = ajudantes.get( ajudantes.indexOf( a ) );
+                obj.getAjudantes().add( a );
+            }
+        }
+
     }
 }

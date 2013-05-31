@@ -38,8 +38,8 @@ public class TransporteLocalRepository extends AbstractRepository<TransporteLoca
 
     public List<Autonomo> autonomosNaoAdicionados( TransporteLocal obj ) throws Exception {
         Query query = em.createQuery( "SELECT "
-                + "DISTINCT p FROM TransporteLocal p "
-                + "WHERE p.id NOT IN ( SELECT p2.id FROM TransporteLocal p2 JOIN p2.ajudantes u WHERE u.id = ?1)" );
+                + "DISTINCT au FROM Autonomo au "
+                + "WHERE au.id NOT IN ( SELECT aj.id FROM TransporteLocal tl JOIN tl.ajudantes aj WHERE tl.id = ?1) " );
         query.setParameter( 1, obj.getId() );
         return query.getResultList();
     }

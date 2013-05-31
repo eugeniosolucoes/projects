@@ -4,10 +4,12 @@
  */
 package br.com.sanger.servico.transporte.impl;
 
+import br.com.sanger.modelo.funcionarios.Autonomo;
 import br.com.sanger.modelo.transporte.local.TransporteLocal;
 import br.com.sanger.repositorio.transporte.impl.TransporteLocalRepository;
 import br.com.sanger.servico.GenericService;
 import br.com.sanger.servico.excecoes.ServicoException;
+import java.util.List;
 
 /**
  *
@@ -42,5 +44,9 @@ public class TransporteLocalService extends GenericService<TransporteLocal> {
         if ( obj == null ) {
             throw new IllegalStateException( "Objeto nulo!" );
         }
+    }
+
+    public List<Autonomo> autonomosNaoAdicionados( TransporteLocal obj ) throws Exception {
+        return ( (TransporteLocalRepository) dao ).autonomosNaoAdicionados( obj );
     }
 }

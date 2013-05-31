@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.sanger.repositorio.clientes.impl;
+package br.com.sanger.repositorio.transporte.impl;
 
-import br.com.sanger.modelo.clientes.ClientePessoaJuridica;
+import br.com.sanger.modelo.transporte.Destinatario;
 import br.com.sanger.repositorio.AbstractRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -13,15 +13,15 @@ import javax.persistence.Persistence;
  *
  * @author eugenio
  */
-public class ClientePessoaJuridicaRepository extends AbstractRepository<ClientePessoaJuridica> {
+public class DestinatarioRepository extends AbstractRepository<Destinatario> {
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
-    public ClientePessoaJuridicaRepository() {
-        super( ClientePessoaJuridica.class );
+    public DestinatarioRepository() {
+        super( Destinatario.class );
         factory = Persistence.createEntityManagerFactory( AbstractRepository.PERSISTENCE_UNIT_NAME );
         em = factory.createEntityManager();
     }

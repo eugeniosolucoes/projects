@@ -21,9 +21,6 @@ public class ClientePessoaJuridica extends Cliente implements Juridica, Serializ
 
     private String cnpj;
 
-    @Column( unique = true )
-    private String nome;
-
     @Column( name = "INSCRICAO_ESTADUAL" )
     private String inscricaoEstadual;
 
@@ -36,30 +33,11 @@ public class ClientePessoaJuridica extends Cliente implements Juridica, Serializ
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += ( id != null ? id.hashCode() : 0 );
-        return hash;
-    }
-
-    @Override
-    public boolean equals( Object object ) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if ( !( object instanceof ClientePessoaJuridica ) ) {
-            return false;
-        }
-        ClientePessoaJuridica other = (ClientePessoaJuridica) object;
-        if ( ( this.id == null && other.id != null ) || ( this.id != null && !this.id.equals( other.id ) ) ) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         return "br.com.sanger.modelo.pessoas.clientes.ClientePessoaJuridica[ id=" + id + " ]";
     }
 
+    @Override
     public String getCnpj() {
         return cnpj;
     }
@@ -69,6 +47,7 @@ public class ClientePessoaJuridica extends Cliente implements Juridica, Serializ
         return inscricaoEstadual;
     }
 
+    @Override
     public void setCnpj( String cnpj ) {
         this.cnpj = cnpj;
     }
@@ -86,13 +65,6 @@ public class ClientePessoaJuridica extends Cliente implements Juridica, Serializ
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome( String nome ) {
-        this.nome = nome;
-    }
-    
+   
     
 }

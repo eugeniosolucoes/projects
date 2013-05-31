@@ -10,14 +10,12 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author eugenio
  */
 @Entity
-@XmlRootElement
 public class Motorista extends Funcionario implements Fisica, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,26 +42,6 @@ public class Motorista extends Funcionario implements Fisica, Serializable {
 
     @OneToMany( mappedBy = "motorista" )
     private List<TransporteLocal> servicos;
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += ( id != null ? id.hashCode() : 0 );
-        return hash;
-    }
-
-    @Override
-    public boolean equals( Object object ) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if ( !( object instanceof Motorista ) ) {
-            return false;
-        }
-        Motorista other = (Motorista) object;
-        if ( ( this.id == null && other.id != null ) || ( this.id != null && !this.id.equals( other.id ) ) ) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
@@ -96,10 +74,12 @@ public class Motorista extends Funcionario implements Fisica, Serializable {
         this.servicos = servicos;
     }
 
+    @Override
     public String getCpf() {
         return cpf;
     }
 
+    @Override
     public void setCpf( String cpf ) {
         this.cpf = cpf;
     }

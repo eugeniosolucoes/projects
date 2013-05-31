@@ -48,13 +48,15 @@
                         <table id="tbl_sanger">
                             <thead>
                                 <tr>
-                                    <th>Descrição</th>
+                                    <th>Remetente</th>
+                                    <th>Destinatário</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach items="${lista}" var="transportelocal" >
                                     <tr>
                                         <td><a href="<c:url value='/transportelocal/${transportelocal.id}' />">${transportelocal.cliente.nome}</a></td>
+                                        <td><a href="<c:url value='/transportelocal/${transportelocal.id}' />">${transportelocal.destinatario.nome}</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

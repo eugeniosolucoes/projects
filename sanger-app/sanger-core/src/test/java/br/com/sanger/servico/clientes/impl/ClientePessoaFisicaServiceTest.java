@@ -27,7 +27,7 @@ public class ClientePessoaFisicaServiceTest {
         obj.getEndereco().setLogradouro("rua a");
         obj1.setEndereco(new Endereco());
         obj1.getEndereco().setLogradouro("rua b");
-        ClientePessoaFisicaService instance = new ClientePessoaFisicaService();
+        ClienteService instance = new ClienteService();
         instance.salvar(obj);
         instance.salvar(obj1);
     }
@@ -47,7 +47,7 @@ public class ClientePessoaFisicaServiceTest {
 
     }
 
-    @Test
+   // @Test
     public void testListar() throws Exception {
         System.out.println("listar");
         ClientePessoaFisicaService instance = new ClientePessoaFisicaService();

@@ -39,10 +39,10 @@ public abstract class Veiculo implements IEntidade<Long>, Serializable {
     @Override
     public boolean equals( Object object ) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if ( !( object instanceof Automovel ) ) {
+        if ( !( object instanceof Veiculo ) ) {
             return false;
         }
-        Automovel other = (Automovel) object;
+        Veiculo other = (Veiculo) object;
         if ( ( this.id == null && other.id != null ) || ( this.id != null && !this.id.equals( other.id ) ) ) {
             return false;
         }
@@ -61,6 +61,7 @@ public abstract class Veiculo implements IEntidade<Long>, Serializable {
         return cor;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
@@ -96,6 +97,7 @@ public abstract class Veiculo implements IEntidade<Long>, Serializable {
         this.cor = cor;
     }
 
+    @Override
     public void setId( Long id ) {
         this.id = id;
     }

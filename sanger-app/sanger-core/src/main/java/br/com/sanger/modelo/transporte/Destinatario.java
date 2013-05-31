@@ -33,11 +33,9 @@ public class Destinatario implements IEntidade<Long>, Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @Column( unique = true )
     private String nome;
 
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false )
-    @PrimaryKeyJoinColumn
     private Endereco endereco;
 
     @Column( name = "TELEFONE_RESIDENCIAL" )
@@ -49,8 +47,6 @@ public class Destinatario implements IEntidade<Long>, Serializable {
     @Column( name = "TELEFONE_COMERCIAL" )
     private String telefoneComercial;
 
-    @OneToMany( mappedBy = "destinatario" )
-    private List<TransporteLocal> servicos;
 
     @Override
     public int hashCode() {
@@ -77,18 +73,13 @@ public class Destinatario implements IEntidade<Long>, Serializable {
         return "br.com.sanger.modelo.pessoas.clientes.Destinatario[ id=" + id + " ]";
     }
 
-    public List<TransporteLocal> getServicos() {
-        return servicos;
-    }
 
-    public void setServicos( List<TransporteLocal> servicos ) {
-        this.servicos = servicos;
-    }
-
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId( Long id ) {
         this.id = id;
     }

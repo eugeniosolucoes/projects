@@ -27,7 +27,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Movimentação<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<c:url value='#' />">Transporte Local</a></li>
+                            <li><a href="<c:url value='/transportelocal/listar' />">Transporte Local</a></li>
                             <li><a href="<c:url value='#' />">Transporte Interestadual</a></li>
                             <li><a href="<c:url value='#' />">Transporte de Autom&oacute;vel</a></li>
                             <li><a href="<c:url value='#' />">Recibo</a></li>

@@ -43,7 +43,6 @@
                         <div id="tabs-1">
                             <input type="hidden" name="id" value="${veiculodetransporte.id}" /> 
                             <input class="span2" type="text" name="placa" placeholder="Placa"
-                                   onkeypress="return(maskEvent(this, '###-####', event));"
                                    value="${veiculodetransporte.placa}" /> 
                             <input class="span2" type="text"
                                    name="cidade" placeholder="Cidade"

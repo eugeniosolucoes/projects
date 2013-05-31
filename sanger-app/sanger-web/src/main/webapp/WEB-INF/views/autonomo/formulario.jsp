@@ -119,40 +119,40 @@
         <c:import url="../inc/footer-bootstrap.jsp" />
 
         <script>
-                                       $(document).ready(function() {
-                                           $("#admissao").datepicker({
-                                               buttonText: "data da admissão",
-                                               showButtonPanel: true,
-                                               changeMonth: true,
-                                               changeYear: true
-                                           });
+            $(document).ready(function() {
+                $("#admissao").datepicker({
+                    buttonText: "data da admissão",
+                    showButtonPanel: true,
+                    changeMonth: true,
+                    changeYear: true
+                });
 
-                                           $("#demissao").datepicker({
-                                               buttonText: "data da demissão",
-                                               showButtonPanel: true,
-                                               changeMonth: true,
-                                               changeYear: true
-                                           });
+                $("#demissao").datepicker({
+                    buttonText: "data da demissão",
+                    showButtonPanel: true,
+                    changeMonth: true,
+                    changeYear: true
+                });
 
-                                           $("#tabs").tabs({active: ${tabIndex}});
+                $("#tabs").tabs({active: ${tabIndex}});
 
-                                           $("#btn-salvar").click(function() {
-                                               document.forms[0].action = '<c:url value="/autonomo/salvar" />';
-                                               document.forms[0].method = 'post';
-                                               var indice = $("#tabs").tabs("option", "active");
-                                               document.getElementById('tabIndex').value = indice;
-                                               document.forms[0].submit();
-                                           });
+                $("#btn-salvar").click(function() {
+                    document.forms[0].action = '<c:url value="/autonomo/salvar" />';
+                    document.forms[0].method = 'post';
+                    var indice = $("#tabs").tabs("option", "active");
+                    document.getElementById('tabIndex').value = indice;
+                    document.forms[0].submit();
+                });
 
-                                           $("#btn-novo").click(function() {
-                                               window.location.assign('<c:url value="/autonomo/novo" />');
-                                           });
+                $("#btn-novo").click(function() {
+                    window.location.assign('<c:url value="/autonomo/novo" />');
+                });
 
             <c:if test="${not empty autonomo.id}">
-                                           $("#btn-excluir").click(function() {
-                                               excluir('o autonomo ${autonomo.nome}', '<c:url value="/autonomo/excluir/${autonomo.id}" />');
+                    $("#btn-excluir").click(function() {
+                        excluir('o autonomo ${autonomo.nome}', '<c:url value="/autonomo/excluir/${autonomo.id}" />');
 
-                                           });
+                    });
             </c:if>
 
                     $("#btn-listar").click(function() {

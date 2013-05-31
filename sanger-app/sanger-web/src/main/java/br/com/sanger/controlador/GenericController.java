@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.InitBinder;
  *
  * @author eugenio
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings( "rawtypes" )
 public abstract class GenericController<T extends IEntidade> {
 
     protected GenericService<T> servico;
@@ -58,8 +58,8 @@ public abstract class GenericController<T extends IEntidade> {
      * @param model
      * @return
      */
-    @SuppressWarnings("unchecked")
-	public String excluir( Long id, Model model ) {
+    @SuppressWarnings( "unchecked" )
+    public String excluir( Long id, Model model ) {
         try {
             obj.setId( id );
             servico.excluir( obj );
@@ -129,5 +129,14 @@ public abstract class GenericController<T extends IEntidade> {
         }
         model.addAttribute( entidade, obj );
         return entidade + "/formulario";
+    }
+
+    public <E extends IEntidade> IEntidade getEntidade( Object id, List<E> lista ) throws Exception {
+        int i = lista.indexOf( id );
+        if(i < 0) {
+            return null;
+        }
+        E objeto = lista.get( i );
+        return objeto;
     }
 }

@@ -21,8 +21,8 @@ public class AutonomoServiceTest {
     //@Test
     public void testSalvar() throws Exception {
         System.out.println("salvar");
-        Autonomo obj = new Autonomo("eugenio", "123");
-        Autonomo obj1 = new Autonomo("eugenio1", "1234");
+        Autonomo obj = new Autonomo("autonomo", "123");
+        Autonomo obj1 = new Autonomo("autonomo1", "1234");
         obj.setEndereco(new Endereco());
         obj.getEndereco().setLogradouro("rua a");
         obj1.setEndereco(new Endereco());

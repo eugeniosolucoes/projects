@@ -148,20 +148,18 @@
                     window.location.assign('<c:url value="/autonomo/novo" />');
                 });
 
-            <c:if test="${not empty autonomo.id}">
-                    $("#btn-excluir").click(function() {
-                        excluir('o autonomo ${autonomo.nome}', '<c:url value="/autonomo/excluir/${autonomo.id}" />');
-
-                    });
-            </c:if>
-
-                    $("#btn-listar").click(function() {
-                        window.location.assign('<c:url value="/autonomo/listar" />');
-                    });
-
-                    show_message('${tipoMensagem}', '${mensagem}');
+                $("#btn-excluir").click(function() {
+                    excluir('o autonomo ${autonomo.nome}', '<c:url value="/autonomo/excluir/${autonomo.id}" />');
 
                 });
+
+                $("#btn-listar").click(function() {
+                    window.location.assign('<c:url value="/autonomo/listar" />');
+                });
+
+                show_message('${tipoMensagem}', '${mensagem}');
+
+            });
         </script>
 
     </body>

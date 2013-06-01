@@ -89,20 +89,18 @@
                     window.location.assign('<c:url value="/simbolo/novo" />');
                 });
 
-            <c:if test="${not empty simbolo.id}">
-                    $("#btn-excluir").click(function() {
-                        excluir('o simbolo ${simbolo.descricao}', '<c:url value="/simbolo/excluir/${simbolo.id}" />');
-
-                    });
-            </c:if>
-
-                    $("#btn-listar").click(function() {
-                        window.location.assign('<c:url value="/simbolo/listar" />');
-                    });
-
-                    show_message('${tipoMensagem}', '${mensagem}');
+                $("#btn-excluir").click(function() {
+                    excluir('o simbolo ${simbolo.descricao}', '<c:url value="/simbolo/excluir/${simbolo.id}" />');
 
                 });
+
+                $("#btn-listar").click(function() {
+                    window.location.assign('<c:url value="/simbolo/listar" />');
+                });
+
+                show_message('${tipoMensagem}', '${mensagem}');
+
+            });
         </script>
 
     </body>

@@ -149,20 +149,18 @@
                     window.location.assign('<c:url value="/veiculodetransporte/novo" />');
                 });
 
-            <c:if test="${not empty veiculodetransporte.id}">
-                        $("#btn-excluir").click(function() {
-                            excluir('o veículo de transporte ${veiculodetransporte.placa}', '<c:url value="/veiculodetransporte/excluir/${veiculodetransporte.id}" />');
-
-                        });
-            </c:if>
-
-                    $("#btn-listar").click(function() {
-                        window.location.assign('<c:url value="/veiculodetransporte/listar" />');
-                    });
-
-                    show_message('${tipoMensagem}', '${mensagem}');
+                $("#btn-excluir").click(function() {
+                    excluir('o veículo de transporte ${veiculodetransporte.placa}', '<c:url value="/veiculodetransporte/excluir/${veiculodetransporte.id}" />');
 
                 });
+
+                $("#btn-listar").click(function() {
+                    window.location.assign('<c:url value="/veiculodetransporte/listar" />');
+                });
+
+                show_message('${tipoMensagem}', '${mensagem}');
+
+            });
         </script>
 
     </body>

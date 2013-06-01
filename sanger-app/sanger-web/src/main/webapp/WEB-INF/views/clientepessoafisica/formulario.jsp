@@ -108,36 +108,34 @@
         <c:import url="../inc/footer-bootstrap.jsp" />
 
         <script>
-                                       $(document).ready(function() {
+            $(document).ready(function() {
 
-                                           $("#tabs").tabs({active: ${tabIndex}});
+                $("#tabs").tabs({active: ${tabIndex}});
 
-                                           $("#btn-salvar").click(function() {
-                                               document.forms[0].action = '<c:url value="/clientepessoafisica/salvar" />';
-                                               document.forms[0].method = 'post';
-                                               var indice = $("#tabs").tabs("option", "active");
-                                               document.getElementById('tabIndex').value = indice;
-                                               document.forms[0].submit();
-                                           });
+                $("#btn-salvar").click(function() {
+                    document.forms[0].action = '<c:url value="/clientepessoafisica/salvar" />';
+                    document.forms[0].method = 'post';
+                    var indice = $("#tabs").tabs("option", "active");
+                    document.getElementById('tabIndex').value = indice;
+                    document.forms[0].submit();
+                });
 
-                                           $("#btn-novo").click(function() {
-                                               window.location.assign('<c:url value="/clientepessoafisica/novo" />');
-                                           });
+                $("#btn-novo").click(function() {
+                    window.location.assign('<c:url value="/clientepessoafisica/novo" />');
+                });
 
-            <c:if test="${not empty clientepessoafisica.id}">
-                                           $("#btn-excluir").click(function() {
-                                               excluir('o cliente ${clientepessoafisica.nome}', '<c:url value="/clientepessoafisica/excluir/${clientepessoafisica.id}" />');
-
-                                           });
-            </c:if>
-
-                    $("#btn-listar").click(function() {
-                        window.location.assign('<c:url value="/clientepessoafisica/listar" />');
-                    });
-
-                    show_message('${tipoMensagem}', '${mensagem}');
+                $("#btn-excluir").click(function() {
+                    excluir('o cliente ${clientepessoafisica.nome}', '<c:url value="/clientepessoafisica/excluir/${clientepessoafisica.id}" />');
 
                 });
+ 
+                $("#btn-listar").click(function() {
+                    window.location.assign('<c:url value="/clientepessoafisica/listar" />');
+                });
+
+                show_message('${tipoMensagem}', '${mensagem}');
+
+            });
         </script>
 
     </body>

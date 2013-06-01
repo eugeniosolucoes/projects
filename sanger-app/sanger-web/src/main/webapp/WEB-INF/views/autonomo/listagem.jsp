@@ -86,22 +86,22 @@
             $(document).ready(function() {
 
                 $('#tbl_sanger').dataTable(
-                        {
-                            "bPaginate": true,
-                            "iDisplayLength": 10,
-                            "aLengthMenu": [[10, 50, 100], [10, 50, 100]],
-                            "oLanguage": {
-                                "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
-                                "sSearch": "Buscar:",
-                                "sLengthMenu": 'Registros: _MENU_ ',
-                                "sInfoFiltered": "(filtro de _MAX_ total registros)",
-                                "sInfoEmpty": "Nenhum resultado",
-                                "oPaginate": {
-                                    "sPrevious": "Anterior",
-                                    "sNext": "Próxima"
-                                }
-                            }
-                        });
+                {
+                    "bPaginate": true,
+                    "iDisplayLength": 10,
+                    "aLengthMenu": [[10, 50, 100], [10, 50, 100]],
+                    "oLanguage": {
+                        "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
+                        "sSearch": "Buscar:",
+                        "sLengthMenu": 'Registros: _MENU_ ',
+                        "sInfoFiltered": "(filtro de _MAX_ total registros)",
+                        "sInfoEmpty": "Nenhum resultado",
+                        "oPaginate": {
+                            "sPrevious": "Anterior",
+                            "sNext": "Próxima"
+                        }
+                    }
+                });
 
                 show_message('${tipoMensagem}', '${mensagem}');
 

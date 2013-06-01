@@ -87,20 +87,18 @@
                     window.location.assign('<c:url value="/localizacao/novo" />');
                 });
 
-            <c:if test="${not empty localizacao.id}">
-                    $("#btn-excluir").click(function() {
-                        excluir('o localizacao ${localizacao.descricao}', '<c:url value="/localizacao/excluir/${localizacao.id}" />');
-
-                    });
-            </c:if>
-
-                    $("#btn-listar").click(function() {
-                        window.location.assign('<c:url value="/localizacao/listar" />');
-                    });
-
-                    show_message('${tipoMensagem}', '${mensagem}');
+                $("#btn-excluir").click(function() {
+                    excluir('o localizacao ${localizacao.descricao}', '<c:url value="/localizacao/excluir/${localizacao.id}" />');
 
                 });
+
+                $("#btn-listar").click(function() {
+                    window.location.assign('<c:url value="/localizacao/listar" />');
+                });
+
+                show_message('${tipoMensagem}', '${mensagem}');
+
+            });
         </script>
 
     </body>

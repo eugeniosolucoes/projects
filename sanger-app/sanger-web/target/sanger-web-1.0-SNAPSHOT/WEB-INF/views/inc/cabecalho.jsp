@@ -23,3 +23,5 @@
 <script type="text/javascript" src="<c:url value='/resources/js/jquery-ui/js/jquery-ui-1.10.0.custom.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/jquery-ui/js/jquery.ui.datepicker-pt-BR.js' />"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/message/javascript/jquery.toastmessage.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/mask/jquery.maskedinput.min.js' />"></script>
+

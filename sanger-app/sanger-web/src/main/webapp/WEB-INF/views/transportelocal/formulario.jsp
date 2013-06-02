@@ -58,7 +58,7 @@
                             <input class="input-block-level" type="text" name="destinatario.endereco.logradouro" placeholder="Logradouro" value="${transportelocal.destinatario.endereco.logradouro}" />
                             <input class="span2" type="text" name="destinatario.endereco.numero" placeholder="Número" value="${transportelocal.destinatario.endereco.numero}" />
                             <input class="span2" type="text" name="destinatario.endereco.complemento" placeholder="Complemento" value="${transportelocal.destinatario.endereco.complemento}" />
-                            <input class="span2" type="text" name="destinatario.endereco.cep" placeholder="CEP" value="${transportelocal.destinatario.endereco.cep}" onkeypress="return(maskEvent(this, '##.###-###', event));" /> 
+                            <input class="span2" type="text" id="cep" name="destinatario.endereco.cep" placeholder="CEP" value="${transportelocal.destinatario.endereco.cep}" onkeypress="return(maskEvent(this, '##.###-###', event));" /> 
                             <input class="span2" type="text" name="destinatario.endereco.bairro" placeholder="Bairro" value="${transportelocal.destinatario.endereco.bairro}" /> 
                             <input class="span2" type="text" name="destinatario.endereco.cidade" placeholder="Cidade" value="${transportelocal.destinatario.endereco.cidade}"/> 
                             <select name="destinatario.endereco.estado">
@@ -99,11 +99,61 @@
                             </select>
                             <button type="button" class="btn-block" id="btn-remover" >Remover</button>
                         </div>
-                        <div id="tabs-5">  
-                            Especificações
+                        <div id="tabs-5"> 
+                            <div class="form-inline">
+                                <div class="control-group">
+                                    <label>Hora da saída:</label>
+                                    <input class="span1"
+                                           type="text"  name="_saida" 
+                                           value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.saida}" />" />
+                                    <label>Hora da chegada no cliente:</label>
+                                    <input class="span1"
+                                           type="text"  name="_chegadaCliente" 
+                                           value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.chegadaCliente}" />" />
+                                    <label>Hora de saída do cliente:</label>
+                                    <input class="span1"
+                                           type="text"  name="_saidaCliente" 
+                                           value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.saidaCliente}" />" />
+                                    <label>Hora de retorno:</label>
+                                    <input class="span1"
+                                           type="text"  name="_retorno" 
+                                           value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.retorno}" />" />
+                                </div>
+                                <div class="control-group">
+                                    <label>Preço por hora:</label>
+                                    <input class="span2"
+                                           type="text"  name="_precoPorHora" 
+                                           value="${transportelocal.precoPorHora}" />
+                                    <label>Mínimo de horas:</label>
+                                    <input class="span2"
+                                           type="text"  name="_minimoDeHoras" 
+                                           value="${transportelocal.minimoDeHoras}" />
+                                    <label>Preço por cada caixa:</label>
+                                    <input class="span2"
+                                           type="text"  name="_precoPorCaixa" 
+                                           value="${transportelocal.precoPorCaixa}" />
+                                    <label>Preço de retorno:</label>
+                                    <input class="span2"
+                                           type="text"  name="_precoRetorno" 
+                                           value="${transportelocal.precoRetorno}" />
+                                </div>
+                            </div>
                         </div>
                         <div id="tabs-6">
-                            Observações
+                            <div class="form-inline">
+                                <div class="control-group">
+                                    <label for="realizado">Data do Serviço:</label>
+                                    <input class="span2"
+                                           type="text" id="realizado" name="realizado" placeholder="Data do Serviço"
+                                           value="<fmt:formatDate pattern="dd/MM/yyyy" value="${transportelocal.realizado}" />" />
+                                    <label for="total">Total:</label>
+                                    <input class="span2"
+                                           type="text"  name="total" placeholder="Total"
+                                           value="${transportelocal.total}" />
+                                </div>
+                            </div>
+                            <label for="observacoes">Observações</label>
+                            <textarea name="observacoes" class="input-block-level">${transportelocal.observacoes}</textarea>                            
                         </div>                        
                         <div style="padding: 0 0 10px 25px;">
                             <button type="button" class="btn" id="btn-salvar">Salvar</button>
@@ -136,6 +186,15 @@
 
         <script>
             $(document).ready(function() {
+                
+                $("#realizado").datepicker({
+                    buttonText: "data do serviço",
+                    showButtonPanel: true,
+                    changeMonth: true,
+                    changeYear: true
+                });                
+                
+                $("#cep").mask("99.999-999");
                 
                 $("#tabs").tabs({active: ${tabIndex}});
 

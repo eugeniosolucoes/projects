@@ -44,8 +44,7 @@
                             <input type="hidden" name="id" value="${clientepessoajuridica.id}" /> 
                             <input class="input-block-level" type="text" name="nome"
                                    placeholder="Nome" value="${clientepessoajuridica.nome}" /> 
-                            <input class="span3" type="text" name="cnpj" placeholder="CNPJ"
-                                   onkeypress="return(maskEvent(this, '##.###.###/####-##', event));"
+                            <input class="span3" type="text" id="cnpj" name="cnpj" placeholder="CNPJ"                                   
                                    value="${clientepessoajuridica.cnpj}" /> 
                         </div>
                         <div id="tabs-2">
@@ -53,7 +52,7 @@
                             <input class="input-block-level" type="text" name="endereco.logradouro" placeholder="Logradouro" value="${clientepessoajuridica.endereco.logradouro}" />
                             <input class="span2" type="text" name="endereco.numero" placeholder="Número" value="${clientepessoajuridica.endereco.numero}" />
                             <input class="span2" type="text" name="endereco.complemento" placeholder="Complemento" value="${clientepessoajuridica.endereco.complemento}" />
-                            <input class="span2" type="text" name="endereco.cep" placeholder="CEP" value="${clientepessoajuridica.endereco.cep}" onkeypress="return(maskEvent(this, '##.###-###', event));" /> 
+                            <input class="span2" type="text" id="cep" name="endereco.cep" placeholder="CEP" value="${clientepessoajuridica.endereco.cep}" /> 
                             <input class="span2" type="text" name="endereco.bairro" placeholder="Bairro" value="${clientepessoajuridica.endereco.bairro}" /> 
                             <input class="span2" type="text" name="endereco.cidade" placeholder="Cidade" value="${clientepessoajuridica.endereco.cidade}"/> 
                             <select name="endereco.estado">
@@ -73,9 +72,9 @@
                         </div>
                         <div id="tabs-3">
                             <label for="telefoneComercial">Comercial</label>
-                            <input name="telefoneComercial"  value="${clientepessoajuridica.telefoneComercial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneComercial" name="telefoneComercial"  value="${clientepessoajuridica.telefoneComercial}"  />
                             <label for="telefoneMovel">Móvel</label>
-                            <input name="telefoneMovel"  value="${clientepessoajuridica.telefoneMovel}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneMovel" name="telefoneMovel"  value="${clientepessoajuridica.telefoneMovel}" />
                         </div>
                         <div style="padding: 0 0 10px 25px;">
                             <button type="button" class="btn" id="btn-salvar">Salvar</button>
@@ -109,6 +108,15 @@
             $(document).ready(function() {
 
                 $("#tabs").tabs({active: ${tabIndex}});
+
+                $("#cnpj").mask("99.999.999/9999-99");
+                
+                $("#cep").mask("99.999-999");
+                
+                $("#telefoneMovel").mask("(99)9999-9999");
+                
+                $("#telefoneComercial").mask("(99)9999-9999");
+
 
                 $("#btn-salvar").click(function() {
                     document.forms[0].action = '<c:url value="/clientepessoajuridica/salvar" />';

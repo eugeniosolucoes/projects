@@ -44,9 +44,7 @@
                             <input type="hidden" name="id" value="${autonomo.id}" /> 
                             <input class="input-block-level" type="text" name="nome"
                                    placeholder="Nome" value="${autonomo.nome}" /> 
-                            <input class="span2" type="text" name="cpf" placeholder="CPF"
-                                   onkeypress="return(maskEvent(this, '###.###.###-##', event));"
-                                   value="${autonomo.cpf}" /> 
+                            <input class="span2" type="text" id="cpf" name="cpf" placeholder="CPF" value="${autonomo.cpf}" /> 
                             <input class="span2" type="text"
                                    name="identidade" placeholder="Identidade"
                                    value="${autonomo.identidade}"/> 
@@ -64,7 +62,7 @@
                             <input class="input-block-level" type="text" name="endereco.logradouro" placeholder="Logradouro" value="${autonomo.endereco.logradouro}" />
                             <input class="span2" type="text" name="endereco.numero" placeholder="Número" value="${autonomo.endereco.numero}" />
                             <input class="span2" type="text" name="endereco.complemento" placeholder="Complemento" value="${autonomo.endereco.complemento}" />
-                            <input class="span2" type="text" name="endereco.cep" placeholder="CEP" value="${autonomo.endereco.cep}" onkeypress="return(maskEvent(this, '##.###-###', event));" /> 
+                            <input class="span2" type="text" id="cep" name="endereco.cep" placeholder="CEP" value="${autonomo.endereco.cep}"  /> 
                             <input class="span2" type="text" name="endereco.bairro" placeholder="Bairro" value="${autonomo.endereco.bairro}" /> 
                             <input class="span2" type="text" name="endereco.cidade" placeholder="Cidade" value="${autonomo.endereco.cidade}"/> 
                             <select name="endereco.estado">
@@ -84,11 +82,11 @@
                         </div>
                         <div id="tabs-3">
                             <label for="telefoneResidencial">Residencial</label>
-                            <input name="telefoneResidencial"  value="${autonomo.telefoneResidencial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneResidencial" name="telefoneResidencial"  value="${autonomo.telefoneResidencial}" />
                             <label for="telefoneMovel">Móvel</label>
-                            <input name="telefoneMovel"  value="${autonomo.telefoneMovel}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneMovel" name="telefoneMovel"  value="${autonomo.telefoneMovel}"  />
                             <label for="telefoneComercial">Comercial</label>
-                            <input name="telefoneComercial"  value="${autonomo.telefoneComercial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneComercial" name="telefoneComercial"  value="${autonomo.telefoneComercial}"  />
                         </div>
                         <div style="padding: 0 0 10px 25px;">
                             <button type="button" class="btn" id="btn-salvar">Salvar</button>
@@ -133,6 +131,16 @@
                     changeMonth: true,
                     changeYear: true
                 });
+                
+                $("#cpf").mask("99.999.999-99");
+                
+                $("#cep").mask("99.999-999");
+                
+                $("#telefoneResidencial").mask("(99)9999-9999");
+                
+                $("#telefoneMovel").mask("(99)9999-9999");
+                
+                $("#telefoneComercial").mask("(99)9999-9999");
 
                 $("#tabs").tabs({active: ${tabIndex}});
 
@@ -148,20 +156,18 @@
                     window.location.assign('<c:url value="/autonomo/novo" />');
                 });
 
-            <c:if test="${not empty autonomo.id}">
-                    $("#btn-excluir").click(function() {
-                        excluir('o autonomo ${autonomo.nome}', '<c:url value="/autonomo/excluir/${autonomo.id}" />');
-
-                    });
-            </c:if>
-
-                    $("#btn-listar").click(function() {
-                        window.location.assign('<c:url value="/autonomo/listar" />');
-                    });
-
-                    show_message('${tipoMensagem}', '${mensagem}');
+                $("#btn-excluir").click(function() {
+                    excluir('o autonomo ${autonomo.nome}', '<c:url value="/autonomo/excluir/${autonomo.id}" />');
 
                 });
+
+                $("#btn-listar").click(function() {
+                    window.location.assign('<c:url value="/autonomo/listar" />');
+                });
+
+                show_message('${tipoMensagem}', '${mensagem}');
+
+            });
         </script>
 
     </body>

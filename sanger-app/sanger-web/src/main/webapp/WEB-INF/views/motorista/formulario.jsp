@@ -44,8 +44,7 @@
                             <input type="hidden" name="id" value="${motorista.id}" /> 
                             <input class="input-block-level" type="text" name="nome"
                                    placeholder="Nome" value="${motorista.nome}" /> 
-                            <input class="span2" type="text" name="cpf" placeholder="CPF"
-                                   onkeypress="return(maskEvent(this, '###.###.###-##', event));"
+                            <input class="span2" type="text" id="cpf" name="cpf" placeholder="CPF"
                                    value="${motorista.cpf}" /> 
                             <input class="span2" type="text"
                                    name="identidade" placeholder="Identidade"
@@ -63,7 +62,7 @@
                             <input class="input-block-level" type="text" name="endereco.logradouro" placeholder="Logradouro" value="${motorista.endereco.logradouro}" />
                             <input class="span2" type="text" name="endereco.numero" placeholder="Número" value="${motorista.endereco.numero}" />
                             <input class="span2" type="text" name="endereco.complemento" placeholder="Complemento" value="${motorista.endereco.complemento}" />
-                            <input class="span2" type="text" name="endereco.cep" placeholder="CEP" value="${motorista.endereco.cep}" onkeypress="return(maskEvent(this, '##.###-###', event));" /> 
+                            <input class="span2" type="text" id="cep" name="endereco.cep" placeholder="CEP" value="${motorista.endereco.cep}" /> 
                             <input class="span2" type="text" name="endereco.bairro" placeholder="Bairro" value="${motorista.endereco.bairro}" /> 
                             <input class="span2" type="text" name="endereco.cidade" placeholder="Cidade" value="${motorista.endereco.cidade}"/> 
                             <select name="endereco.estado">
@@ -83,11 +82,11 @@
                         </div>
                         <div id="tabs-3">
                             <label for="telefoneResidencial">Residencial</label>
-                            <input name="telefoneResidencial"  value="${motorista.telefoneResidencial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneResidencial" name="telefoneResidencial"  value="${motorista.telefoneResidencial}"  />
                             <label for="telefoneMovel">Móvel</label>
-                            <input name="telefoneMovel"  value="${motorista.telefoneMovel}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneMovel" name="telefoneMovel"  value="${motorista.telefoneMovel}"  />
                             <label for="telefoneComercial">Comercial</label>
-                            <input name="telefoneComercial"  value="${motorista.telefoneComercial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneComercial" name="telefoneComercial"  value="${motorista.telefoneComercial}"  />
                         </div>
                         <div style="padding: 0 0 10px 25px;">
                             <button type="button" class="btn" id="btn-salvar">Salvar</button>
@@ -121,6 +120,16 @@
             $(document).ready(function() {
 
                 $("#tabs").tabs({active: ${tabIndex}});
+
+                $("#cpf").mask("99.999.999-99");
+                
+                $("#cep").mask("99.999-999");
+                
+                $("#telefoneResidencial").mask("(99)9999-9999");
+                
+                $("#telefoneMovel").mask("(99)9999-9999");
+                
+                $("#telefoneComercial").mask("(99)9999-9999");
 
                 $("#btn-salvar").click(function() {
                     document.forms[0].action = '<c:url value="/motorista/salvar" />';

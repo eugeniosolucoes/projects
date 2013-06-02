@@ -44,16 +44,14 @@
                             <input type="hidden" name="id" value="${clientepessoafisica.id}" /> 
                             <input class="input-block-level" type="text" name="nome"
                                    placeholder="Nome" value="${clientepessoafisica.nome}" /> 
-                            <input class="span2" type="text" name="cpf" placeholder="CPF"
-                                   onkeypress="return(maskEvent(this, '###.###.###-##', event));"
-                                   value="${clientepessoafisica.cpf}" /> 
+                            <input class="span2" type="text" id="cpf" name="cpf" placeholder="CPF" 'value="${clientepessoafisica.cpf}" /> 
                         </div>
                         <div id="tabs-2">
                             <input type="hidden" name="endereco.id" value="${clientepessoafisica.endereco.id}" /> 
                             <input class="input-block-level" type="text" name="endereco.logradouro" placeholder="Logradouro" value="${clientepessoafisica.endereco.logradouro}" />
                             <input class="span2" type="text" name="endereco.numero" placeholder="Número" value="${clientepessoafisica.endereco.numero}" />
                             <input class="span2" type="text" name="endereco.complemento" placeholder="Complemento" value="${clientepessoafisica.endereco.complemento}" />
-                            <input class="span2" type="text" name="endereco.cep" placeholder="CEP" value="${clientepessoafisica.endereco.cep}" onkeypress="return(maskEvent(this, '##.###-###', event));" /> 
+                            <input class="span2" type="text" id="cpe" name="endereco.cep" placeholder="CEP" value="${clientepessoafisica.endereco.cep}"  /> 
                             <input class="span2" type="text" name="endereco.bairro" placeholder="Bairro" value="${clientepessoafisica.endereco.bairro}" /> 
                             <input class="span2" type="text" name="endereco.cidade" placeholder="Cidade" value="${clientepessoafisica.endereco.cidade}"/> 
                             <select name="endereco.estado">
@@ -73,11 +71,11 @@
                         </div>
                         <div id="tabs-3">
                             <label for="telefoneResidencial">Residencial</label>
-                            <input name="telefoneResidencial"  value="${clientepessoafisica.telefoneResidencial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneResidencial" name="telefoneResidencial"  value="${clientepessoafisica.telefoneResidencial}"  />
                             <label for="telefoneMovel">Móvel</label>
-                            <input name="telefoneMovel"  value="${clientepessoafisica.telefoneMovel}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneMovel" name="telefoneMovel"  value="${clientepessoafisica.telefoneMovel}"  />
                             <label for="telefoneComercial">Comercial</label>
-                            <input name="telefoneComercial"  value="${clientepessoafisica.telefoneComercial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneComercial" name="telefoneComercial"  value="${clientepessoafisica.telefoneComercial}"  />
                         </div>
                         <div style="padding: 0 0 10px 25px;">
                             <button type="button" class="btn" id="btn-salvar">Salvar</button>
@@ -111,6 +109,17 @@
             $(document).ready(function() {
 
                 $("#tabs").tabs({active: ${tabIndex}});
+
+                $("#cpf").mask("99.999.999-99");
+                
+                $("#cep").mask("99.999-999");
+                
+                $("#telefoneResidencial").mask("(99)9999-9999");
+                
+                $("#telefoneMovel").mask("(99)9999-9999");
+                
+                $("#telefoneComercial").mask("(99)9999-9999");
+
 
                 $("#btn-salvar").click(function() {
                     document.forms[0].action = '<c:url value="/clientepessoafisica/salvar" />';

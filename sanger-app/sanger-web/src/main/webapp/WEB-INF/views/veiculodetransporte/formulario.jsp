@@ -42,7 +42,7 @@
                         </ul>
                         <div id="tabs-1">
                             <input type="hidden" name="id" value="${veiculodetransporte.id}" /> 
-                            <input class="span2" type="text" name="placa" placeholder="Placa"
+                            <input class="span2" type="text" id="placa" name="placa" placeholder="Placa"
                                    value="${veiculodetransporte.placa}" /> 
                             <input class="span2" type="text"
                                    name="cidade" placeholder="Cidade"
@@ -72,15 +72,27 @@
                                    value="${veiculodetransporte.modelo}"/>
                         </div>
                         <div id="tabs-2">
-                            <input type="hidden" name="proprietario.id" value="${veiculodetransporte.proprietario.id}" /> 
-                            <input class="input-block-level" type="text" name="proprietario.nome" placeholder="Nome do proprietário" value="${veiculodetransporte.proprietario.nome}" />
-                            <input type="hidden" name="proprietario.endereco.id" value="${veiculodetransporte.proprietario.endereco.id}" /> 
-                            <input class="input-block-level" type="text" name="proprietario.endereco.logradouro" placeholder="Logradouro" value="${veiculodetransporte.proprietario.endereco.logradouro}" />
-                            <input class="span2" type="text" name="proprietario.endereco.numero" placeholder="Número" value="${veiculodetransporte.proprietario.endereco.numero}" />
-                            <input class="span2" type="text" name="proprietario.endereco.complemento" placeholder="Complemento" value="${veiculodetransporte.proprietario.endereco.complemento}" />
-                            <input class="span2" type="text" name="proprietario.endereco.cep" placeholder="CEP" value="${veiculodetransporte.proprietario.endereco.cep}" onkeypress="return(maskEvent(this, '##.###-###', event));" /> 
-                            <input class="span2" type="text" name="proprietario.endereco.bairro" placeholder="Bairro" value="${veiculodetransporte.proprietario.endereco.bairro}" /> 
-                            <input class="span2" type="text" name="proprietario.endereco.cidade" placeholder="Cidade" value="${veiculodetransporte.proprietario.endereco.cidade}"/> 
+                            <input type="hidden" name="proprietario.id" 
+                                   value="${veiculodetransporte.proprietario.id}" /> 
+                            <input class="input-block-level" type="text" 
+                                   name="proprietario.nome" placeholder="Nome do proprietário" 
+                                   value="${veiculodetransporte.proprietario.nome}" />
+                            <input type="hidden" name="proprietario.endereco.id" 
+                                   value="${veiculodetransporte.proprietario.endereco.id}" /> 
+                            <input class="input-block-level" type="text" 
+                                   name="proprietario.endereco.logradouro" 
+                                   placeholder="Logradouro" 
+                                   value="${veiculodetransporte.proprietario.endereco.logradouro}" />
+                            <input class="span2" type="text" name="proprietario.endereco.numero" 
+                                   placeholder="Número" value="${veiculodetransporte.proprietario.endereco.numero}" />
+                            <input class="span2" type="text" name="proprietario.endereco.complemento" 
+                                   placeholder="Complemento" value="${veiculodetransporte.proprietario.endereco.complemento}" />
+                            <input class="span2" type="text" id="cep" name="proprietario.endereco.cep" 
+                                   placeholder="CEP" value="${veiculodetransporte.proprietario.endereco.cep}"  /> 
+                            <input class="span2" type="text" name="proprietario.endereco.bairro" 
+                                   placeholder="Bairro" value="${veiculodetransporte.proprietario.endereco.bairro}" /> 
+                            <input class="span2" type="text" name="proprietario.endereco.cidade" 
+                                   placeholder="Cidade" value="${veiculodetransporte.proprietario.endereco.cidade}"/> 
                             <select name="proprietario.endereco.estado">
                                 <c:choose>
                                     <c:when test="${not empty veiculodetransporte.proprietario.endereco}" >
@@ -98,11 +110,11 @@
                         </div>
                         <div id="tabs-3">
                             <label for="proprietario.telefoneResidencial">Residencial</label>
-                            <input name="proprietario.telefoneResidencial"  value="${veiculodetransporte.proprietario.telefoneResidencial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneResidencial" name="proprietario.telefoneResidencial"  value="${veiculodetransporte.proprietario.telefoneResidencial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
                             <label for="proprietario.telefoneMovel">Móvel</label>
-                            <input name="proprietario.telefoneMovel"  value="${veiculodetransporte.proprietario.telefoneMovel}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneMovel" name="proprietario.telefoneMovel"  value="${veiculodetransporte.proprietario.telefoneMovel}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
                             <label for="proprietario.telefoneComercial">Comercial</label>
-                            <input name="proprietario.telefoneComercial"  value="${veiculodetransporte.proprietario.telefoneComercial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
+                            <input id="telefoneComercial" name="proprietario.telefoneComercial"  value="${veiculodetransporte.proprietario.telefoneComercial}" onkeypress="return(maskEvent(this, '(##)####-####', event));" />
                         </div>
                         <div style="padding: 0 0 10px 25px;">
                             <button type="button" class="btn" id="btn-salvar">Salvar</button>
@@ -136,6 +148,17 @@
             $(document).ready(function() {
 
                 $("#tabs").tabs({active: ${tabIndex}});
+
+                $("#placa").mask("aaa-9999");
+                
+                $("#cep").mask("99.999-999");
+                
+                $("#telefoneResidencial").mask("(99)9999-9999");
+                
+                $("#telefoneMovel").mask("(99)9999-9999");
+                
+                $("#telefoneComercial").mask("(99)9999-9999");
+
 
                 $("#btn-salvar").click(function() {
                     document.forms[0].action = '<c:url value="/veiculodetransporte/salvar" />';

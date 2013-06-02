@@ -52,6 +52,7 @@
                             </div>
                         </div> <!-- fim tabs -->
                         <input type="hidden" id="tabIndex" name="tabIndex" value="${tabIndex}" />
+                    </div>
                 </form>
                 <div id="dialog-confirm"></div>
             </div>

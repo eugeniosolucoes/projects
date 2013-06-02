@@ -17,6 +17,7 @@ import br.com.sanger.servico.funcionarios.impl.MotoristaService;
 import br.com.sanger.servico.transporte.impl.TransporteLocalService;
 import br.com.sanger.servico.transporte.impl.VeiculoDeTransporteService;
 import br.com.sanger.util.MyStrings;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -98,7 +99,7 @@ public class TransporteLocalController extends GenericController<TransporteLocal
     public String salvar( TransporteLocal obj, @RequestParam String tabIndex, Model model ) {
         model.addAttribute( "tabIndex", tabIndex );
         try {
-            getObjetos( obj );
+            tratarModelo( obj );
             servico.salvar( obj );
             model.addAttribute( "tipoMensagem", Mensagem.TYPE_SUCCESS );
             model.addAttribute( "mensagem", "Registro salvo com sucesso!" );
@@ -123,7 +124,7 @@ public class TransporteLocalController extends GenericController<TransporteLocal
         model.addAttribute( "estados", Estado.values() );
     }
 
-    private void getObjetos( TransporteLocal obj ) throws Exception {
+    private void tratarModelo( TransporteLocal obj ) throws Exception {
 
         List<Autonomo> ajudantes = new AutonomoService().listar();
 
@@ -146,6 +147,8 @@ public class TransporteLocalController extends GenericController<TransporteLocal
 
         obj.setCliente( cliente );
         obj.setVeiculoDeTransporte( veiculo );
+        
+        
 
         String[] ajudantesID = request.getParameterValues( "ajudantes_selecionados" );
 

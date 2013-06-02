@@ -133,7 +133,7 @@ public abstract class GenericController<T extends IEntidade> {
 
     public <E extends IEntidade> IEntidade getEntidade( Object id, List<E> lista ) throws Exception {
         int i = lista.indexOf( id );
-        if(i < 0) {
+        if ( i < 0 ) {
             return null;
         }
         E objeto = lista.get( i );

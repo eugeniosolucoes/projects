@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class TransporteLocal extends Transporte {
-
+    
     @ManyToOne
     private Autonomo inventariante;
 
@@ -102,7 +102,7 @@ public class TransporteLocal extends Transporte {
     public void setSaida( Date saida ) {
         this.saida = saida;
     }
-
+    
     public Date getChegadaCliente() {
         return chegadaCliente;
     }
@@ -126,7 +126,7 @@ public class TransporteLocal extends Transporte {
     public void setRetorno( Date retorno ) {
         this.retorno = retorno;
     }
-
+    
     public Double getPrecoPorHora() {
         return precoPorHora;
     }

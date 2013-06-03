@@ -144,12 +144,16 @@ public abstract class GenericController<T extends IEntidade> {
         if ( currency == null ) {
             return null;
         }
-        currency = currency.replace( "R$", "" );
-        currency = currency.replace( ".", "" );
-        currency = currency.replace( ",", "." );
         try {
-            return Double.valueOf( currency );
-        } catch ( Exception e ) {
+            Double value = Double.valueOf( currency );
+            return value;
+        } catch ( NumberFormatException e ) {
+            currency = currency.replace( "R$", "" );
+            currency = currency.replace( ".", "" );
+            currency = currency.replace( ",", "." );
+            Double value = Double.valueOf( currency );
+            return value;
+        } catch ( Exception ex ) {
             return null;
         }
     }

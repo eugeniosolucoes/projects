@@ -46,6 +46,8 @@
                                    placeholder="Nome" value="${clientepessoajuridica.nome}" /> 
                             <input class="span3" type="text" id="cnpj" name="cnpj" placeholder="CNPJ"                                   
                                    value="${clientepessoajuridica.cnpj}" /> 
+                            <input class="span3" type="text" name="inscricaoEstadual" placeholder="Inscrição Municipal/Estadual"                                   
+                                   value="${clientepessoajuridica.inscricaoEstadual}" /> 
                         </div>
                         <div id="tabs-2">
                             <input type="hidden" name="endereco.id" value="${clientepessoajuridica.endereco.id}" /> 

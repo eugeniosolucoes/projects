@@ -17,11 +17,14 @@ import br.com.sanger.servico.funcionarios.impl.MotoristaService;
 import br.com.sanger.servico.transporte.impl.TransporteLocalService;
 import br.com.sanger.servico.transporte.impl.VeiculoDeTransporteService;
 import br.com.sanger.util.MyStrings;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +51,7 @@ public class TransporteLocalController extends GenericController<TransporteLocal
 
     @Autowired
     HttpServletRequest request;
+
 
     public TransporteLocalController() {
         servico = new TransporteLocalService();
@@ -92,6 +96,21 @@ public class TransporteLocalController extends GenericController<TransporteLocal
     @RequestMapping( value = "/transportelocal/listar" )
     public String listar( Model model ) {
         return super.listar( model );
+    }
+
+    @RequestMapping( value = "/transportelocal/imprimir/{id}" )
+    public void imprimir( @PathVariable Long id, HttpServletResponse response ) throws Exception {
+        ServletOutputStream output = response.getOutputStream();
+        try {
+            response.setContentType( "application/pdf" );
+            response.addHeader( "content-disposition", "inline;filename=transporteLocal.pdf" );
+            byte[] pdf = ( (TransporteLocalService) servico ).imprimir( id );
+            output.write( pdf );
+        } catch ( Exception e ) {
+            Logger.getLogger( TransporteLocalController.class.getName() ).log( Level.WARNING, e.getMessage() );
+        } finally {
+            output.close();
+        }
     }
 
     @RequestMapping( value = "/transportelocal/salvar", method = RequestMethod.POST, params = { "tabIndex" } )
@@ -140,15 +159,32 @@ public class TransporteLocalController extends GenericController<TransporteLocal
             inventariante = ajudantes.get( ajudantes.indexOf( inventariante ) );
             obj.setInventariante( inventariante );
         }
-       
+
+        String motoristaID = request.getParameter( "_motorista" );
+        if ( motoristaID != null ) {
+            Motorista motorista = new Motorista();
+            motorista.setId( Long.valueOf( request.getParameter( "_motorista" ) ) );
+            motorista = (Motorista) getEntidade( motorista, motoristas );
+            obj.setMotorista( motorista );
+        }
+
         VeiculoDeTransporte veiculo = new VeiculoDeTransporte();
         veiculo.setId( Long.valueOf( request.getParameter( "_veiculoDeTransporte" ) ) );
         veiculo = (VeiculoDeTransporte) getEntidade( veiculo, veiculos );
 
         obj.setCliente( cliente );
         obj.setVeiculoDeTransporte( veiculo );
-        
-        
+
+        obj.setSaida( GenericController.stringTimeToDate( request.getParameter( "_saida" ) ) );
+        obj.setChegadaCliente( GenericController.stringTimeToDate( request.getParameter( "_chegadaCliente" ) ) );
+        obj.setSaidaCliente( GenericController.stringTimeToDate( request.getParameter( "_saidaCliente" ) ) );
+        obj.setRetorno( GenericController.stringTimeToDate( request.getParameter( "_retorno" ) ) );
+
+        obj.setPrecoPorHora( GenericController.currencyToDouble( request.getParameter( "_precoPorHora" ) ) );
+        obj.setMinimoDeHoras( GenericController.currencyToDouble( request.getParameter( "_minimoDeHoras" ) ) );
+        obj.setPrecoPorCaixa( GenericController.currencyToDouble( request.getParameter( "_precoPorCaixa" ) ) );
+        obj.setPrecoRetorno( GenericController.currencyToDouble( request.getParameter( "_precoRetorno" ) ) );
+        obj.setTotal( GenericController.currencyToDouble( request.getParameter( "_total" ) ) );
 
         String[] ajudantesID = request.getParameterValues( "ajudantes_selecionados" );
 

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="automovel" language="groovy" pageWidth="595" pageHeight="842" columnWidth="561" leftMargin="17" rightMargin="17" topMargin="17" bottomMargin="17" uuid="b67a5508-3685-4680-91ec-f62ed94d5485">
-    <property name="ireport.zoom" value="1.0"/>
-    <property name="ireport.x" value="0"/>
-    <property name="ireport.y" value="192"/>
-    <parameter name="ID_CLIENTE" class="java.lang.Integer">
-        <defaultValueExpression><![CDATA[]]>
-        </defaultValueExpression>
-    </parameter>
-    <queryString>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_CLIENTE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
 		<![CDATA[SELECT
      str_rel_automovel.`Cli_Cod` AS str_rel_automovel_Cli_Cod,
      str_rel_automovel.`Des_Cod` AS str_rel_automovel_Des_Cod,
@@ -41,195 +40,193 @@ FROM
 
 WHERE
      CLI_COD = $P{ID_CLIENTE}]]>
-    </queryString>
-    <field name="str_rel_automovel_Cli_Cod" class="java.lang.Integer"/>
-    <field name="str_rel_automovel_Des_Cod" class="java.lang.Integer"/>
-    <field name="str_rel_automovel_Cli_Nome" class="java.lang.String"/>
-    <field name="str_rel_automovel_Cli_End" class="java.lang.String"/>
-    <field name="str_rel_automovel_Cli_Bairro" class="java.lang.String"/>
-    <field name="str_rel_automovel_Cli_Cidade" class="java.lang.String"/>
-    <field name="str_rel_automovel_Cli_UF" class="java.lang.String"/>
-    <field name="str_rel_automovel_Cli_Residencial" class="java.lang.String"/>
-    <field name="str_rel_automovel_Cli_Comercial" class="java.lang.String"/>
-    <field name="str_rel_automovel_Cli_Celular" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_Nome" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_End" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_Bairro" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_Cidade" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_Uf" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_Residencial" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_Comercial" class="java.lang.String"/>
-    <field name="str_rel_automovel_Des_Celular" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Dt_Entrada" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Km_Entrada" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Placa" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Marca" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Cor" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Ano" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Chassi" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Acessorios" class="java.lang.String"/>
-    <field name="str_rel_automovel_Inv_Avarias" class="java.lang.String"/>
-    <background>
-        <band splitType="Stretch"/>
-    </background>
-    <title>
-        <band height="5" splitType="Stretch"/>
-    </title>
-    <pageHeader>
-        <band height="170" splitType="Stretch">
-            <image>
-                <reportElement uuid="3c621557-33fa-475d-b46f-d81a53992769" x="0" y="0" width="144" height="99"/>
-                <imageExpression><![CDATA["C:\\Users\\cpo-202\\Documents\\NetBeansProjects\\sanger\\src\\main\\resources\\logo.jpg"]]>
-                </imageExpression>
-            </image>
-            <staticText>
-                <reportElement uuid="9f5d1312-aa05-4cf4-93e4-06e4c568ab8e" x="0" y="0" width="561" height="23"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Arial Black" size="16" isBold="true" isUnderline="true" pdfEncoding="Cp1252"/>
-                </textElement>
-                <text><![CDATA[Sanger Rio Transportes Ltda]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="d4d5ece5-e380-4ba1-b09f-d91d36f5d433" x="0" y="23" width="561" height="19"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="12" isBold="true" isUnderline="false"/>
-                </textElement>
-                <text><![CDATA[Mudanças locais e interestaduais]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="51207d35-3a06-4794-85f6-05c51911f010" x="0" y="42" width="561" height="19"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="12" isBold="true" isUnderline="false"/>
-                </textElement>
-                <text><![CDATA[. Embalagem em geral . Automóveis . Içamentos]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="84fb7926-b723-4489-b6d1-76e335fa550c" x="0" y="61" width="561" height="19"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="10" isBold="false" isItalic="true" isUnderline="false"/>
-                </textElement>
-                <text><![CDATA[Tradição em fazer bem feito!]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="b2fa9f90-1f3c-491b-957e-a9b8141533e6" x="0" y="80" width="561" height="19"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false"/>
-                </textElement>
-                <text><![CDATA[Rua Senador Alencar n.º 38 - A, São Cristóvão - RJ / Tel.: 2580-6837 / 2580-5111 - Fax: 2580-6398]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="cec61bb7-1685-47bf-ac57-bdbe2d569e96" x="0" y="99" width="561" height="19"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false"/>
-                </textElement>
-                <text><![CDATA[CGC: 35.947.332/0001-62 Insc. Est.: 83.918.888 Internet: http://www.sangerio.com.br]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="2c9a5132-4cb9-4f2d-b2fb-13a4eadb67a8" x="0" y="129" width="561" height="33"/>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="16" isBold="true" isUnderline="true" pdfEncoding="Cp1252"/>
-                </textElement>
-                <text><![CDATA[Inventário de automóvel]]>
-                </text>
-            </staticText>
-        </band>
-    </pageHeader>
-    <columnHeader>
-        <band splitType="Stretch"/>
-    </columnHeader>
-    <detail>
-        <band height="540" splitType="Stretch">
-            <rectangle>
-                <reportElement uuid="ccc877f7-82ec-4baa-abf4-67a5b2ffb176" mode="Transparent" x="0" y="0" width="561" height="259"/>
-            </rectangle>
-            <staticText>
-                <reportElement uuid="4c447414-74d5-429b-b7c0-ade107a9d484" x="0" y="0" width="561" height="16"/>
-                <box>
-                    <bottomPen lineWidth="1.0"/>
-                </box>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="12"/>
-                </textElement>
-                <text><![CDATA[Remetente]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="4482eb81-6c89-48fa-b923-674fde8c50e4" x="0" y="103" width="561" height="16"/>
-                <box>
-                    <pen lineWidth="1.0"/>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="0.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="0.0"/>
-                </box>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="12"/>
-                </textElement>
-                <text><![CDATA[Destinatário]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="da19518b-3410-4545-8262-e5ab9c077564" x="0" y="176" width="561" height="16"/>
-                <box>
-                    <pen lineWidth="1.0"/>
-                    <topPen lineWidth="1.0"/>
-                    <leftPen lineWidth="0.0"/>
-                    <bottomPen lineWidth="1.0"/>
-                    <rightPen lineWidth="0.0"/>
-                </box>
-                <textElement textAlignment="Center">
-                    <font fontName="Times New Roman" size="12"/>
-                </textElement>
-                <text><![CDATA[Veículo]]>
-                </text>
-            </staticText>
-            <staticText>
-                <reportElement uuid="81564671-ac73-45cc-b11d-7af9be08b837" x="12" y="40" width="100" height="20"/>
-                <textElement>
-                    <font fontName="Times New Roman"/>
-                </textElement>
-                <text><![CDATA[Endereço]]>
-                </text>
-            </staticText>
-            <textField>
-                <reportElement uuid="8ad7cc45-8b7f-4212-aa97-a4e6527619eb" x="112" y="40" width="433" height="20"/>
-                <textElement>
-                    <font fontName="Times New Roman"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{str_rel_automovel_Cli_End}]]>
-                </textFieldExpression>
-            </textField>
-            <staticText>
-                <reportElement uuid="7ddc613e-6c40-4f03-a549-21700a0bc928" x="12" y="20" width="100" height="20"/>
-                <textElement>
-                    <font fontName="Times New Roman"/>
-                </textElement>
-                <text><![CDATA[Nome]]>
-                </text>
-            </staticText>
-            <textField>
-                <reportElement uuid="c0b1623b-27cb-4785-97dc-1d73dee6bddf" x="112" y="20" width="433" height="20"/>
-                <textElement>
-                    <font fontName="Times New Roman"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{str_rel_automovel_Cli_Nome}]]>
-                </textFieldExpression>
-            </textField>
-        </band>
-    </detail>
-    <columnFooter>
-        <band splitType="Stretch"/>
-    </columnFooter>
-    <pageFooter>
-        <band splitType="Stretch"/>
-    </pageFooter>
-    <summary>
-        <band splitType="Stretch"/>
-    </summary>
+	</queryString>
+	<field name="str_rel_automovel_Cli_Cod" class="java.lang.Integer"/>
+	<field name="str_rel_automovel_Des_Cod" class="java.lang.Integer"/>
+	<field name="str_rel_automovel_Cli_Nome" class="java.lang.String"/>
+	<field name="str_rel_automovel_Cli_End" class="java.lang.String"/>
+	<field name="str_rel_automovel_Cli_Bairro" class="java.lang.String"/>
+	<field name="str_rel_automovel_Cli_Cidade" class="java.lang.String"/>
+	<field name="str_rel_automovel_Cli_UF" class="java.lang.String"/>
+	<field name="str_rel_automovel_Cli_Residencial" class="java.lang.String"/>
+	<field name="str_rel_automovel_Cli_Comercial" class="java.lang.String"/>
+	<field name="str_rel_automovel_Cli_Celular" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_Nome" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_End" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_Bairro" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_Cidade" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_Uf" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_Residencial" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_Comercial" class="java.lang.String"/>
+	<field name="str_rel_automovel_Des_Celular" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Dt_Entrada" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Km_Entrada" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Placa" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Marca" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Cor" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Ano" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Chassi" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Acessorios" class="java.lang.String"/>
+	<field name="str_rel_automovel_Inv_Avarias" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="5" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="170" splitType="Stretch">
+			<image>
+				<reportElement uuid="3c621557-33fa-475d-b46f-d81a53992769" x="0" y="0" width="144" height="99"/>
+				<imageExpression><![CDATA["./logo.jpg"
+]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="9f5d1312-aa05-4cf4-93e4-06e4c568ab8e" x="0" y="0" width="561" height="23"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="16" isBold="true" isUnderline="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Sanger Rio Transportes Ltda
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d4d5ece5-e380-4ba1-b09f-d91d36f5d433" x="0" y="23" width="561" height="19"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Mudanças locais e interestaduais
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="51207d35-3a06-4794-85f6-05c51911f010" x="0" y="42" width="561" height="19"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[. Embalagem em geral . Automóveis . Içamentos
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="84fb7926-b723-4489-b6d1-76e335fa550c" x="0" y="61" width="561" height="19"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Tradição em fazer bem feito!
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2fa9f90-1f3c-491b-957e-a9b8141533e6" x="0" y="80" width="561" height="19"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Rua Senador Alencar n.º 38 - A, São Cristóvão - RJ / Tel.: 2580-6837 / 2580-5111 - Fax: 2580-6398
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cec61bb7-1685-47bf-ac57-bdbe2d569e96" x="0" y="99" width="561" height="19"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CGC: 35.947.332/0001-62 Insc. Est.: 83.918.888 Internet: http://www.sangerio.com.br
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2c9a5132-4cb9-4f2d-b2fb-13a4eadb67a8" x="0" y="129" width="561" height="33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true" isUnderline="true" pdfEncoding="Cp1252"/>
+				</textElement>
+				<text><![CDATA[Inventário de automóvel
+                ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="540" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="ccc877f7-82ec-4baa-abf4-67a5b2ffb176" mode="Transparent" x="0" y="0" width="561" height="259"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="4c447414-74d5-429b-b7c0-ade107a9d484" x="0" y="0" width="561" height="16"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Remetente
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4482eb81-6c89-48fa-b923-674fde8c50e4" x="0" y="103" width="561" height="16"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Destinatário
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da19518b-3410-4545-8262-e5ab9c077564" x="0" y="176" width="561" height="16"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Veículo
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="81564671-ac73-45cc-b11d-7af9be08b837" x="12" y="40" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Endereço
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8ad7cc45-8b7f-4212-aa97-a4e6527619eb" x="112" y="40" width="433" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{str_rel_automovel_Cli_End}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7ddc613e-6c40-4f03-a549-21700a0bc928" x="12" y="20" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nome
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c0b1623b-27cb-4785-97dc-1d73dee6bddf" x="112" y="20" width="433" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{str_rel_automovel_Cli_Nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

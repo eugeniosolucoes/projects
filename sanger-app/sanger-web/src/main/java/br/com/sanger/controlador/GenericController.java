@@ -139,4 +139,30 @@ public abstract class GenericController<T extends IEntidade> {
         E objeto = lista.get( i );
         return objeto;
     }
+
+    public static Double currencyToDouble( String currency ) {
+        if ( currency == null ) {
+            return null;
+        }
+        currency = currency.replace( "R$", "" );
+        currency = currency.replace( ".", "" );
+        currency = currency.replace( ",", "." );
+        try {
+            return Double.valueOf( currency );
+        } catch ( Exception e ) {
+            return null;
+        }
+    }
+
+    public static Date stringTimeToDate( String time ) {
+        if ( time == null ) {
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat( "HH:mm" );
+        try {
+            return sdf.parse( time );
+        } catch ( Exception e ) {
+            return null;
+        }
+    }
 }

@@ -75,8 +75,19 @@
                                     </c:otherwise>
                                 </c:choose>
                             </select>
+                            <input class="span2" id="telefoneResidencial" type="text" name="destinatario.telefoneResidencial" placeholder="Telefone residencial" value="${transportelocal.destinatario.telefoneResidencial}"/> 
+                            <input class="span2" id="telefoneComercial" type="text" name="destinatario.telefoneComercial" placeholder="Telefone comercial" value="${transportelocal.destinatario.telefoneComercial}"/> 
+                            <input class="span2" id="telefoneMovel" type="text" name="destinatario.telefoneMovel" placeholder="Telefone móvel" value="${transportelocal.destinatario.telefoneMovel}"/> 
+
                         </div>
                         <div id="tabs-3">
+                            <div>Motorista</div>
+                            <select class="input-block-level" name="_motorista">
+                                <c:forEach items="${motoristas}" var="motorista">
+                                    <option value="${motorista.id}" ${motorista.id == transportelocal.motorista.id ? 'selected' : ''} >${motorista.nome}</option>
+                                </c:forEach>
+                            </select>
+                            <div>Veículo</div>
                             <select class="input-block-level" name="_veiculoDeTransporte">
                                 <c:forEach items="${veiculos}" var="veiculo">
                                     <option value="${veiculo.id}" ${veiculo.id == transportelocal.veiculoDeTransporte.id ? 'selected' : ''} >Placa: ${veiculo.placa} - Marca/Modelo:  ${veiculo.marca}/${veiculo.modelo}</option>
@@ -104,38 +115,56 @@
                                 <div class="control-group">
                                     <label>Hora da saída:</label>
                                     <input class="span1"
-                                           type="text"  name="_saida" 
-                                           value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.saida}" />" />
+                                           type="text" id="_saida"  name="_saida" 
+                                           value="<fmt:formatDate pattern="HH:mm" type="time" value="${transportelocal.saida}" />" />
                                     <label>Hora da chegada no cliente:</label>
                                     <input class="span1"
-                                           type="text"  name="_chegadaCliente" 
+                                           type="text" id="_chegadaCliente"  name="_chegadaCliente" 
                                            value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.chegadaCliente}" />" />
                                     <label>Hora de saída do cliente:</label>
                                     <input class="span1"
-                                           type="text"  name="_saidaCliente" 
+                                           type="text" id="_saidaCliente" name="_saidaCliente" 
                                            value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.saidaCliente}" />" />
                                     <label>Hora de retorno:</label>
                                     <input class="span1"
-                                           type="text"  name="_retorno" 
+                                           type="text" id="_retorno" name="_retorno" 
                                            value="<fmt:formatDate pattern="HH:mm" value="${transportelocal.retorno}" />" />
                                 </div>
                                 <div class="control-group">
                                     <label>Preço por hora:</label>
                                     <input class="span2"
-                                           type="text"  name="_precoPorHora" 
-                                           value="${transportelocal.precoPorHora}" />
+                                           type="text" id="_precoPorHora"  name="_precoPorHora" 
+                                           value="<fmt:formatNumber maxFractionDigits="2" type="number" 
+                                                             minFractionDigits="2"
+                                                             value="${transportelocal.precoPorHora}" />" 
+                                           onkeypress="return(currencyFormat(this,'.',',',event))"
+                                           style="text-align: right;" />
                                     <label>Mínimo de horas:</label>
                                     <input class="span2"
                                            type="text"  name="_minimoDeHoras" 
-                                           value="${transportelocal.minimoDeHoras}" />
+                                           value="<fmt:formatNumber maxFractionDigits="2" type="number" 
+                                                             minFractionDigits="2"
+                                                             value="${transportelocal.minimoDeHoras}" />" 
+                                           onkeypress="return(currencyFormat(this,'.',',',event))"
+                                           style="text-align: right;" />
                                     <label>Preço por cada caixa:</label>
                                     <input class="span2"
                                            type="text"  name="_precoPorCaixa" 
-                                           value="${transportelocal.precoPorCaixa}" />
+                                           value="<fmt:formatNumber maxFractionDigits="2" type="number" 
+                                                             minFractionDigits="2"
+                                                             value="${transportelocal.precoPorCaixa}" />" 
+                                           onkeypress="return(currencyFormat(this,'.',',',event))"
+                                           style="text-align: right;" />
+                                </div>
+                                <div class="control-group">
                                     <label>Preço de retorno:</label>
                                     <input class="span2"
                                            type="text"  name="_precoRetorno" 
-                                           value="${transportelocal.precoRetorno}" />
+                                           value="<fmt:formatNumber maxFractionDigits="2" type="number" 
+                                                             minFractionDigits="2"
+                                                             value="${transportelocal.precoRetorno}" />"
+                                           onkeypress="return(currencyFormat(this,'.',',',event))"
+                                           style="text-align: right;" />
                                 </div>
                             </div>
                         </div>
@@ -148,8 +177,12 @@
                                            value="<fmt:formatDate pattern="dd/MM/yyyy" value="${transportelocal.realizado}" />" />
                                     <label for="total">Total:</label>
                                     <input class="span2"
-                                           type="text"  name="total" placeholder="Total"
-                                           value="${transportelocal.total}" />
+                                           type="text" id="_total" name="_total" placeholder="Total"
+                                           value="<fmt:formatNumber maxFractionDigits="2" type="number" 
+                                                             minFractionDigits="2"
+                                                             value="${transportelocal.total}" />"
+                                           onkeypress="return(currencyFormat(this,'.',',',event))"
+                                           style="text-align: right;" />
                                 </div>
                             </div>
                             <label for="observacoes">Observações</label>
@@ -159,6 +192,7 @@
                             <button type="button" class="btn" id="btn-salvar">Salvar</button>
                             <c:if test="${not empty transportelocal.id}">
                                 <button type="button" class="btn" id="btn-novo">Novo</button>
+                                <button type="button" class="btn" id="btn-imprimir">Imprimir</button>
                                 <button type="button" class="btn" id="btn-excluir">Excluir</button>
                             </c:if>
                             <button type="button" class="btn" id="btn-listar">Listar</button>
@@ -196,6 +230,20 @@
                 
                 $("#cep").mask("99.999-999");
                 
+                $("#_saida").mask("99:99");
+                
+                $("#_chegadaCliente").mask("99:99");
+                
+                $("#_saidaCliente").mask("99:99");
+                
+                $("#_retorno").mask("99:99");
+                
+                $("#telefoneResidencial").mask("(99)9999-9999");
+                
+                $("#telefoneComercial").mask("(99)9999-9999");
+                
+                $("#telefoneMovel").mask("(99)9999-9999");
+                
                 $("#tabs").tabs({active: ${tabIndex}});
 
                 $("#btn-salvar").click(function() {
@@ -209,6 +257,11 @@
 
                 $("#btn-novo").click(function() {
                     window.location.assign('<c:url value="/transportelocal/novo" />');
+                });
+
+                $("#btn-imprimir").click(function() {
+                    window.open('<c:url value="/transportelocal/imprimir/${transportelocal.id}" />', '_blank');
+
                 });
 
                 $("#btn-excluir").click(function() {

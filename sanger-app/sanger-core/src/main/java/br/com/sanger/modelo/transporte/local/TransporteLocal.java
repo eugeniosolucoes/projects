@@ -24,43 +24,43 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class TransporteLocal extends Transporte {
-    
+
     @ManyToOne
     private Autonomo inventariante;
 
     @ManyToOne
     private Motorista motorista;
-    
+
     @OneToMany
     private List<Autonomo> ajudantes;
-    
+
     @OneToOne
     private VeiculoDeTransporte veiculoDeTransporte;
-    
+
     @Temporal( javax.persistence.TemporalType.TIME )
     private Date saida;
-    
+
     @Temporal( javax.persistence.TemporalType.TIME )
     private Date chegadaCliente;
-    
+
     @Temporal( javax.persistence.TemporalType.TIME )
     private Date saidaCliente;
 
     @Temporal( javax.persistence.TemporalType.TIME )
     private Date retorno;
-    
+
     private Double precoPorHora;
-    
+
     private Double minimoDeHoras;
-    
+
     private Double precoPorCaixa;
-    
+
     private Double precoRetorno;
-    
+
     private Double total;
-    
+
     @Lob
-    @Column( length = 512 )            
+    @Column( length = 512 )
     private String observacoes;
 
     public Autonomo getInventariante() {
@@ -102,7 +102,7 @@ public class TransporteLocal extends Transporte {
     public void setSaida( Date saida ) {
         this.saida = saida;
     }
-    
+
     public Date getChegadaCliente() {
         return chegadaCliente;
     }
@@ -126,7 +126,7 @@ public class TransporteLocal extends Transporte {
     public void setRetorno( Date retorno ) {
         this.retorno = retorno;
     }
-    
+
     public Double getPrecoPorHora() {
         return precoPorHora;
     }
@@ -174,6 +174,15 @@ public class TransporteLocal extends Transporte {
     public void setObservacoes( String observacoes ) {
         this.observacoes = observacoes;
     }
-    
-    
+
+    public String getListaAjudantes() {
+        if ( ajudantes != null && !ajudantes.isEmpty() ) {
+            StringBuilder sb = new StringBuilder();
+            for ( Autonomo autonomo : ajudantes ) {
+                sb.append( autonomo.getNome().concat( ", " ) );
+            }
+            return sb.substring( 0, sb.length() - ", ".length() );
+        }
+        return null;
+    }
 }

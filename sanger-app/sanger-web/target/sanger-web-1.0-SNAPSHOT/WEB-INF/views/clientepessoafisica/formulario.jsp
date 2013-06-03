@@ -44,7 +44,7 @@
                             <input type="hidden" name="id" value="${clientepessoafisica.id}" /> 
                             <input class="input-block-level" type="text" name="nome"
                                    placeholder="Nome" value="${clientepessoafisica.nome}" /> 
-                            <input class="span2" type="text" id="cpf" name="cpf" placeholder="CPF" 'value="${clientepessoafisica.cpf}" /> 
+                            <input class="span2" type="text" id="cpf" name="cpf" placeholder="CPF" value="${clientepessoafisica.cpf}" /> 
                         </div>
                         <div id="tabs-2">
                             <input type="hidden" name="endereco.id" value="${clientepessoafisica.endereco.id}" /> 
@@ -110,7 +110,7 @@
 
                 $("#tabs").tabs({active: ${tabIndex}});
 
-                $("#cpf").mask("99.999.999-99");
+                $("#cpf").mask("999.999.999-99");
                 
                 $("#cep").mask("99.999-999");
                 

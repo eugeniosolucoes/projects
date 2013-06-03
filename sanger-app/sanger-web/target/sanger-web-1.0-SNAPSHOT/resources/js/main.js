@@ -231,7 +231,7 @@ function excluir(msg, acao) {
 
 function show_message(type, message) {
     if (message !== '') {
-        $().toastmessage({sticky: true});
+        //$().toastmessage({sticky: true});
         $().toastmessage(type, message);
     }
 }

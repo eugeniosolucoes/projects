@@ -4,11 +4,10 @@
  */
 package br.com.sanger.servico;
 
-import java.util.List;
-
 import br.com.sanger.modelo.IEntidade;
 import br.com.sanger.repositorio.AbstractRepository;
 import br.com.sanger.servico.excecoes.ServicoException;
+import java.util.List;
 
 /**
  *
@@ -27,14 +26,23 @@ public abstract class GenericService<T extends IEntidade> {
     }
 
     public void editar( T obj ) throws Exception {
-        validacao( obj );
-        dao.editar( obj );
+        try {
+            validacao( obj );
+            dao.editar( obj );
+        } catch ( Exception e ) {
+            throw new ServicoException( e );
+        }
+
     }
 
     public void excluir( T obj ) throws Exception {
-        obj = dao.retornar( obj.getId() );
-        if ( obj != null ) {
-            dao.excluir( obj );
+        try {
+            obj = dao.retornar( obj.getId() );
+            if ( obj != null ) {
+                dao.excluir( obj );
+            }
+        } catch ( Exception e ) {
+            throw new ServicoException( e );
         }
     }
 

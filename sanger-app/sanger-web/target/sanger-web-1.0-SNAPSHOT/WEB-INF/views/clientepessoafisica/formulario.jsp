@@ -51,7 +51,7 @@
                             <input class="input-block-level" type="text" name="endereco.logradouro" placeholder="Logradouro" value="${clientepessoafisica.endereco.logradouro}" />
                             <input class="span2" type="text" name="endereco.numero" placeholder="Número" value="${clientepessoafisica.endereco.numero}" />
                             <input class="span2" type="text" name="endereco.complemento" placeholder="Complemento" value="${clientepessoafisica.endereco.complemento}" />
-                            <input class="span2" type="text" id="cpe" name="endereco.cep" placeholder="CEP" value="${clientepessoafisica.endereco.cep}"  /> 
+                            <input class="span2" type="text" id="cep" name="endereco.cep" placeholder="CEP" value="${clientepessoafisica.endereco.cep}"  /> 
                             <input class="span2" type="text" name="endereco.bairro" placeholder="Bairro" value="${clientepessoafisica.endereco.bairro}" /> 
                             <input class="span2" type="text" name="endereco.cidade" placeholder="Cidade" value="${clientepessoafisica.endereco.cidade}"/> 
                             <select name="endereco.estado">

@@ -41,7 +41,6 @@ public abstract class GenericController<T extends IEntidade> {
     public String editar( Long id, Model model ) {
         try {
             obj = servico.retornar( id );
-            model.addAttribute( "tipoMensagem", Mensagem.TYPE_SUCCESS );
             model.addAttribute( entidade, obj );
         } catch ( Exception ex ) {
             model.addAttribute( "tipoMensagem", Mensagem.TYPE_ERROR );
@@ -70,6 +69,7 @@ public abstract class GenericController<T extends IEntidade> {
         } catch ( Exception ex ) {
             model.addAttribute( "tipoMensagem", Mensagem.TYPE_ERROR );
             model.addAttribute( "mensagem", MyStrings.cleanMessage( ex.getMessage() ) );
+            return editar( id, model );
         }
         return entidade + "/listagem";
     }

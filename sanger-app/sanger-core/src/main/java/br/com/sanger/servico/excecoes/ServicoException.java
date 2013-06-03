@@ -40,6 +40,14 @@ public class ServicoException extends Exception {
     @Override
     public String getMessage() {
 
+        // FK_TRANSPORTELOCAL_INVENTARIANTE_ID
+        if ( getCause().getMessage().toUpperCase().indexOf( "FK_TRANSPORTELOCAL_INVENTARIANTE_ID" ) != -1 ) {
+            return "Falha na exclusão: Não é possível excluir o inventariante registrado em um transporte local!";
+        }
+        // FK_TRANSPORTELOCAL_CLIENTE_ID
+        if ( getCause().getMessage().toUpperCase().indexOf( "FK_TRANSPORTELOCAL_CLIENTE_ID" ) != -1 ) {
+            return "Falha na exclusão: Não é possível excluir o cliente registrado em um transporte local!";
+        }
         if ( getCause().getMessage().indexOf( "usuario_login_key" ) != -1 ) {
             return "Falha: Login existente!";
         }

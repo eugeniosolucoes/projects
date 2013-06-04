@@ -83,6 +83,7 @@ public class TransporteLocalController extends GenericController<TransporteLocal
     @RequestMapping( value = "/transportelocal/novo" )
     public String formulario( Model model ) {
         model.addAttribute( "tabIndex", 0 );
+        obj = new TransporteLocal();
         try {
             carregarListas( model );
         } catch ( Exception ex ) {

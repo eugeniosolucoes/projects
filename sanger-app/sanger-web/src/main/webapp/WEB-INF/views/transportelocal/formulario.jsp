@@ -96,7 +96,7 @@
                         </div>
                         <div id="tabs-4">
                             <div>Inventariante</div>
-                            <select id="inventariantes-disponiveis" name="_inventariante" style="width: 100%" >
+                            <select id="inventariantes-disponiveis" size="10" name="_inventariante" style="width: 100%" >
                                 <c:forEach var="autonomo" items="${ajudantes}">
                                     <option value="${autonomo.id}" ${autonomo.id == transportelocal.inventariante.id ? 'selected' : ''}>${autonomo.nome}</option>
                                 </c:forEach>

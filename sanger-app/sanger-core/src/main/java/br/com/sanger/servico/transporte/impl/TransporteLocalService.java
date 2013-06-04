@@ -9,6 +9,7 @@ import br.com.sanger.modelo.transporte.local.TransporteLocal;
 import br.com.sanger.repositorio.transporte.impl.TransporteLocalRepository;
 import br.com.sanger.servico.GenericService;
 import br.com.sanger.servico.excecoes.ServicoException;
+import br.com.sanger.servico.funcionarios.impl.AutonomoService;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,20 +49,19 @@ public class TransporteLocalService extends GenericService<TransporteLocal> {
     }
 
     @Override
-    public void validacao( TransporteLocal obj ) throws Exception {
+    public void validacao( TransporteLocal obj ) {
         if ( obj == null ) {
             throw new IllegalStateException( "Objeto nulo!" );
         }
     }
 
     public List<Autonomo> autonomosNaoAdicionados( TransporteLocal obj ) throws Exception {
+        if ( obj != null && obj.getId() == null ) {
+            return new AutonomoService().listar();
+        }
         return ( (TransporteLocalRepository) dao ).autonomosNaoAdicionados( obj );
     }
 
-//    public static JRDataSource createDatasource() throws Exception {
-//        List<TransporteLocal> colecao = new TransporteLocalRepository().listar();
-//        return new JRBeanCollectionDataSource( colecao );
-//    }
     public byte[] imprimir( Object id ) throws Exception {
         TransporteLocal transporteLocal = dao.retornar( id );
         List<TransporteLocal> colecao = new ArrayList<TransporteLocal>();
@@ -73,14 +73,5 @@ public class TransporteLocalService extends GenericService<TransporteLocal> {
         JasperPrint impressao = JasperFillManager.fillReport( is, parametros, new JRBeanCollectionDataSource( colecao ) );
         return JasperExportManager.exportReportToPdf( impressao );
     }
-//    public static void main( String[] args ) {
-//        try {
-//            InputStream is = TransporteLocalService.class.getResourceAsStream( "/transportelocal.jasper" );
-//            JasperPrint impressao = JasperFillManager.fillReport( is, null, createDatasource() );
-//            JasperViewer viewer = new JasperViewer( impressao, true );
-//            viewer.setVisible( true );
-//        } catch ( Exception ex ) {
-//            ex.printStackTrace();
-//        }
-//    }
+    
 }

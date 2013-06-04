@@ -47,7 +47,7 @@ public class AutonomoServiceTest {
 
     }
     
-    @Test
+   // @Test
     public void testListar() throws Exception {
         System.out.println("listar");
         AutonomoService instance = new AutonomoService();

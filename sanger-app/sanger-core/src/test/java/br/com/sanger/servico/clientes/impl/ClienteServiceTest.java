@@ -19,7 +19,7 @@ public class ClienteServiceTest {
     public ClienteServiceTest() {
     }
 
-    @Test
+    //@Test
     public void testListar() throws Exception {
         System.out.println( "listar" );
         ClienteService instance = new ClienteService();
@@ -32,7 +32,7 @@ public class ClienteServiceTest {
         }
     }
 
-    @Test
+    //@Test
     public void testGetObject() throws Exception {
         System.out.println( "getobject" );
         ClienteService instance = new ClienteService();

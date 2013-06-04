@@ -141,7 +141,7 @@ public abstract class GenericController<T extends IEntidade> {
     }
 
     public static Double currencyToDouble( String currency ) {
-        if ( currency == null ) {
+        if ( MyStrings.isNullOrEmpty( currency ) ) {
             return null;
         }
         try {

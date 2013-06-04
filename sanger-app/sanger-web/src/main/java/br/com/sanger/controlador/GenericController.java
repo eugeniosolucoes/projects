@@ -149,8 +149,12 @@ public abstract class GenericController<T extends IEntidade> {
             return value;
         } catch ( NumberFormatException e ) {
             currency = currency.replace( "R$", "" );
-            currency = currency.replace( ".", "" );
-            currency = currency.replace( ",", "." );
+            if ( currency.indexOf( "," ) == currency.length() - 3 ) {
+                currency = currency.replace( ".", "" );
+                currency = currency.replace( ",", "." );
+            } else {
+                currency = currency.replace( ",", "" );
+            }
             Double value = Double.valueOf( currency );
             return value;
         } catch ( Exception ex ) {

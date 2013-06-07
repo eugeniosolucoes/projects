@@ -9,12 +9,10 @@ import br.com.sanger.modelo.apoio.Estado;
 import br.com.sanger.modelo.clientes.ClientePessoaFisica;
 import br.com.sanger.modelo.funcionarios.Autonomo;
 import br.com.sanger.modelo.funcionarios.Motorista;
+import br.com.sanger.modelo.transporte.Transporte;
 import br.com.sanger.modelo.transporte.local.TransporteLocal;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
@@ -40,7 +38,7 @@ public class TesteJAXB {
 
         motorista.setHabilitacao( "545290" );
         motorista.setPronturario( "XAYUFAA" );
-        motorista.setServicos( new ArrayList<TransporteLocal>() );
+        motorista.setServicos( new ArrayList<Transporte>() );
 
         motorista.setTelefoneResidencial( "(21)7958-7029" );
         motorista.setTelefoneMovel( "(21)8958-7029" );

@@ -27,7 +27,7 @@ public abstract class Funcionario extends Pessoa implements Serializable {
 
     @OneToMany( mappedBy = "inventariante" )
     @ManyToMany( mappedBy = "ajudantes" )
-    private List<TransporteLocal> servicos;
+    private List<Transporte> servicos;
 
     private static final long serialVersionUID = 1L;
 
@@ -62,11 +62,11 @@ public abstract class Funcionario extends Pessoa implements Serializable {
         return "br.com.sanger.modelo.pessoas.Funcionario[ id=" + id + " ]";
     }
 
-    public List<TransporteLocal> getServicos() {
+    public List<Transporte> getServicos() {
         return servicos;
     }
 
-    public void setServicos( List<TransporteLocal> servicos ) {
+    public void setServicos( List<Transporte> servicos ) {
         this.servicos = servicos;
     }
 

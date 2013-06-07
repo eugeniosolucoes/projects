@@ -33,6 +33,7 @@
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
       <!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

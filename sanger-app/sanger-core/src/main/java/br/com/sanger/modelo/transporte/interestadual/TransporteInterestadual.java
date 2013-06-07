@@ -20,7 +20,7 @@ public class TransporteInterestadual extends Transporte implements IEntidade<Lon
 
     private Integer numero;
 
-    @OneToMany( mappedBy = "transporteInterestadual" )
+    @OneToMany
     private List<Inventario> inventarioDeBens;
 
     public Integer getNumero() {

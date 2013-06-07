@@ -5,7 +5,7 @@
 package br.com.sanger.modelo.funcionarios;
 
 import br.com.sanger.modelo.Fisica;
-import br.com.sanger.modelo.transporte.local.TransporteLocal;
+import br.com.sanger.modelo.transporte.Transporte;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -41,7 +41,7 @@ public class Motorista extends Funcionario implements Fisica, Serializable {
     }
 
     @OneToMany( mappedBy = "motorista" )
-    private List<TransporteLocal> servicos;
+    private List<Transporte> servicos;
 
     @Override
     public String toString() {
@@ -65,12 +65,12 @@ public class Motorista extends Funcionario implements Fisica, Serializable {
     }
 
     @Override
-    public List<TransporteLocal> getServicos() {
+    public List<Transporte> getServicos() {
         return servicos;
     }
 
     @Override
-    public void setServicos( List<TransporteLocal> servicos ) {
+    public void setServicos( List<Transporte> servicos ) {
         this.servicos = servicos;
     }
 

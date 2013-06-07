@@ -41,9 +41,7 @@ public class Inventario implements IEntidade<Long>, Serializable {
     @ManyToOne
     private Simbolo simbolo;
 
-    @ManyToOne
-    private TransporteInterestadual transporteInterestadual;
-    
+   
     @Override
     public Long getId() {
         return id;
@@ -125,14 +123,6 @@ public class Inventario implements IEntidade<Long>, Serializable {
 
     public void setNumero( Integer numero ) {
         this.numero = numero;
-    }
-
-    public TransporteInterestadual getTransporteInterestadual() {
-        return transporteInterestadual;
-    }
-
-    public void setTransporteInterestadual( TransporteInterestadual transporteInterestadual ) {
-        this.transporteInterestadual = transporteInterestadual;
     }
     
 }

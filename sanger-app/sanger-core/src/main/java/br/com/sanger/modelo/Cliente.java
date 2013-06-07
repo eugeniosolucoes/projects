@@ -5,6 +5,7 @@
 package br.com.sanger.modelo;
 
 import br.com.sanger.modelo.apoio.Endereco;
+import br.com.sanger.modelo.transporte.Transporte;
 import br.com.sanger.modelo.transporte.local.TransporteLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -30,7 +31,7 @@ public abstract class Cliente extends Pessoa implements Serializable {
     protected String nome;
 
     @OneToMany( mappedBy = "cliente" )
-    private List<TransporteLocal> servicos;
+    private List<Transporte> servicos;
 
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false )
     private Endereco endereco;
@@ -60,11 +61,11 @@ public abstract class Cliente extends Pessoa implements Serializable {
         return "br.com.sanger.modelo.pessoas.Cliente[ id=" + id + " ]";
     }
 
-    public List<TransporteLocal> getServicos() {
+    public List<Transporte> getServicos() {
         return servicos;
     }
 
-    public void setServicos( List<TransporteLocal> servicos ) {
+    public void setServicos( List<Transporte> servicos ) {
         this.servicos = servicos;
     }
 

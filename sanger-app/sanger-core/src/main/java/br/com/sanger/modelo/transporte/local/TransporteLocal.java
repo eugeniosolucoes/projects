@@ -9,12 +9,10 @@ import br.com.sanger.modelo.funcionarios.Motorista;
 import br.com.sanger.modelo.transporte.Transporte;
 import br.com.sanger.modelo.transporte.VeiculoDeTransporte;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -31,8 +29,6 @@ public class TransporteLocal extends Transporte {
     @ManyToOne
     private Motorista motorista;
 
-    @OneToMany
-    private List<Autonomo> ajudantes;
 
     @OneToOne
     private VeiculoDeTransporte veiculoDeTransporte;
@@ -77,14 +73,6 @@ public class TransporteLocal extends Transporte {
 
     public void setMotorista( Motorista motorista ) {
         this.motorista = motorista;
-    }
-
-    public List<Autonomo> getAjudantes() {
-        return ajudantes;
-    }
-
-    public void setAjudantes( List<Autonomo> ajudantes ) {
-        this.ajudantes = ajudantes;
     }
 
     public VeiculoDeTransporte getVeiculoDeTransporte() {

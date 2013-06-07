@@ -6,15 +6,19 @@ package br.com.sanger.modelo.transporte;
 
 import br.com.sanger.modelo.Cliente;
 import br.com.sanger.modelo.IEntidade;
+import br.com.sanger.modelo.funcionarios.Autonomo;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +27,7 @@ import javax.persistence.TemporalType;
  *
  * @author eugenio
  */
-@MappedSuperclass
+@Entity
 public abstract class Transporte implements IEntidade<Long>, Serializable {
 
     protected static final long serialVersionUID = 1L;
@@ -40,7 +44,9 @@ public abstract class Transporte implements IEntidade<Long>, Serializable {
 
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false )
     protected Destinatario destinatario;
-
+    
+    @OneToMany
+    protected List<Autonomo> ajudantes;
    
     @Override
     public boolean equals( Object object ) {
@@ -99,6 +105,14 @@ public abstract class Transporte implements IEntidade<Long>, Serializable {
     @Override
     public String toString() {
         return "br.com.sanger.modelo.transporte.Servico[ id=" + id + " ]";
+    }
+
+    public List<Autonomo> getAjudantes() {
+        return ajudantes;
+    }
+
+    public void setAjudantes( List<Autonomo> ajudantes ) {
+        this.ajudantes = ajudantes;
     }
     
 }

@@ -182,7 +182,6 @@ public class TransporteLocalController extends GenericController<TransporteLocal
         obj.setRetorno( GenericController.stringTimeToDate( request.getParameter( "_retorno" ) ) );
 
         obj.setPrecoPorHora( GenericController.currencyToDouble( request.getParameter( "_precoPorHora" ) ) );
-        obj.setMinimoDeHoras( GenericController.currencyToDouble( request.getParameter( "_minimoDeHoras" ) ) );
         obj.setPrecoPorCaixa( GenericController.currencyToDouble( request.getParameter( "_precoPorCaixa" ) ) );
         obj.setPrecoRetorno( GenericController.currencyToDouble( request.getParameter( "_precoRetorno" ) ) );
         obj.setTotal( GenericController.currencyToDouble( request.getParameter( "_total" ) ) );

@@ -17,7 +17,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -37,17 +36,17 @@ public abstract class Transporte implements IEntidade<Long>, Serializable {
     protected Long id;
 
     @Temporal( value = TemporalType.DATE )
-    protected Date realizado;
+    protected Date dataDoServico;
 
     @ManyToOne
     protected Cliente cliente;
 
     @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false )
     protected Destinatario destinatario;
-    
+
     @OneToMany
     protected List<Autonomo> ajudantes;
-   
+
     @Override
     public boolean equals( Object object ) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -74,8 +73,8 @@ public abstract class Transporte implements IEntidade<Long>, Serializable {
         return id;
     }
 
-    public Date getRealizado() {
-        return realizado;
+    public Date getDataDoServico() {
+        return dataDoServico;
     }
 
     @Override
@@ -98,8 +97,8 @@ public abstract class Transporte implements IEntidade<Long>, Serializable {
         this.id = id;
     }
 
-    public void setRealizado( Date realizado ) {
-        this.realizado = realizado;
+    public void setDataDoServico( Date dataDoServico ) {
+        this.dataDoServico = dataDoServico;
     }
 
     @Override
@@ -114,5 +113,4 @@ public abstract class Transporte implements IEntidade<Long>, Serializable {
     public void setAjudantes( List<Autonomo> ajudantes ) {
         this.ajudantes = ajudantes;
     }
-    
 }

@@ -141,11 +141,8 @@
                                            style="text-align: right;" />
                                     <label>Mínimo de horas:</label>
                                     <input class="span2"
-                                           type="text"  name="_minimoDeHoras" 
-                                           value="<fmt:formatNumber maxFractionDigits="2" type="number" 
-                                                             minFractionDigits="2"
-                                                             value="${transportelocal.minimoDeHoras}" />" 
-                                           onkeypress="return(currencyFormat(this,'.',',',event))"
+                                           type="text"  name="minimoDeHoras" 
+                                           value="${transportelocal.minimoDeHoras}" 
                                            style="text-align: right;" />
                                     <label>Preço por cada caixa:</label>
                                     <input class="span2"
@@ -171,10 +168,10 @@
                         <div id="tabs-6">
                             <div class="form-inline">
                                 <div class="control-group">
-                                    <label for="realizado">Data do Serviço:</label>
+                                    <label for="dataDoServico">Data do Serviço:</label>
                                     <input class="span2"
-                                           type="text" id="realizado" name="realizado" placeholder="Data do Serviço"
-                                           value="<fmt:formatDate pattern="dd/MM/yyyy" value="${transportelocal.realizado}" />" />
+                                           type="text" id="dataDoServico" name="dataDoServico" placeholder="Data do Serviço"
+                                           value="<fmt:formatDate pattern="dd/MM/yyyy" value="${transportelocal.dataDoServico}" />" />
                                     <label for="total">Total:</label>
                                     <input class="span2"
                                            type="text" id="_total" name="_total" placeholder="Total"
@@ -221,7 +218,7 @@
         <script>
             $(document).ready(function() {
                 
-                $("#realizado").datepicker({
+                $("#dataDoServico").datepicker({
                     buttonText: "data do serviço",
                     showButtonPanel: true,
                     changeMonth: true,

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="automovel" language="groovy" pageWidth="595" pageHeight="842" columnWidth="561" leftMargin="17" rightMargin="17" topMargin="17" bottomMargin="17" uuid="b67a5508-3685-4680-91ec-f62ed94d5485">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="IMAGE_LOGO" class="java.io.InputStream"/>
 	<queryString>
 		<![CDATA[]]>
@@ -46,8 +46,8 @@
 	<field name="precoRetorno" class="java.lang.Double">
 		<fieldDescription><![CDATA[precoRetorno]]></fieldDescription>
 	</field>
-	<field name="realizado" class="java.util.Date">
-		<fieldDescription><![CDATA[realizado]]></fieldDescription>
+	<field name="dataDoServico" class="java.util.Date">
+		<fieldDescription><![CDATA[dataDoServico]]></fieldDescription>
 	</field>
 	<field name="retorno" class="java.util.Date">
 		<fieldDescription><![CDATA[retorno]]></fieldDescription>
@@ -66,7 +66,7 @@
 	</field>
 	<field name="listaAjudantes" class="java.lang.String"/>
 	<variable name="realizado_1" class="java.lang.Integer" resetType="Page" calculation="Count">
-		<variableExpression><![CDATA[$F{realizado}]]></variableExpression>
+		<variableExpression><![CDATA[$F{dataDoServico}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -192,7 +192,7 @@
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement uuid="73286819-6e73-46ab-9f20-0cceae0a35b6" x="297" y="4" width="84" height="20"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$F{realizado}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{dataDoServico}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="93eecc59-12b7-4d1a-9ccf-edb306ad6ef1" x="12" y="4" width="93" height="20"/>

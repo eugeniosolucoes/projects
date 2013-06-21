@@ -48,13 +48,15 @@
                                 <tr>
                                     <th class="coluna-data" >Data</th>
                                     <th>Militar</th>
+                                    <th>Motivo</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach items="${licencas}" var="licenca" >
                                     <tr>
                                         <td class="coluna-data"><fmt:formatDate pattern="dd/MM/yyyy" value="${licenca.dataLicenca}" /></td>
-                                        <td>${licenca.militar.loginNome}</td>
+                                        <td class="coluna-data">${licenca.militar.loginNome}</td>
+                                        <td>${licenca.motivo}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

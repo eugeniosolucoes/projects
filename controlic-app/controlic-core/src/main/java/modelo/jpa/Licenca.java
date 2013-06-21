@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,6 +44,7 @@ public class Licenca implements Serializable {
     private boolean publicadaPD;
 
     @ManyToOne
+    @JoinColumn( nullable = false )
     private Militar militar;
 
     public Licenca() {
@@ -53,13 +55,13 @@ public class Licenca implements Serializable {
 
     public Licenca( String motivo ) {
         this();
-        this.setMotivo( motivo );
+        this.motivo = motivo;
     }
 
-    public Licenca( Date dataLicenca, String motivo, TipoLicenca tipo, 
+    public Licenca( Date dataLicenca, String motivo, TipoLicenca tipo,
             boolean publicadaPD, Militar militar ) {
         this.dataLicenca = dataLicenca;
-        this.setMotivo( motivo );
+        this.motivo = motivo;
         this.tipo = tipo;
         this.publicadaPD = publicadaPD;
         this.militar = militar;
@@ -77,10 +79,8 @@ public class Licenca implements Serializable {
         return motivo;
     }
 
-    public final void setMotivo( String motivo ) {
-        if ( motivo != null ) {
-            this.motivo = motivo.trim();
-        }
+    public void setMotivo( String motivo ) {
+        this.motivo = motivo;
     }
 
     public TipoLicenca getTipo() {

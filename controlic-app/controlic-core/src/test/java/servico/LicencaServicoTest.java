@@ -16,10 +16,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import repositorio.OficialDAO;
-import repositorio.PracaDAO;
+import repositorio.MilitarDAO;
 import servico.impl.LicencaServicoImpl;
-import servico.impl.PracaServicoImpl;
+import servico.impl.MilitarServicoImpl;
 
 /**
  *
@@ -34,7 +33,7 @@ public class LicencaServicoTest {
     public void testCriarMilitares() {
         System.out.println( "criarMilitares" );
 
-        OficialDAO daoOficial = new OficialDAO();
+        MilitarDAO dao = new MilitarDAO();
 
         Oficial of1 = new Oficial( Oficial.Posto.CAPITAO_TENENTE, "96094265",
                 "Márcia Maria Tenório Kouzmine", "Márcia Tenório" );
@@ -43,12 +42,11 @@ public class LicencaServicoTest {
                 "Luciana Rodrigues de Almeida Saboia", "Luciana Almeida" );
 
         try {
-            daoOficial.criar( of1 );
-            daoOficial.criar( of2 );
+            dao.criar( of1 );
+            dao.criar( of2 );
         } catch ( Exception e ) {
         }
 
-        PracaDAO dao = new PracaDAO();
 
         Praca p1 = new Praca( Praca.Graduacao.PRIMEIRO_SARGENTO,
                 "86795694", "Alexandre Eugênio da Silva", "Eugênio" );
@@ -88,16 +86,26 @@ public class LicencaServicoTest {
     public void testSalvar() {
         System.out.println( "salvar" );
 
-        PracaServico ps = new PracaServicoImpl();
+        MilitarServico ps = new MilitarServicoImpl();
         LicencaServico ls = new LicencaServicoImpl();
 
-        Praca praca = ps.retornar( 1L );
+        Militar militar = ps.retornar( 1L );
 
         Licenca obj = new Licenca( "teste" );
 
-        obj.setMilitar( praca );
+        obj.setMilitar( militar );
 
         ls.salvar( obj );
+    }
+    
+    @Test
+    public void testTamanhoMotivo(){
+        LicencaServicoImpl servico = new LicencaServicoImpl();
+        Licenca licenca = new Licenca( "hospital");
+        Oficial oficial = new Oficial( "77777");
+        oficial.setId( Long.MIN_VALUE );
+        licenca.setMilitar( oficial );
+        servico.validacao( licenca );
     }
 
     //@Test
@@ -132,7 +140,7 @@ public class LicencaServicoTest {
     //@Test
     public void testListarPorMilitar() {
         System.out.println( "listarPorMilitar" );
-        PracaServico ps = new PracaServicoImpl();
+        MilitarServico ps = new MilitarServicoImpl();
         LicencaServico ls = new LicencaServicoImpl();
         Militar obj = ps.retornar( 1L );
         List expResult = null;

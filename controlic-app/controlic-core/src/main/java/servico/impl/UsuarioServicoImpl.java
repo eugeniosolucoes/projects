@@ -4,8 +4,6 @@
  */
 package servico.impl;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import modelo.acesso.Usuario;
 import repositorio.MilitarDAO;
@@ -29,13 +27,13 @@ public class UsuarioServicoImpl implements UsuarioServico {
         if ( usuario == null ) {
             throw new NullPointerException( "O usuário deve ser informado!" );
         }
-        try {
-            autenticarLDAP( usuario );
-        } catch ( NamingException ex ) {
-            throw new IllegalStateException( ex );
-        } catch ( Exception ex ) {
-            throw new IllegalStateException( ex );
-        }
+//        try {
+//            autenticarLDAP( usuario );
+//        } catch ( NamingException ex ) {
+//            throw new IllegalStateException( ex );
+//        } catch ( Exception ex ) {
+//            throw new IllegalStateException( ex );
+//        }
         return dao.retornarPorNip( usuario.getLogin() );
     }
 

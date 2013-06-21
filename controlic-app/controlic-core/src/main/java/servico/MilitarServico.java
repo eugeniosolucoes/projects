@@ -5,15 +5,16 @@
 package servico;
 
 import java.util.List;
+import modelo.jpa.Militar;
 import modelo.jpa.Praca;
 
 /**
  *
  * @author eugenio
  */
-public interface PracaServico {
+public interface MilitarServico {
 
-    List<Praca> listar();
+    List<Militar> listar();
 
-    Praca retornar( Object id );
+    Militar retornar( Object id );
 }

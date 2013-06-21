@@ -61,10 +61,10 @@ public class LicencaServicoImpl implements LicencaServico {
             hoje = sdf.parse( sdf.format( new Date() ) );
         } catch ( ParseException ex ) {
             Logger.getLogger( LicencaServicoImpl.class.getName() ).log( Level.SEVERE, null, ex );
-        }    
+        }
         if ( obj.getDataLicenca().before( hoje ) ) {
             throw new IllegalStateException( "Não é possível excluir no passado!" );
-        }        
+        }
         dao.excluir( obj );
     }
 
@@ -89,7 +89,7 @@ public class LicencaServicoImpl implements LicencaServico {
         return dao.listarPorMilitar( obj );
     }
 
-    void validacao( Licenca obj ) {
+    public void validacao( Licenca obj ) {
         SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
         Date hoje = new Date();
         try {
@@ -100,13 +100,20 @@ public class LicencaServicoImpl implements LicencaServico {
         if ( obj == null ) {
             throw new IllegalStateException( "Operação inválida!" );
         }
+        if ( obj.getMilitar() == null || obj.getMilitar().getId() == null ) {
+            throw new IllegalStateException( "Operação inválida!" );
+        }
         if ( MyStrings.isNullOrEmpty( obj.getMotivo() ) ) {
             throw new IllegalStateException( "O motivo deve ser informado!" );
         }
+        obj.setMotivo( obj.getMotivo().trim() );
         if ( obj.getMotivo().length() > 255 ) {
             throw new IllegalStateException( "O motivo deve ter no máximo 255 caracteres!" );
         }
-
+        if ( obj.getMotivo().matches( "^([\\w]+)*" ) ) {
+            throw new IllegalStateException( "O motivo deve ter pelo menos "
+                    + "uma palavra de no mínimo seis (06) caracters!" );
+        }
         if ( obj.getDataLicenca().before( hoje ) ) {
             throw new IllegalStateException( "Não é possível registrar no passado!" );
         }

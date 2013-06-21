@@ -5,24 +5,23 @@
 package servico;
 
 import java.util.List;
-import modelo.jpa.Praca;
-import org.junit.Test;
+import modelo.jpa.Militar;
 import static org.junit.Assert.*;
-import servico.impl.PracaServicoImpl;
+import servico.impl.MilitarServicoImpl;
 
 /**
  *
  * @author eugenio
  */
-public class PracaServicoTest {
+public class MilitarServicoTest {
     
-    public PracaServicoTest() {
+    public MilitarServicoTest() {
     }
 
     //@Test
     public void testListar() {
         System.out.println( "listar" );
-        PracaServico instance = new PracaServicoImpl();
+        MilitarServico instance = new MilitarServicoImpl();
         List expResult = null;
         List result = instance.listar();
         assertEquals( expResult, result );
@@ -33,10 +32,11 @@ public class PracaServicoTest {
     public void testRetornar() {
         System.out.println( "retornar" );
         Object id = null;
-        PracaServico instance = new PracaServicoImpl();
-        Praca expResult = null;
-        Praca result = instance.retornar( id );
+        MilitarServico instance = new MilitarServicoImpl();
+        Militar expResult = null;
+        Militar result = instance.retornar( id );
         assertEquals( expResult, result );
         fail( "The test case is a prototype." );
     }
+    
 }

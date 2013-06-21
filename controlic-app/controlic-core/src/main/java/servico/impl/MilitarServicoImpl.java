@@ -5,29 +5,30 @@
 package servico.impl;
 
 import java.util.List;
+import modelo.jpa.Militar;
 import modelo.jpa.Praca;
-import repositorio.PracaDAO;
-import servico.PracaServico;
+import repositorio.MilitarDAO;
+import servico.MilitarServico;
 
 /**
  *
  * @author eugenio
  */
-public class PracaServicoImpl implements PracaServico {
+public class MilitarServicoImpl implements MilitarServico {
 
-    private PracaDAO dao;
+    private MilitarDAO dao;
     
-    public PracaServicoImpl() {
-        dao = new PracaDAO();
+    public MilitarServicoImpl() {
+        dao = new MilitarDAO();
     }
 
     @Override
-    public List<Praca> listar() {
+    public List<Militar> listar() {
         return dao.listar();
     }
 
     @Override
-    public Praca retornar( Object id ) {
+    public Militar retornar( Object id ) {
         return dao.retornar( id );
     }
     

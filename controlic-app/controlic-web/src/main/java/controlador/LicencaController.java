@@ -51,7 +51,8 @@ public class LicencaController {
     public void initBinder( WebDataBinder webDataBinder ) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
-        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        webDataBinder.registerCustomEditor(Date.class, 
+                new CustomDateEditor(dateFormat, true));
     }
 
     @RequestMapping(value = "/licenca/{id}", method = RequestMethod.GET)
@@ -62,7 +63,8 @@ public class LicencaController {
             model.addAttribute(entidade, obj);
         } catch ( Exception ex ) {
             model.addAttribute("tipoMensagem", Mensagem.TYPE_ERROR);
-            model.addAttribute("mensagem", MyStrings.cleanMessage(ex.getMessage()));
+            model.addAttribute("mensagem", 
+                    MyStrings.cleanMessage(ex.getMessage()));
         }
         return entidade + "/formulario";
     }
@@ -74,11 +76,13 @@ public class LicencaController {
             servico.excluir(obj);
             model.addAttribute("tipoMensagem", Mensagem.TYPE_SUCCESS);
             model.addAttribute("mensagem", "Registro excluído com sucesso!");
-            List<Licenca> lista = servico.listarPorMilitar((Militar) request.getSession().getAttribute("usuario"));
+            List<Licenca> lista = servico.listarPorMilitar((Militar) 
+                    request.getSession().getAttribute("usuario"));
             model.addAttribute("lista", lista);
         } catch ( Exception ex ) {
             model.addAttribute("tipoMensagem", Mensagem.TYPE_ERROR);
-            model.addAttribute("mensagem", MyStrings.cleanMessage(ex.getMessage()));
+            model.addAttribute("mensagem", 
+                    MyStrings.cleanMessage(ex.getMessage()));
             return editar(id, model);
         }
         return entidade + "/listagem";
@@ -87,11 +91,13 @@ public class LicencaController {
     @RequestMapping("/licenca/listar")
     public String listar( Model model ) {
         try {
-            List<Licenca> lista = servico.listarPorMilitar((Militar) request.getSession().getAttribute("usuario"));
+            List<Licenca> lista = servico.listarPorMilitar((Militar) 
+                    request.getSession().getAttribute("usuario"));
             model.addAttribute("lista", lista);
         } catch ( Exception ex ) {
             model.addAttribute("tipoMensagem", Mensagem.TYPE_ERROR);
-            model.addAttribute("mensagem", MyStrings.cleanMessage(ex.getMessage()));
+            model.addAttribute("mensagem", 
+                    MyStrings.cleanMessage(ex.getMessage()));
         }
         return entidade + "/listagem";
     }
@@ -106,13 +112,15 @@ public class LicencaController {
     @RequestMapping("/licenca/salvar")
     public String salvar( Licenca obj, Model model ) {
         try {
-            obj.setMilitar((Militar) request.getSession().getAttribute("usuario"));
+            obj.setMilitar((Militar) 
+                    request.getSession().getAttribute("usuario"));
             servico.salvar(obj);
             model.addAttribute("tipoMensagem", Mensagem.TYPE_SUCCESS);
             model.addAttribute("mensagem", "Registro salvo com sucesso!");
         } catch ( Exception ex ) {
             model.addAttribute("tipoMensagem", Mensagem.TYPE_ERROR);
-            model.addAttribute("mensagem", MyStrings.cleanMessage(ex.getMessage()));
+            model.addAttribute("mensagem", 
+                    MyStrings.cleanMessage(ex.getMessage()));
         }
         model.addAttribute("tipos", Licenca.TipoLicenca.values());
         model.addAttribute("licenca", obj);
@@ -120,13 +128,15 @@ public class LicencaController {
     }
 
     @RequestMapping("/licenca/visualizar/{ano}/{mes}")
-    public String visualizar( @PathVariable Integer ano, @PathVariable Integer mes, Model model ) {
+    public String visualizar( @PathVariable Integer ano, 
+    @PathVariable Integer mes, Model model ) {
         try {
             List<Licenca> licencas = servico.listarPorAnoMes(ano, mes);
             model.addAttribute("licencas", licencas);
         } catch ( Exception ex ) {
             model.addAttribute("tipoMensagem", Mensagem.TYPE_ERROR);
-            model.addAttribute("mensagem", MyStrings.cleanMessage(ex.getMessage()));
+            model.addAttribute("mensagem", 
+                    MyStrings.cleanMessage(ex.getMessage()));
         }
         return entidade + "/visualizar";
     }
@@ -143,7 +153,8 @@ public class LicencaController {
             model.addAttribute("licencasJSON", licencasJSON);
         } catch ( Exception ex ) {
             model.addAttribute("tipoMensagem", Mensagem.TYPE_ERROR);
-            model.addAttribute("mensagem", MyStrings.cleanMessage(ex.getMessage()));
+            model.addAttribute("mensagem", 
+                    MyStrings.cleanMessage(ex.getMessage()));
         }
         return entidade + "/visualizar";
     }

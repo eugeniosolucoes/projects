@@ -121,6 +121,7 @@ table {
 
 .coluna-data {
     width: 10px;
+    white-space: nowrap;
 }
 
 .usuario-ativo {

@@ -30,4 +30,6 @@ public interface LicencaServico {
     JSONArray listarPorAnoMesJSON( Integer ano, Integer mes );
 
     Map<Date, List<Militar>> listarPorAnoMesAgrupadoPorData( Integer ano, Integer mes );
+    
+    Object[][] listarPorAnoMesArray( Integer ano, Integer mes );
 }

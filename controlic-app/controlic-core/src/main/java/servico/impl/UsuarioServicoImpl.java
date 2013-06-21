@@ -4,9 +4,13 @@
  */
 package servico.impl;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import modelo.acesso.Usuario;
 import repositorio.MilitarDAO;
 import servico.UsuarioServico;
+import util.Ldap;
 
 /**
  *
@@ -16,7 +20,7 @@ public class UsuarioServicoImpl implements UsuarioServico {
 
     private MilitarDAO dao;
 
-    public UsuarioServicoImpl( ) {
+    public UsuarioServicoImpl() {
         dao = new MilitarDAO();
     }
 
@@ -25,7 +29,18 @@ public class UsuarioServicoImpl implements UsuarioServico {
         if ( usuario == null ) {
             throw new NullPointerException( "O usuário deve ser informado!" );
         }
+        try {
+            autenticarLDAP( usuario );
+        } catch ( NamingException ex ) {
+            throw new IllegalStateException( ex );
+        } catch ( Exception ex ) {
+            throw new IllegalStateException( ex );
+        }
         return dao.retornarPorNip( usuario.getLogin() );
     }
-    
+
+    private void autenticarLDAP( Usuario usuario ) throws NamingException, Exception {
+        Ldap ldap = new Ldap( "diretorio.mb", "dc=mb", "cn=squid,dc=mb", "dtm3@@" );
+        ldap.login( usuario.getLogin(), usuario.getSenha() );
+    }
 }

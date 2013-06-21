@@ -7,9 +7,9 @@ package controlador;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import modelo.acesso.Usuario;
 import modelo.jpa.Militar;
 import modelo.jpa.Praca;
-import modelo.acesso.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,10 +23,10 @@ import util.MyStrings;
  */
 @Controller
 public class IndexController {
-
+    
     @Autowired
     HttpServletRequest request;
-
+    
     @RequestMapping( "/index" )
     public String retornaPrincipal( Model model ) {
         if ( request.getSession().getAttribute( "usuario" ) == null ) {
@@ -35,17 +35,18 @@ public class IndexController {
             return "index";
         }
     }
-
+    
     @RequestMapping( "/logout" )
     public String logout( Model model ) {
         request.getSession().setAttribute( "usuario", null );
         return "login";
     }
-
+    
     @RequestMapping( "/login" )
     public String login( Model model ) {
         try {
             Militar militar = new Praca( request.getParameter( "login" ) );
+            militar.setSenha( request.getParameter( "senha" ) );
             Usuario usuario = new UsuarioServicoImpl().efetuarLogin( militar );
             request.getSession().setAttribute( "usuario", usuario );
             return "index";

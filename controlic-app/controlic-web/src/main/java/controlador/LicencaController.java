@@ -70,7 +70,7 @@ public class LicencaController {
     @RequestMapping(value = "/licenca/excluir/{id}", method = RequestMethod.GET)
     public String excluir( @PathVariable Long id, Model model ) {
         try {
-            obj.setId(id);
+            obj = servico.retornar( id );
             servico.excluir(obj);
             model.addAttribute("tipoMensagem", Mensagem.TYPE_SUCCESS);
             model.addAttribute("mensagem", "Registro excluído com sucesso!");

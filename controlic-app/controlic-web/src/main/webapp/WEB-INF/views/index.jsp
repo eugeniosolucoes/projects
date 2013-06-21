@@ -25,7 +25,8 @@
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
-                <h3>CONTROLIC-WEB 1.0 - Controle de Licenças da CPO-20.</h3>
+                <h4>CONTROLIC-WEB 1.0</h4>
+                <p><a class="btn btn-primary btn-large" href="<c:url value='/licenca/novo' />">Cadastrar Licença &raquo;</a></p>
             </div>
 
             <hr>

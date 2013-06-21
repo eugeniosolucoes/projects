@@ -4,6 +4,7 @@
  */
 package servico.impl;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.jpa.Licenca;
 import modelo.jpa.Militar;
 import org.json.JSONArray;
@@ -52,6 +55,16 @@ public class LicencaServicoImpl implements LicencaServico {
 
     @Override
     public void excluir( Licenca obj ) {
+        SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
+        Date hoje = new Date();
+        try {
+            hoje = sdf.parse( sdf.format( new Date() ) );
+        } catch ( ParseException ex ) {
+            Logger.getLogger( LicencaServicoImpl.class.getName() ).log( Level.SEVERE, null, ex );
+        }    
+        if ( obj.getDataLicenca().before( hoje ) ) {
+            throw new IllegalStateException( "Não é possível excluir no passado!" );
+        }        
         dao.excluir( obj );
     }
 
@@ -77,6 +90,13 @@ public class LicencaServicoImpl implements LicencaServico {
     }
 
     void validacao( Licenca obj ) {
+        SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
+        Date hoje = new Date();
+        try {
+            hoje = sdf.parse( sdf.format( new Date() ) );
+        } catch ( ParseException ex ) {
+            Logger.getLogger( LicencaServicoImpl.class.getName() ).log( Level.SEVERE, null, ex );
+        }
         if ( obj == null ) {
             throw new IllegalStateException( "Operação inválida!" );
         }
@@ -85,6 +105,10 @@ public class LicencaServicoImpl implements LicencaServico {
         }
         if ( obj.getMotivo().length() > 255 ) {
             throw new IllegalStateException( "O motivo deve ter no máximo 255 caracteres!" );
+        }
+
+        if ( obj.getDataLicenca().before( hoje ) ) {
+            throw new IllegalStateException( "Não é possível registrar no passado!" );
         }
     }
 

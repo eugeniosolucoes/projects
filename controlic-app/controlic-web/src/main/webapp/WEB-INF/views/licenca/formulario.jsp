@@ -78,11 +78,21 @@
 
         <script>
             $(document).ready(function() {
+                
+                var dateToday = new Date();
+                
                 $("#data-licenca").datepicker({
                     buttonText: "data da licença",
                     showButtonPanel: true,
                     changeMonth: true,
-                    changeYear: true
+                    changeYear: true,
+                    minDate: dateToday,
+                    onSelect: function(selectedDate) {
+                        var option = this.id == "from" ? "minDate" : "maxDate",
+                        instance = $(this).data("datepicker"),
+                        date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+                        dates.not(this).datepicker("option", option, date);
+                    }                    
                 });
 
                 $("#btn-salvar").click(function() {

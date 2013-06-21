@@ -44,20 +44,20 @@
                 <c:choose>
                     <c:when test="${ not empty licencas}">
                         <table id="tbl_listagem">
-                            <!--                            <thead>
-                                                            <tr>
-                                                                <th class="coluna-data" >Data</th>
-                                                                <th>Militar</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                            <c:forEach items="${licencas}" var="licenca" >
+                            <thead>
                                 <tr>
-                                    <td class="coluna-data">${licenca[0]}</td>
-                                    <td>${licenca[1]}</td>
+                                    <th class="coluna-data" >Data</th>
+                                    <th>Militar</th>
                                 </tr>
-                            </c:forEach>
-                        </tbody>-->
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${licencas}" var="licenca" >
+                                    <tr>
+                                        <td class="coluna-data"><fmt:formatDate pattern="dd/MM/yyyy" value="${licenca.dataLicenca}" /></td>
+                                        <td>${licenca.militar.loginNome}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
                         </table>
                     </c:when>
                     <c:otherwise>
@@ -81,39 +81,28 @@
         <c:import url="../inc/footer-bootstrap.jsp" />
 
         <script>
-            
-            var dados = ${licencasJSON};
-            
-            var sampleData = [], results = dados;
-            for (var i = 0, len = results.length; i < len; i++) {
-                var result = results[i];
-                sampleData.push({ dataLicenca: result.dataLicenca, nome: result.militar.loginNome });
-            }         
-            
-            $(document).ready(function() {
-                
-                $('#tbl_listagem').dataTable( {
-                    "aaData": sampleData
-                } );                 
 
-                /*
+            var dados = ${licencasJSON};
+
+            $(document).ready(function() {
+
                 $('#tbl_listagem').dataTable(
-                {
-                    "bPaginate": true,
-                    "iDisplayLength": 10,
-                    "aLengthMenu": [[10, 50, 100], [10, 50, 100]],
-                    "oLanguage": {
-                        "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
-                        "sSearch": "Buscar:",
-                        "sLengthMenu": 'Registros: _MENU_ ',
-                        "sInfoFiltered": "(filtro de _MAX_ total registros)",
-                        "sInfoEmpty": "Nenhum resultado",
-                        "oPaginate": {
-                            "sPrevious": "Anterior",
-                            "sNext": "Próxima"
-                        }
-                    }
-                });*/
+                        {
+                            "bPaginate": true,
+                            "iDisplayLength": 10,
+                            "aLengthMenu": [[10, 50, 100], [10, 50, 100]],
+                            "oLanguage": {
+                                "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
+                                "sSearch": "Buscar:",
+                                "sLengthMenu": 'Registros: _MENU_ ',
+                                "sInfoFiltered": "(filtro de _MAX_ total registros)",
+                                "sInfoEmpty": "Nenhum resultado",
+                                "oPaginate": {
+                                    "sPrevious": "Anterior",
+                                    "sNext": "Próxima"
+                                }
+                            }
+                        });
 
                 show_message('${tipoMensagem}', '${mensagem}');
 

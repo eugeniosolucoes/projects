@@ -39,8 +39,6 @@
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
-
-
                 <a class="btn btn-large btn-block btn-primary" href="<c:url value='/licenca/novo' />" >Cadastrar Licença</a>
                 <div class="btn-block" ></div>
                 <c:choose>

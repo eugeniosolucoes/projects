@@ -32,8 +32,7 @@
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
 
-                <form>
-                    Usuário: <span>${usuario.loginNome}</span>
+                <form class="form-inline">
                     <input type="hidden" name="id" value="${licenca.id}" />
                     <label for="tipo">Tipo da Licença:</label>
                     <select name="tipo">
@@ -50,6 +49,7 @@
                         <option value="TRUE" ${ licenca.publicadaPD ? 'selected' : ''} >SIM</option>
                         <option value="FALSE" ${ licenca.publicadaPD ? '' : 'selected'} >NÃO</option>
                     </select>
+                    <br/>
                     <label for="motivo">Motivo:</label>
                     <textarea name="motivo" class="input-block-level">${licenca.motivo}</textarea>
                     <button type="button" class="btn" id="btn-salvar">Salvar</button>

@@ -122,3 +122,9 @@ table {
 .coluna-data {
     width: 10px;
 }
+
+.usuario-ativo {
+    float:right;
+    color:white;
+    margin-top:10px;
+}

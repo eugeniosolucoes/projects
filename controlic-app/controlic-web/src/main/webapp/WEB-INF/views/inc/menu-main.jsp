@@ -27,6 +27,7 @@
                     <li><a href="<c:url value='/logout' />">Sair</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
+            <div class="usuario-ativo">Usuário: ${usuario.loginNome}</div>
         </div>
     </div>
 </div>

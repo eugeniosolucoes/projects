@@ -5,9 +5,10 @@
     <class>modelo.jpa.Militar</class>
     <class>modelo.jpa.Licenca</class>
     <class>modelo.jpa.Praca</class>
+    <class>modelo.jpa.Oficial</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/controlic"/>
-      <property name="javax.persistence.jdbc.password" value="redelocal"/>
+      <property name="javax.persistence.jdbc.password" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
     </properties>

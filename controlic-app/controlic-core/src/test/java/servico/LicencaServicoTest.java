@@ -10,11 +10,13 @@ import java.util.List;
 import java.util.Map;
 import modelo.jpa.Licenca;
 import modelo.jpa.Militar;
+import modelo.jpa.Oficial;
 import modelo.jpa.Praca;
 import org.json.JSONArray;
 import org.json.JSONException;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import repositorio.OficialDAO;
 import repositorio.PracaDAO;
 import servico.impl.LicencaServicoImpl;
 import servico.impl.PracaServicoImpl;
@@ -31,6 +33,20 @@ public class LicencaServicoTest {
     @Test
     public void testCriarMilitares() {
         System.out.println( "criarMilitares" );
+
+        OficialDAO daoOficial = new OficialDAO();
+
+        Oficial of1 = new Oficial( Oficial.Posto.CAPITAO_TENENTE, "96094265",
+                "Márcia Maria Tenório Kouzmine", "Márcia Tenório" );
+
+        Oficial of2 = new Oficial( Oficial.Posto.CAPITAO_TENENTE, "02204959",
+                "Luciana Rodrigues de Almeida Saboia", "Luciana Almeida" );
+
+        try {
+            daoOficial.criar( of1 );
+            daoOficial.criar( of2 );
+        } catch ( Exception e ) {
+        }
 
         PracaDAO dao = new PracaDAO();
 

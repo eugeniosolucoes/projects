@@ -42,7 +42,7 @@
                     </select>
                     <label for="dataLicenca">Data da Licença:</label>
                     <input class="span2"
-                           type="text" id="data-licenca" name="dataLicenca" placeholder="Data da Licença"
+                           type="text" id="data_licenca" name="dataLicenca" placeholder="Data da Licença"
                            value="<fmt:formatDate pattern="dd/MM/yyyy" value="${licenca.dataLicenca}" />" /> 
                     <label for="publicadaPD">Publicada no PD:</label>
                     <select class="span1" name="publicadaPD">
@@ -81,18 +81,12 @@
                 
                 var dateToday = new Date();
                 
-                $("#data-licenca").datepicker({
+                $("#data_licenca").datepicker({
                     buttonText: "data da licença",
                     showButtonPanel: true,
                     changeMonth: true,
                     changeYear: true,
-                    minDate: dateToday,
-                    onSelect: function(selectedDate) {
-                        var option = this.id == "from" ? "minDate" : "maxDate",
-                        instance = $(this).data("datepicker"),
-                        date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-                        dates.not(this).datepicker("option", option, date);
-                    }                    
+                    minDate: dateToday                 
                 });
 
                 $("#btn-salvar").click(function() {

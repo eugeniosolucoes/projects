@@ -148,20 +148,4 @@ public class LicencaServicoTest {
         assertNotEquals( expResult, result );
     }
 
-    @Test
-    public void testListarPorAnoMesAgrupadoPorData() {
-        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
-        System.out.println( "listarPorMilitar" );
-        LicencaServicoImpl instance = new LicencaServicoImpl();
-        Map<Date, List<Militar>> map = instance.listarPorAnoMesAgrupadoPorData( 2013, 06 );
-
-        for ( Date d : map.keySet() ) {
-            System.out.printf( "Data: %s %n", sdf.format( d ) );
-            for ( Militar m : map.get( d ) ) {
-                if ( m != null ) {
-                    System.out.printf( "\tMilitar: %s %n", m.getLoginNome() );
-                }
-            }
-        }
-    }
 }

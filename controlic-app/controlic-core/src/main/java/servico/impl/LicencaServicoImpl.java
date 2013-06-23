@@ -30,8 +30,10 @@ import util.MyStrings;
  */
 public class LicencaServicoImpl implements LicencaServico {
 
-    LicencaDAO dao;
+    private LicencaDAO dao;
 
+    public static final int MOTIVO_MIN_SIZE = 6;
+    
     public LicencaServicoImpl() {
         dao = new LicencaDAO();
     }
@@ -95,7 +97,8 @@ public class LicencaServicoImpl implements LicencaServico {
         try {
             hoje = sdf.parse( sdf.format( new Date() ) );
         } catch ( ParseException ex ) {
-            Logger.getLogger( LicencaServicoImpl.class.getName() ).log( Level.SEVERE, null, ex );
+            Logger.getLogger( LicencaServicoImpl.class.getName() ).
+                    log( Level.SEVERE, null, ex );
         }
         if ( obj == null ) {
             throw new IllegalStateException( "Operação inválida!" );
@@ -108,11 +111,12 @@ public class LicencaServicoImpl implements LicencaServico {
         }
         obj.setMotivo( obj.getMotivo().trim() );
         if ( obj.getMotivo().length() > 255 ) {
-            throw new IllegalStateException( "O motivo deve ter no máximo 255 caracteres!" );
+            throw new IllegalStateException( "O motivo deve ter no máximo "
+                    + "255 caracteres!" );
         }
-        if ( obj.getMotivo().matches( "^([\\w]+)*" ) ) {
+        if ( obj.getMotivo().length() < MOTIVO_MIN_SIZE  ) {
             throw new IllegalStateException( "O motivo deve ter pelo menos "
-                    + "uma palavra de no mínimo seis (06) caracters!" );
+                    + "uma palavra de no mínimo seis (06) caracteres!" );
         }
         if ( obj.getDataLicenca().before( hoje ) ) {
             throw new IllegalStateException( "Não é possível registrar no passado!" );
@@ -130,43 +134,43 @@ public class LicencaServicoImpl implements LicencaServico {
         return jsona;
     }
 
-    @Override
-    public Map<Date, List<Militar>> listarPorAnoMesAgrupadoPorData( Integer ano, Integer mes ) {
-        List<Licenca> lista = dao.listarPorAnoMes( ano, mes );
-        if ( lista != null && !lista.isEmpty() ) {
-            SortedMap<Date, List<Militar>> map = new TreeMap<Date, List<Militar>>();
-            for ( Licenca licenca : lista ) {
-                map.put( licenca.getDataLicenca(), new ArrayList<Militar>() );
-            }
-            for ( Iterator<Date> it = map.keySet().iterator(); it.hasNext(); ) {
-                Date d = it.next();
-                for ( Licenca licenca : lista ) {
-                    if ( d.equals( licenca.getDataLicenca() ) ) {
-                        map.get( d ).add( licenca.getMilitar() );
-                    }
-                }
-            }
-            return map;
-        }
-        return Collections.EMPTY_MAP;
-    }
+//    @Override
+//    public Map<Date, List<Militar>> listarPorAnoMesAgrupadoPorData( Integer ano, Integer mes ) {
+//        List<Licenca> lista = dao.listarPorAnoMes( ano, mes );
+//        if ( lista != null && !lista.isEmpty() ) {
+//            SortedMap<Date, List<Militar>> map = new TreeMap<Date, List<Militar>>();
+//            for ( Licenca licenca : lista ) {
+//                map.put( licenca.getDataLicenca(), new ArrayList<Militar>() );
+//            }
+//            for ( Iterator<Date> it = map.keySet().iterator(); it.hasNext(); ) {
+//                Date d = it.next();
+//                for ( Licenca licenca : lista ) {
+//                    if ( d.equals( licenca.getDataLicenca() ) ) {
+//                        map.get( d ).add( licenca.getMilitar() );
+//                    }
+//                }
+//            }
+//            return map;
+//        }
+//        return Collections.EMPTY_MAP;
+//    }
 
-    @Override
-    public Object[][] listarPorAnoMesArray( Integer ano, Integer mes ) {
-        SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
-        Map<Date, List<Militar>> map = this.listarPorAnoMesAgrupadoPorData( ano, mes );
-        String[][] result = new String[map.size()][2];
-        int i = 0;
-        for ( Iterator<Date> it = map.keySet().iterator(); it.hasNext(); ) {
-            Date d = it.next();
-            result[i][0] = sdf.format( d );
-            StringBuilder sb = new StringBuilder();
-            for ( Militar militar : map.get( d ) ) {
-                sb.append( militar.getLoginNome().concat( "<br/>" ) );
-            }
-            result[i][1] = sb.substring( 0, sb.length() - "<br/>".length() );
-            i++;
-        }
-        return result;
-    }
+//    @Override
+//    public Object[][] listarPorAnoMesArray( Integer ano, Integer mes ) {
+//        SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
+//        Map<Date, List<Militar>> map = this.listarPorAnoMesAgrupadoPorData( ano, mes );
+//        String[][] result = new String[map.size()][2];
+//        int i = 0;
+//        for ( Iterator<Date> it = map.keySet().iterator(); it.hasNext(); ) {
+//            Date d = it.next();
+//            result[i][0] = sdf.format( d );
+//            StringBuilder sb = new StringBuilder();
+//            for ( Militar militar : map.get( d ) ) {
+//                sb.append( militar.getLoginNome().concat( "<br/>" ) );
+//            }
+//            result[i][1] = sb.substring( 0, sb.length() - "<br/>".length() );
+//            i++;
+//        }
+//        return result;
+//    }
 }

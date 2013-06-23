@@ -20,7 +20,6 @@ function post_to_url(path, params, method) {
     form.submit();
 }
 
-
 function chk_excluir() {
     var itens = document.getElementsByName("chk_item");
     var total = itens.length;
@@ -96,6 +95,7 @@ function maskCurrency(val, milSep, decSep) {
     }
     return aux;
 }
+
 function mask(_mask, val) {
     var i, mki;
     var aux = "";
@@ -233,5 +233,159 @@ function show_message(type, message) {
     if (message !== '') {
         //$().toastmessage({sticky: true});
         $().toastmessage(type, message);
+    }
+}
+
+function extract_date(date){
+    // var exemplo = "Sat Jun 22 00:00:00 BRT 2013";
+    var meses = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var tokens = date.split(" ");
+    var ano = tokens[5];
+    var mes = meses.indexOf(tokens[1]);
+    var dia = tokens[2];
+    return new Date(ano, mes, dia);
+}
+
+function format_date(jdate) {
+    var date = extract_date(jdate);
+    var meses = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+    return date.getDate() + "/" + meses[date.getMonth()] + "/" + date.getFullYear();
+}
+
+function populate_table(url){
+    $.ajax({
+        dataType: 'JSON',
+        url: url,
+        async: false,
+        success:function(dados){
+            var table = $('#tbl_listagem');
+            for(indice in dados){
+                var licenca = dados[indice];
+                var row = $('<tr></tr>');
+                var dataLicenca = $('<td></td>').addClass("coluna-data").text(format_date(licenca.dataLicenca));
+                var militar = $('<td></td>').addClass("coluna-data").text(licenca.militar.loginNome);
+                var tipo = $('<td></td>').addClass("coluna-data").text(licenca.tipo.descricao);
+                var motivo = $('<td></td>').text(licenca.motivo);
+                row.append(dataLicenca);
+                row.append(militar);
+                row.append(tipo);
+                row.append(motivo);
+                table.append(row);
+            }
+        }
+    });
+}
+
+function create_calendar(url){
+
+    var datas = create_list_calendar(url);
+    
+    var table = $('#tbl_calendar');
+    
+    var oneField = "<span class='day-calendar'></span>"
+    
+    var content = ""
+    content += "<tr><th>DOM</th><th>SEG</th><th>TER</th><th>QUA</th>"
+    content += "<th>QUI</th><th>SEX</th><th>SAB</th></tr>"
+    content += "<tr>"
+
+    for (var i = 1; i < 43; i++) {
+        content += "<td>" + oneField + "</td>"
+        if (i % 7 == 0) {
+            content += "</tr><tr>"
+        }
+    }
+
+    table.append(content);
+    
+    populateFields(datas);
+    
+}
+
+function create_list_calendar(url){
+    var json = (function () {
+        var json = null;
+        $.ajax({
+            async: false,
+            global: false,
+            url: url,
+            dataType: 'JSON',
+            success: function (data) {
+                json = data;
+            }
+        });
+        return json;
+    })();
+    var datas = new Array();
+    for(x in json) {
+        var licenca = json[x];
+        datas[format_date(licenca.dataLicenca)] = new Array();
+        var i = 0;
+        for(y in json) {
+            var lic = json[y];
+            if(lic.dataLicenca == licenca.dataLicenca){
+                datas[format_date(licenca.dataLicenca)][i] = lic.militar;
+                i++;
+            }
+        }
+    }
+    return datas;
+}
+
+function getFirstDay(theYear, theMonth){
+    var firstDate = new Date(theYear,theMonth,1);
+    return firstDate.getDay();
+}
+// number of days in the month
+function getMonthLen(theYear, theMonth) {
+    var oneDay = 1000 * 60 * 60 * 24;
+    var thisMonth = new Date(theYear, theMonth, 1);
+    var nextMonth = new Date(theYear, theMonth + 1, 1);
+    var len = Math.ceil((nextMonth.getTime() - 
+        thisMonth.getTime())/oneDay);
+    return len;
+}
+// correct for Y2K anomalies
+function getY2KYear(today) {
+    var yr = today.getYear();
+    return ((yr < 1900) ? yr+1900 : yr);
+}
+
+// deferred function to fill fields of table
+function populateFields(datas) {
+
+    var theYear = new Date().getFullYear();
+    var theMonth = new Date().getMonth();
+
+    // which is the first day of this month?
+    var firstDay = getFirstDay(theYear, theMonth);
+    // total number of <TD>...</TD> tags needed in for loop below
+    var howMany = getMonthLen(theYear, theMonth);
+
+    // set month and year in top field
+    // fill fields of table
+    for (var i = 0; i < 42; i++) {
+        if (i < firstDay || i >= (howMany + firstDay)) {
+            // before and after actual dates, empty fields
+            // address fields by name and [index] number
+            document.getElementsByClassName('day-calendar')[i].innerHTML = "";
+        } else {
+            // enter date values
+            var day = i - firstDay + 1;
+            document.getElementsByClassName('day-calendar')[i].innerHTML = day;
+            var str = day < 10 ? '0' + day : day;
+                str += "/" 
+                str += (theMonth + 1) < 10 ? '0' + (theMonth + 1) : (theMonth + 1);
+                str += "/" + theYear;
+            var data = datas[str];
+            if( data != null ){
+                var militares = '';
+                for(x in data){
+                    militares += data[x].loginNome + '<br/>';
+                }
+                document.getElementsByClassName('day-calendar')[i].innerHTML = day +
+                    '<br/>' + militares;
+            }
+       }
     }
 }

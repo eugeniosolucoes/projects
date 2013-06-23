@@ -13,15 +13,16 @@
                 <ul class="nav">
                     <li class="active"><a href="<c:url value='/'/>">In&iacute;cio</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastrar<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Licenças<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<c:url value='/licenca/listar' />">Licença</a></li>
+                            <li><a href="<c:url value='/licenca/novo' />">Nova</a></li>
+                            <li><a href="<c:url value='/licenca/listar' />">Minhas Licenças</a></li>
                         </ul>
                     </li>                     
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visualizar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<c:url value='/licenca/visualizar' />">Por Ano/Mês</a></li>
+                            <li><a href="<c:url value='/licenca/visualizar' />">Mês Corrente</a></li>
                         </ul>
                     </li>                    
                     <li><a href="<c:url value='/logout' />">Sair</a></li>

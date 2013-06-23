@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -35,7 +36,7 @@ public class Licenca implements Serializable {
     @Temporal( javax.persistence.TemporalType.DATE )
     @Column( name = "data_licenca" )
     private Date dataLicenca;
-
+    
     private String motivo;
 
     private TipoLicenca tipo;
@@ -72,7 +73,7 @@ public class Licenca implements Serializable {
     }
 
     public void setDataLicenca( Date dataLicenca ) {
-        this.dataLicenca = dataLicenca;
+        this.dataLicenca = dataLicenca;        
     }
 
     public String getMotivo() {

@@ -39,26 +39,19 @@
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
-
-
                 <c:choose>
                     <c:when test="${ not empty licencas}">
+                        <table id="tbl_calendar" border='1' ></table>
                         <table id="tbl_listagem">
                             <thead>
                                 <tr>
-                                    <th class="coluna-data" >Data</th>
+                                    <th>Data</th>
                                     <th>Militar</th>
+                                    <th>Tipo</th>
                                     <th>Motivo</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${licencas}" var="licenca" >
-                                    <tr>
-                                        <td class="coluna-data"><fmt:formatDate pattern="dd/MM/yyyy" value="${licenca.dataLicenca}" /></td>
-                                        <td class="coluna-data">${licenca.militar.loginNome}</td>
-                                        <td>${licenca.motivo}</td>
-                                    </tr>
-                                </c:forEach>
                             </tbody>
                         </table>
                     </c:when>
@@ -66,11 +59,8 @@
                         <div style="text-align: center;">Não existem registros cadastrados!</div>
                     </c:otherwise>
                 </c:choose>
-
             </div>
-
             <hr>
-
             <footer>
                 <p>
                     <c:import url='../inc/rodape.jsp' />
@@ -84,29 +74,31 @@
 
         <script>
 
-            var dados = ${licencasJSON};
+            create_calendar('<c:url value="/licenca/visualizar/json" />');
 
             $(document).ready(function() {
-
-                $('#tbl_listagem').dataTable(
-                        {
-                            "bPaginate": true,
-                            "iDisplayLength": 10,
-                            "aLengthMenu": [[10, 50, 100], [10, 50, 100]],
-                            "oLanguage": {
-                                "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
-                                "sSearch": "Buscar:",
-                                "sLengthMenu": 'Registros: _MENU_ ',
-                                "sInfoFiltered": "(filtro de _MAX_ total registros)",
-                                "sInfoEmpty": "Nenhum resultado",
-                                "oPaginate": {
-                                    "sPrevious": "Anterior",
-                                    "sNext": "Próxima"
-                                }
-                            }
-                        });
+                
+                populate_table('<c:url value="/licenca/visualizar/json" />');
+                
+                $('#tbl_listagem').dataTable( {
+                    "bPaginate": true,
+                    "iDisplayLength": 10,
+                    "aLengthMenu": [[10, 50, 100], [10, 50, 100]],
+                    "oLanguage": {
+                        "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
+                        "sSearch": "Buscar:",
+                        "sLengthMenu": 'Registros: _MENU_ ',
+                        "sInfoFiltered": "(filtro de _MAX_ total registros)",
+                        "sInfoEmpty": "Nenhum resultado",
+                        "oPaginate": {
+                            "sPrevious": "Anterior",
+                            "sNext": "Próxima"
+                        }
+                    }
+                });
 
                 show_message('${tipoMensagem}', '${mensagem}');
+
 
             });
         </script>

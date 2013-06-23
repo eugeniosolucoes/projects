@@ -4,9 +4,7 @@
  */
 package servico;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import modelo.jpa.Licenca;
 import modelo.jpa.Militar;
 import org.json.JSONArray;
@@ -28,8 +26,4 @@ public interface LicencaServico {
     List<Licenca> listarPorMilitar( Militar obj );
 
     JSONArray listarPorAnoMesJSON( Integer ano, Integer mes );
-
-    Map<Date, List<Militar>> listarPorAnoMesAgrupadoPorData( Integer ano, Integer mes );
-    
-    Object[][] listarPorAnoMesArray( Integer ano, Integer mes );
 }

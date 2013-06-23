@@ -129,3 +129,22 @@ table {
     color:white;
     margin-top:10px;
 }
+
+#tbl_calendar {
+    width: 100%;
+    background-color: white;
+}
+#tbl_calendar tr th {
+    font-size: 0.8em;
+}
+
+#tbl_calendar tr td {
+    font-size: 0.8em;
+    width: 50px;
+    vertical-align: top;
+    text-align: center;
+    padding: 5px;
+}
+
+.day-calendar {
+}

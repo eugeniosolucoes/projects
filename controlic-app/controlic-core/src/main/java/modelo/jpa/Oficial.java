@@ -5,7 +5,6 @@
 package modelo.jpa;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -62,7 +61,7 @@ public class Oficial extends Militar implements Serializable {
 
         private static final int INDEX_SIGLA = 0;
 
-        private static final int INDEX_DESCRICAO = 0;
+        private static final int INDEX_DESCRICAO = 1;
 
         private static final String[][] postos = {
             { "AE", "Almirante-de-Esquadra" },

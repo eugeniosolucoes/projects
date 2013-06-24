@@ -168,4 +168,14 @@ public class LicencaController {
         out.print( licencasJSON );
         out.flush();
     }
+    
+    @RequestMapping( "/licenca/visualizar/json/{ano}/{mes}" )
+    public void visualizarJSON( @PathVariable Integer ano,
+            @PathVariable Integer mes, HttpServletResponse response ) throws Exception {
+        response.setContentType( "application/json" );
+        PrintWriter out = response.getWriter();
+        JSONArray licencasJSON = servico.listarPorAnoMesJSON( ano, mes );
+        out.print( licencasJSON );
+        out.flush();
+    }    
 }

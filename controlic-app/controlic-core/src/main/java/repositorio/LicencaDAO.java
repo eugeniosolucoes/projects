@@ -4,6 +4,8 @@
  */
 package repositorio;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -29,7 +31,7 @@ public class LicencaDAO extends AbstractDAO<Licenca> {
     }
 
     public List<Licenca> listarPorAnoMes( Integer ano, Integer mes ) {
-        Query query = em.createQuery(  "SELECT DISTINCT L FROM Licenca L "
+        Query query = em.createQuery( "SELECT DISTINCT L FROM Licenca L "
                 + "WHERE EXTRACT(YEAR FROM L.dataLicenca) = ?1 "
                 + "AND EXTRACT(MONTH FROM L.dataLicenca) = ?2 " );
         query.setParameter( 1, ano );
@@ -43,5 +45,12 @@ public class LicencaDAO extends AbstractDAO<Licenca> {
                 + "WHERE lic.militar = ?1 " );
         query.setParameter( 1, militar );
         return query.getResultList();
+    }
+
+    public List<Integer> listarAnos() {
+        Query query = em.createQuery( "SELECT DISTINCT CAST(EXTRACT(YEAR FROM "
+                + "L.dataLicenca)AS INT) FROM Licenca L" );
+        List<Integer> lista = query.getResultList();
+        return lista;
     }
 }

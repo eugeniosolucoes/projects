@@ -278,7 +278,7 @@ function populate_table(url){
     });
 }
 
-function create_calendar(url){
+function create_calendar(url, ano, mes){
 
     var datas = create_list_calendar(url);
     
@@ -300,7 +300,7 @@ function create_calendar(url){
 
     table.append(content);
     
-    populateFields(datas);
+    populateFields(datas, ano, mes - 1);
     
 }
 
@@ -354,10 +354,7 @@ function getY2KYear(today) {
 }
 
 // deferred function to fill fields of table
-function populateFields(datas) {
-
-    var theYear = new Date().getFullYear();
-    var theMonth = new Date().getMonth();
+function populateFields(datas, theYear, theMonth) {
 
     // which is the first day of this month?
     var firstDay = getFirstDay(theYear, theMonth);
@@ -370,7 +367,7 @@ function populateFields(datas) {
         if (i < firstDay || i >= (howMany + firstDay)) {
             // before and after actual dates, empty fields
             // address fields by name and [index] number
-            document.getElementsByClassName('day-calendar')[i].innerHTML = "";
+            document.getElementsByClassName('day-calendar')[i].innerHTML = "&nbsp;";
         } else {
             // enter date values
             var day = i - firstDay + 1;

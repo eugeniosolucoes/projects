@@ -4,17 +4,20 @@
  */
 package controlador;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.jpa.Licenca;
 import modelo.jpa.Militar;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -132,7 +135,12 @@ public class LicencaController {
             @PathVariable Integer mes, Model model ) {
         try {
             List<Licenca> licencas = servico.listarPorAnoMes( ano, mes );
+            model.addAttribute( "url", String.format( "%s/licenca/visualizar/json/%d/%d", request.getContextPath(), ano, mes ) );
             model.addAttribute( "licencas", licencas );
+            model.addAttribute( "anos", servico.listarAnos() );
+            model.addAttribute( "meses", MESES );
+            model.addAttribute( "ano", ano );
+            model.addAttribute( "mes", mes );
         } catch ( Exception ex ) {
             model.addAttribute( "tipoMensagem", Mensagem.TYPE_ERROR );
             model.addAttribute( "mensagem",
@@ -148,7 +156,12 @@ public class LicencaController {
             Integer ano = calendar.get( Calendar.YEAR );
             Integer mes = calendar.get( Calendar.MONTH ) + 1;
             List<Licenca> licencas = servico.listarPorAnoMes( ano, mes );
+            model.addAttribute( "url", String.format( "%s/licenca/visualizar/json/%d/%d", request.getContextPath(), ano, mes ) );
             model.addAttribute( "licencas", licencas );
+            model.addAttribute( "anos", servico.listarAnos() );
+            model.addAttribute( "meses", MESES );
+            model.addAttribute( "ano", ano );
+            model.addAttribute( "mes", mes );
         } catch ( Exception ex ) {
             model.addAttribute( "tipoMensagem", Mensagem.TYPE_ERROR );
             model.addAttribute( "mensagem",
@@ -168,7 +181,7 @@ public class LicencaController {
         out.print( licencasJSON );
         out.flush();
     }
-    
+
     @RequestMapping( "/licenca/visualizar/json/{ano}/{mes}" )
     public void visualizarJSON( @PathVariable Integer ano,
             @PathVariable Integer mes, HttpServletResponse response ) throws Exception {
@@ -177,5 +190,21 @@ public class LicencaController {
         JSONArray licencasJSON = servico.listarPorAnoMesJSON( ano, mes );
         out.print( licencasJSON );
         out.flush();
-    }    
+    }
+    
+    static final String[][] MESES = {
+        {"1", "janeiro"},
+        {"2", "fevereiro"},
+        {"3", "março"},
+        {"4", "abril"},
+        {"5", "maio"},
+        {"6", "junho"},
+        {"7", "julho"},
+        {"8", "agosto"},
+        {"9", "setembro"},
+        {"10", "outubro"},
+        {"11", "novembro"},
+        {"12", "dezembro"},
+    };
+    
 }

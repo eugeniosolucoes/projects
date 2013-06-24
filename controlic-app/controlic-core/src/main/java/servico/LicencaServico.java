@@ -26,4 +26,6 @@ public interface LicencaServico {
     List<Licenca> listarPorMilitar( Militar obj );
 
     JSONArray listarPorAnoMesJSON( Integer ano, Integer mes );
+    
+    List<Integer> listarAnos();
 }

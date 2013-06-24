@@ -6,14 +6,8 @@ package servico.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.jpa.Licenca;
@@ -133,44 +127,11 @@ public class LicencaServicoImpl implements LicencaServico {
         }
         return jsona;
     }
+    
+    @Override
+    public List<Integer> listarAnos() {
+        List<Integer> lista = dao.listarAnos();
+        return lista;
+    }    
 
-//    @Override
-//    public Map<Date, List<Militar>> listarPorAnoMesAgrupadoPorData( Integer ano, Integer mes ) {
-//        List<Licenca> lista = dao.listarPorAnoMes( ano, mes );
-//        if ( lista != null && !lista.isEmpty() ) {
-//            SortedMap<Date, List<Militar>> map = new TreeMap<Date, List<Militar>>();
-//            for ( Licenca licenca : lista ) {
-//                map.put( licenca.getDataLicenca(), new ArrayList<Militar>() );
-//            }
-//            for ( Iterator<Date> it = map.keySet().iterator(); it.hasNext(); ) {
-//                Date d = it.next();
-//                for ( Licenca licenca : lista ) {
-//                    if ( d.equals( licenca.getDataLicenca() ) ) {
-//                        map.get( d ).add( licenca.getMilitar() );
-//                    }
-//                }
-//            }
-//            return map;
-//        }
-//        return Collections.EMPTY_MAP;
-//    }
-
-//    @Override
-//    public Object[][] listarPorAnoMesArray( Integer ano, Integer mes ) {
-//        SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
-//        Map<Date, List<Militar>> map = this.listarPorAnoMesAgrupadoPorData( ano, mes );
-//        String[][] result = new String[map.size()][2];
-//        int i = 0;
-//        for ( Iterator<Date> it = map.keySet().iterator(); it.hasNext(); ) {
-//            Date d = it.next();
-//            result[i][0] = sdf.format( d );
-//            StringBuilder sb = new StringBuilder();
-//            for ( Militar militar : map.get( d ) ) {
-//                sb.append( militar.getLoginNome().concat( "<br/>" ) );
-//            }
-//            result[i][1] = sb.substring( 0, sb.length() - "<br/>".length() );
-//            i++;
-//        }
-//        return result;
-//    }
 }

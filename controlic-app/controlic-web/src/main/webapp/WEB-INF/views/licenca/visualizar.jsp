@@ -39,27 +39,30 @@
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
-                <c:choose>
-                    <c:when test="${ not empty licencas}">
-                        <table id="tbl_calendar" border='1' ></table>
-                        <table id="tbl_listagem">
-                            <thead>
-                                <tr>
-                                    <th>Data</th>
-                                    <th>Militar</th>
-                                    <th>Tipo</th>
-                                    <th>Motivo</th>
-                                    <th>PD</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </c:when>
-                    <c:otherwise>
-                        <div style="text-align: center;">Não existem registros cadastrados!</div>
-                    </c:otherwise>
-                </c:choose>
+                <select id="anos">
+                    <c:forEach items="${anos}" var="vano"   >
+                        <option value="${vano}" ${vano eq ano ? 'selected': ''}>${vano}</option>
+                    </c:forEach>
+                </select>
+                <select id="meses">
+                    <c:forEach items="${meses}" var="vmes"  >
+                        <option value="${vmes[0]}" ${vmes[0] eq mes ? 'selected': ''} >${vmes[1]}</option>
+                    </c:forEach>
+                </select>
+                <table id="tbl_calendar" border='1' ></table>
+                <table id="tbl_listagem">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Militar</th>
+                            <th>Tipo</th>
+                            <th>Motivo</th>
+                            <th>PD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
             <hr>
             <footer>
@@ -75,17 +78,18 @@
 
         <script>
 
-            create_calendar('<c:url value="/licenca/visualizar/json" />');
+            create_calendar('${url}', ${ano}, ${mes});
 
             $(document).ready(function() {
                 
-                populate_table('<c:url value="/licenca/visualizar/json" />');
+                populate_table('${url}');
                 
                 $('#tbl_listagem').dataTable( {
                     "bPaginate": true,
                     "iDisplayLength": 10,
                     "aLengthMenu": [[10, 50, 100], [10, 50, 100]],
                     "oLanguage": {
+                        sEmptyTable: "Nenhum resultado",
                         "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
                         "sSearch": "Buscar:",
                         "sLengthMenu": 'Registros: _MENU_ ',
@@ -100,6 +104,11 @@
 
                 show_message('${tipoMensagem}', '${mensagem}');
 
+                $('#meses').change(function() {
+                    var ano = $('#anos').val();
+                    var mes = $('#meses').val();
+                    window.location.assign('<c:url value="/licenca/visualizar" />' + '/' + ano + '/' + mes);
+                });
 
             });
         </script>

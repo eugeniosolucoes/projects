@@ -49,6 +49,7 @@
                                     <th>Militar</th>
                                     <th>Tipo</th>
                                     <th>Motivo</th>
+                                    <th>PD</th>
                                 </tr>
                             </thead>
                             <tbody>

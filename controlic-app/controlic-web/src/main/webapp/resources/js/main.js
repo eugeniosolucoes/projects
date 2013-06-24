@@ -266,10 +266,12 @@ function populate_table(url){
                 var militar = $('<td></td>').addClass("coluna-data").text(licenca.militar.loginNome);
                 var tipo = $('<td></td>').addClass("coluna-data").text(licenca.tipo.descricao);
                 var motivo = $('<td></td>').text(licenca.motivo);
+                var publicada = $('<td></td>').addClass("coluna-data").text(licenca.publicadaPD ? 'Sim' : 'N\xE3o');
                 row.append(dataLicenca);
                 row.append(militar);
                 row.append(tipo);
                 row.append(motivo);
+                row.append(publicada);
                 table.append(row);
             }
         }

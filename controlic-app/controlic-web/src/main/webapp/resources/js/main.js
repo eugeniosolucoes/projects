@@ -372,7 +372,7 @@ function populateFields(datas, theYear, theMonth) {
             // enter date values
             var day = i - firstDay + 1;
             document.getElementsByClassName('day-calendar')[i].innerHTML = day;
-            var str = day < 10 ? '0' + day : day;
+            var str = day;
                 str += "/" 
                 str += (theMonth + 1) < 10 ? '0' + (theMonth + 1) : (theMonth + 1);
                 str += "/" + theYear;

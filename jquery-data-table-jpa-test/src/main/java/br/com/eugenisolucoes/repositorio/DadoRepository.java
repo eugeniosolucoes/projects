@@ -4,10 +4,8 @@
  */
 package br.com.eugenisolucoes.repositorio;
 
-import br.com.eugenisolucoes.datatable.ColumnDataTable;
 import br.com.eugenisolucoes.datatable.InputDataTable;
 import br.com.eugenisolucoes.modelo.Dado;
-import java.util.Collections;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -34,9 +32,14 @@ public class DadoRepository extends AbstractRepository<Dado> {
 
         String sql = "SELECT d FROM Dado d WHERE 1=1 ";
         
+        sql += inputDataTable.getSearchSQL( "d" );
+        
         sql += inputDataTable.getSortSQL( "d" );
+        
+        String sqlTotal = "SELECT COUNT(d) FROM Dado d WHERE 1=1 "  + 
+                inputDataTable.getSearchSQL( "d" );
 
-        Long total = (Long) em.createQuery( "SELECT COUNT(d) FROM Dado d " ).getSingleResult();
+        Long total = (Long) em.createQuery( sqlTotal ).getSingleResult();
 
         inputDataTable.setiTotalRecords( total.intValue() );
 

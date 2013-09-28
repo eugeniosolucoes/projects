@@ -126,6 +126,7 @@ public class InputDataTable {
     private void configurarColunas() {
         for ( int i = 0; i < this.iColumns; i++ ) {
             this.colunas.add( new ColumnDataTable( this.nomesDasColunas.get( i ) ) );
+            this.colunas.get( i ).setSearchable( bSearchable[i] );
         }
         // configurando parametros de ordenacao dos objeto ColumnDataTable
         for ( int i = 0; i < this.iSortingCols; i++ ) {
@@ -136,10 +137,9 @@ public class InputDataTable {
     }
 
     /**
-     * Retorna uma lista de colunas configuradas com
-     * propriedades de ordenação.
-     * 
-     * @return Uma lista de objetos ColumnDataTable 
+     * Retorna uma lista de colunas configuradas com propriedades de ordenação.
+     *
+     * @return Uma lista de objetos ColumnDataTable
      */
     public List<ColumnDataTable> getColunas() {
         return colunas;
@@ -162,11 +162,12 @@ public class InputDataTable {
     }
 
     /**
-     * Retorna a string SQL de ordenação.
-     * Ex: "ORDER BY [alias].col1 ASC, [alias].col2 DESC
-     * 
-     * @param alias Alias referente a tabela ou entidade especificada na cláusula FROM.
-     * @return  String SQL de ordenação.
+     * Retorna a string SQL de ordenação. Ex: "ORDER BY [alias].col1 ASC,
+     * [alias].col2 DESC
+     *
+     * @param alias Alias referente a tabela ou entidade especificada na
+     * cláusula FROM.
+     * @return String SQL de ordenação.
      */
     public String getSortSQL( String alias ) {
         String sql = " ";
@@ -183,6 +184,28 @@ public class InputDataTable {
                 }
             }
             sql = sql.substring( 0, sql.length() - separador.length() );
+        }
+        return sql;
+    }
+
+    public String getSearchSQL( String alias ) {
+        String sql = " ";
+        if ( sSearch != null && !"".equals( sSearch ) ) {
+            String separador = "OR ";
+            boolean toSearch = false;
+            for ( ColumnDataTable coluna : this.getColunas() ) {
+                if ( coluna.isSearchable() ) {
+                    toSearch = true;
+                    sql += String.format( "%s.%s LIKE %s %s",
+                            alias,
+                            coluna.getName(),
+                            "'%" + this.sSearch + "%'",
+                            separador );
+                }
+            }
+            if ( toSearch ) {
+                sql = "AND " + sql.substring( 0, sql.length() - separador.length() );
+            }
         }
         return sql;
     }

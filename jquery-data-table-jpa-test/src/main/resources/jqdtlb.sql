@@ -39,7 +39,7 @@ CREATE TABLE `dados` (
 
 LOCK TABLES `dados` WRITE;
 /*!40000 ALTER TABLE `dados` DISABLE KEYS */;
-INSERT INTO `dados` VALUES ('Gecko','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',1),('Gecko1','Chrome','Windows &','ABC','B',2),('Gecko2','Safari','MacOS','AB','C',3),('Gecko3','Opera','Windows 7','A','D',4),('Gecko','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',5),('Gecko1','Chrome','Windows &','ABC','B',6),('Gecko2','Safari','MacOS','AB','C',7),('Gecko3','Opera','Windows 7','A','D',8),('Gecko','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',9),('Gecko1','Chrome','Windows &','ABC','B',10),('Gecko2','Safari','MacOS','AB','C',11),('Gecko3','Opera','Windows 7','A','D',12),('Gecko','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',13),('Gecko1','Chrome','Windows &','ABC','B',14),('Gecko2','Safari','MacOS','AB','C',15),('Gecko3','Opera','Windows 7','A','D',16),('Gecko','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',17),('Gecko1','Chrome','Windows &','ABC','B',18),('Gecko2','Safari','MacOS','AB','C',19),('Gecko3','Opera','Windows 7','A','D',20);
+INSERT INTO `dados` VALUES ('Gecko1','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',1),('Gecko1','Chrome','Windows &','ABC','B',2),('Gecko2','Safari','MacOS','AB','C',3),('Gecko3','Opera','Windows 7','A','D',4),('Gecko1','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',5),('Gecko1','Chrome','Windows &','ABC','B',6),('Gecko2','Safari','MacOS','AB','C',7),('Gecko3','Opera','Windows 7','A','D',8),('Gecko1','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',9),('Gecko1','Chrome','Windows &','ABC','B',10),('Gecko2','Safari','MacOS','AB','C',11),('Gecko3','Opera','Windows 7','A','D',12),('Gecko1','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',13),('Gecko1','Chrome','Windows &','ABC','B',14),('Gecko2','Safari','MacOS','AB','C',15),('Gecko3','Opera','Windows 7','A','D',16),('Gecko','Firefox 1.0','Win 98+ / OSX.2+','ABCDE','A',17),('Gecko1','Chrome','Windows &','ABC','B',18),('Gecko2','Safari','MacOS','AB','C',19),('Gecko3','Opera','Windows 7','A','D',20);
 /*!40000 ALTER TABLE `dados` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-26 23:14:48
+-- Dump completed on 2013-09-28 11:16:04

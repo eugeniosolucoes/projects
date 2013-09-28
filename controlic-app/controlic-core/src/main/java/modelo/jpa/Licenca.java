@@ -51,7 +51,6 @@ public class Licenca implements Serializable {
     public Licenca() {
         this.tipo = TipoLicenca.INTEGRAL;
         this.dataLicenca = new Date();
-        this.publicadaPD = true;
     }
 
     public Licenca( String motivo ) {

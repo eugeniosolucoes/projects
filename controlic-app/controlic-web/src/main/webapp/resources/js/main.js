@@ -372,12 +372,12 @@ function populateFields(datas, theYear, theMonth) {
             // enter date values
             var day = i - firstDay + 1;
             document.getElementsByClassName('day-calendar')[i].innerHTML = day;
-            var str = day < 10 ? '0' + day : day;
-                str += "/" 
+            var str = day; // < 10 ? '0' + day : day;
+                str += "/"; 
                 str += (theMonth + 1) < 10 ? '0' + (theMonth + 1) : (theMonth + 1);
                 str += "/" + theYear;
             var data = datas[str];
-            if( data != null ){
+            if( data !== null ){
                 var militares = '';
                 for(x in data){
                     militares += data[x].loginNome + '<br/>';

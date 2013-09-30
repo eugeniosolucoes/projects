@@ -153,7 +153,10 @@ public class InputDataTable {
         this.iTotalRecords = iTotalRecords;
     }
 
-    public String getsSearch() {
+    public final String getsSearch() {
+        if ( sSearch != null ) {
+            return sSearch.trim().replaceAll( "'", "" );
+        }
         return sSearch;
     }
 
@@ -162,11 +165,9 @@ public class InputDataTable {
     }
 
     /**
-     * Retorna a string SQL de ordenação. Ex: "ORDER BY [alias].col1 ASC,
-     * [alias].col2 DESC
+     * Retorna a string SQL de ordenação. Ex: "ORDER BY [alias].col1 ASC, [alias].col2 DESC
      *
-     * @param alias Alias referente a tabela ou entidade especificada na
-     * cláusula FROM.
+     * @param alias Alias referente a tabela ou entidade especificada na cláusula FROM.
      * @return String SQL de ordenação.
      */
     public String getSortSQL( String alias ) {
@@ -199,7 +200,7 @@ public class InputDataTable {
                     sql += String.format( "%s.%s LIKE %s %s",
                             alias,
                             coluna.getName(),
-                            "'%" + this.sSearch + "%'",
+                            "'%" + this.getsSearch() + "%'",
                             separador );
                 }
             }

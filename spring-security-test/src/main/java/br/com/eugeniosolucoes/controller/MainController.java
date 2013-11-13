@@ -4,10 +4,8 @@
  */
 package br.com.eugeniosolucoes.controller;
 
-import br.com.eugeniosolucoes.service.UsuarioService;
 import br.com.eugeniosolucoes.ui.swing.MainDesktop;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,6 +17,7 @@ public class MainController {
 
     private MainDesktop mainDesktop;
 
+    @Autowired
     public MainController( MainDesktop mainDesktop ) {
         this.mainDesktop = mainDesktop;
     }

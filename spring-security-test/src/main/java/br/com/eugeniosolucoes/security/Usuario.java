@@ -6,14 +6,15 @@ package br.com.eugeniosolucoes.security;
 
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,6 +31,9 @@ public class Usuario implements UserDetails {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
+    @NotNull
+    @NotBlank
+    @NotEmpty
     @Column( nullable = false, unique = true )
     private String nome;
 
@@ -102,84 +106,81 @@ public class Usuario implements UserDetails {
         return ativo;
     }
 
-	/**
-	 * @return the senha
-	 */
-	public String getSenha() {
-		return senha;
-	}
+    /**
+     * @return the senha
+     */
+    public String getSenha() {
+        return senha;
+    }
 
-	/**
-	 * @param senha the senha to set
-	 */
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    /**
+     * @param senha the senha to set
+     */
+    public void setSenha( String senha ) {
+        this.senha = senha;
+    }
 
-	/**
-	 * @return the perfis
-	 */
-	public List<Perfil> getPerfis() {
-		return perfis;
-	}
+    /**
+     * @return the perfis
+     */
+    public List<Perfil> getPerfis() {
+        return perfis;
+    }
 
-	/**
-	 * @param perfis the perfis to set
-	 */
-	public void setPerfis(List<Perfil> perfis) {
-		this.perfis = perfis;
-	}
+    /**
+     * @param perfis the perfis to set
+     */
+    public void setPerfis( List<Perfil> perfis ) {
+        this.perfis = perfis;
+    }
 
-	/**
-	 * @param nome the nome to set
-	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome( String nome ) {
+        this.nome = nome;
+    }
 
-	/**
-	 * @param ativo the ativo to set
-	 */
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo( boolean ativo ) {
+        this.ativo = ativo;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		return result;
-	}
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ( ( nome == null ) ? 0 : nome.hashCode() );
+        return result;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Usuario)) {
-			return false;
-		}
-		Usuario other = (Usuario) obj;
-		if (nome == null) {
-			if (other.nome != null) {
-				return false;
-			}
-		} else if (!nome.equals(other.nome)) {
-			return false;
-		}
-		return true;
-	}
- 
-	
-    
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals( Object obj ) {
+        if ( this == obj ) {
+            return true;
+        }
+        if ( obj == null ) {
+            return false;
+        }
+        if ( !( obj instanceof Usuario ) ) {
+            return false;
+        }
+        Usuario other = (Usuario) obj;
+        if ( nome == null ) {
+            if ( other.nome != null ) {
+                return false;
+            }
+        } else if ( !nome.equals( other.nome ) ) {
+            return false;
+        }
+        return true;
+    }
 }

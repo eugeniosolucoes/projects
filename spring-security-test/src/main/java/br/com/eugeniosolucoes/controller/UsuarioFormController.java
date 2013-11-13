@@ -4,16 +4,16 @@
  */
 package br.com.eugeniosolucoes.controller;
 
+import br.com.eugeniosolucoes.security.Usuario;
+import br.com.eugeniosolucoes.service.UsuarioService;
 import br.com.eugeniosolucoes.ui.swing.MainDesktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
-import javax.swing.event.MenuListener;
+import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,26 +22,64 @@ import org.springframework.stereotype.Component;
  * @author eugenio
  */
 @Component
-public class UsuarioFormController implements ActionListener {
+public class UsuarioFormController implements Serializable {
 
     @Autowired
     private MainDesktop mainDesktop;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostConstruct
     public void init() {
-        mainDesktop.getBtnSalvar().addActionListener( this );
-        mainDesktop.getBtnCancelar().addActionListener( this );
-        mainDesktop.getUsuarioMenuItem().addActionListener( this );
-        
+        mainDesktop.getBtnSalvar().addActionListener( new ActionListener() {
+            public void actionPerformed( ActionEvent e ) {
+                salvar();
+            }
+        } );
+        mainDesktop.getBtnCancelar().addActionListener( new ActionListener() {
+            public void actionPerformed( ActionEvent e ) {
+                hide();
+            }
+        } );
+        mainDesktop.getUsuarioMenuItem().addActionListener( new ActionListener() {
+            public void actionPerformed( ActionEvent e ) {
+                show();
+            }
+        } );
+        mainDesktop.getUsuarioForm().addInternalFrameListener( new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosing( InternalFrameEvent e ) {
+                hide();
+            }
+        } );
+
     }
 
-    public void actionPerformed( ActionEvent e ) {
-        if(e.getSource().equals( mainDesktop.getUsuarioMenuItem()) ) {
-            mainDesktop.getUsuarioForm().setVisible( true );
+    private void salvar() {
+        try {
+            Usuario usuario = new Usuario( mainDesktop.getNome().getText(),
+                    new String( mainDesktop.getSenha().getPassword() ), mainDesktop.getAtivo().isSelected() );
+            usuarioService.salvar( usuario );
+            limparForm();
+            JOptionPane.showMessageDialog( mainDesktop, "Usuário salvo com sucesso!" );
+        } catch ( Exception e ) {
+            JOptionPane.showMessageDialog( mainDesktop, e.getMessage() );
         }
     }
 
-    public void show() {
+    private void show() {
+        mainDesktop.getUsuarioForm().setVisible( true );
     }
 
+    private void hide() {
+        limparForm();
+        mainDesktop.getUsuarioForm().setVisible( false );
+    }
+
+    private void limparForm() {
+        mainDesktop.getNome().setText( "" );
+        mainDesktop.getSenha().setText( "" );
+        mainDesktop.getAtivo().setSelected( false );
+    }
 }

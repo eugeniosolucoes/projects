@@ -7,8 +7,11 @@ package br.com.eugeniosolucoes.ui.swing;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,8 +27,8 @@ public class MainDesktop extends javax.swing.JFrame {
     public MainDesktop() {
         initComponents();
 
-        setTitle( "Spring Security Test 1.0");
-        
+        setTitle( "Spring Security Test 1.0" );
+
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize().getSize();
 
         setBounds( 0, 0, d.width, d.height );
@@ -73,9 +76,9 @@ public class MainDesktop extends javax.swing.JFrame {
         setName("mainFrame"); // NOI18N
 
         usuarioForm.setClosable(true);
-        usuarioForm.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        usuarioForm.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         usuarioForm.setTitle("Formulário Usuário");
-        usuarioForm.setVisible(false);
+        usuarioForm.setVisible(true);
 
         ativo.setText("Ativo");
 
@@ -92,7 +95,7 @@ public class MainDesktop extends javax.swing.JFrame {
         usuarioFormLayout.setHorizontalGroup(
             usuarioFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usuarioFormLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(usuarioFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(usuarioFormLayout.createSequentialGroup()
                         .addGroup(usuarioFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +129,7 @@ public class MainDesktop extends javax.swing.JFrame {
                 .addGroup(usuarioFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         usuarioForm.setBounds(30, 80, 340, 200);
@@ -212,22 +215,20 @@ public class MainDesktop extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-800)/2, (screenSize.height-600)/2, 800, 600);
+        setSize(new java.awt.Dimension(800, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit( 0 );
     }//GEN-LAST:event_exitMenuItemActionPerformed
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
@@ -278,7 +279,16 @@ public class MainDesktop extends javax.swing.JFrame {
     public JMenuItem getUsuarioMenuItem() {
         return usuarioMenuItem;
     }
-    
-    
-    
+
+    public JCheckBox getAtivo() {
+        return ativo;
+    }
+
+    public JTextField getNome() {
+        return nome;
+    }
+
+    public JPasswordField getSenha() {
+        return senha;
+    }
 }

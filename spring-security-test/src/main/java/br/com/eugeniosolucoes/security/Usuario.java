@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,9 +32,9 @@ public class Usuario implements UserDetails {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @NotNull
-    @NotBlank
-    @NotEmpty
+    @NotBlank( message = "O nome não pode estar em branco!" )
+    @NotEmpty( message = "O nome não pode estar vazio!" )
+    @Size( min = 5, max = 30 )
     @Column( nullable = false, unique = true )
     private String nome;
 

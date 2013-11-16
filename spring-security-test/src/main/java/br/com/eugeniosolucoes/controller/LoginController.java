@@ -4,7 +4,7 @@
  */
 package br.com.eugeniosolucoes.controller;
 
-import br.com.eugeniosolucoes.ui.swing.LoginForm;
+import br.com.eugeniosolucoes.ui.swing.forms.LoginForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.annotation.PostConstruct;

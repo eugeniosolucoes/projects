@@ -73,7 +73,11 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService, A
     }
 
     public List<Usuario> listar() {
-        return usuarioRepository.findAll( new PageRequest( PAGE, SIZE ) ).getContent();
+        return usuarioRepository.findAll();
+    }
+
+    public List<Usuario> listar( int page, int size ) {
+        return usuarioRepository.findAll( new PageRequest( page, size ) ).getContent();
     }
 
     public Usuario getUsuario( Long id ) {

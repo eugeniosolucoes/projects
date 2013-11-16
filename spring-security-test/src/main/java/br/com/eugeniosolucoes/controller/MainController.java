@@ -4,7 +4,7 @@
  */
 package br.com.eugeniosolucoes.controller;
 
-import br.com.eugeniosolucoes.ui.swing.MainDesktop;
+import br.com.eugeniosolucoes.ui.swing.forms.MainDesktop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package br.com.eugeniosolucoes;
 
 import br.com.eugeniosolucoes.controller.MainController;
-import br.com.eugeniosolucoes.ui.swing.MainDesktop;
+import br.com.eugeniosolucoes.ui.swing.forms.MainDesktop;
 import java.util.Locale;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

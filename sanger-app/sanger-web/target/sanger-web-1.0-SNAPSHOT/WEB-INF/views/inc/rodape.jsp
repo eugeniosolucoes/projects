@@ -1,1 +1,0 @@
-${pageContext.servletContext.servletContextName} &copy - Todos os direitos reservados - 2013

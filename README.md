@@ -1,3 +1,3 @@
 projects
 ========
-sanger-app eh um projeto exemplo utilizando spring e jpa
+Meu primeiro repositorio git com exemplos de códigos :)

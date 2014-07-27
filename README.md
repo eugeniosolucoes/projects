@@ -1,3 +1,3 @@
 projects
 ========
-Meu primeiro repositorio git com exemplos de códigos :)
+Meu primeiro repositório git com exemplos de códigos :)

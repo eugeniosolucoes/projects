@@ -12,7 +12,9 @@ import javax.sql.DataSource;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -34,7 +36,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @Configuration
 @EnableTransactionManagement
-@ComponentScan( basePackages = "br.com.eugeniosolucoes" )
+@ComponentScan( basePackages = { "br.com.eugeniosolucoes" }, excludeFilters = {
+    @Filter( Configuration.class ) } )
+@EnableAspectJAutoProxy
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override

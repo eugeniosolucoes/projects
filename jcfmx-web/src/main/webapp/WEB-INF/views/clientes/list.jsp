@@ -32,11 +32,7 @@
     <table class="table table-bordered">
         <c:forEach var="cliente" items="${clientes}" >
             <tr>
-                <td>${cliente.nome} <br/>
-                    <c:forEach var="conta" items="${cliente.contas}" >
-                        <c:out value="${conta}" />
-                    </c:forEach>
-                </td>
+                <td>${cliente.nome}</td>
                 <td>${cliente.email}</td>
                 <td style="width: 9em;" >
                     <button type="submit" class="btn btn-default btn-lg" 

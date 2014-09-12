@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +32,7 @@ public class ClienteController {
     private static final String URL_PATH = "clientes/list";
 
     private final ClienteService service;
-    
+
     private final ApplicationContext context;
 
     @Autowired
@@ -74,7 +73,7 @@ public class ClienteController {
             Mensagem.processarMensagemDeErro( binding );
             service.salvar( clienteDTO );
             view.addObject( "tipoMensagem", Mensagem.Type.SUCESS.getShortDescription() );
-            view.addObject( "mensagem", context.getMessage("cliente.salvar", new Object[] { clienteDTO, operacao }, Locale.getDefault() ) );
+            view.addObject( "mensagem", context.getMessage( "cliente.salvar", new Object[]{ clienteDTO, operacao }, Locale.getDefault() ) );
         } catch ( Exception e ) {
             Logger.getLogger( this.getClass().getName() ).log( Level.WARNING, e.getMessage() );
             view.addObject( "tipoMensagem", Mensagem.Type.ERROR.getShortDescription() );

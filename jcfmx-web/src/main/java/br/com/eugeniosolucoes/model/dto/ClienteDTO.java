@@ -6,9 +6,6 @@
 package br.com.eugeniosolucoes.model.dto;
 
 import br.com.eugeniosolucoes.model.Cliente;
-import br.com.eugeniosolucoes.model.Conta;
-import java.util.ArrayList;
-import java.util.List;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -27,8 +24,6 @@ public class ClienteDTO extends BaseDTO<Cliente> {
             + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
             message = "{cliente.email.invalido}" )
     private String email;
-
-    List<ContaDTO> contas = new ArrayList<>();
 
     public ClienteDTO() {
     }
@@ -54,14 +49,6 @@ public class ClienteDTO extends BaseDTO<Cliente> {
         this.email = email;
     }
 
-    public void setContas( List<ContaDTO> contas ) {
-        this.contas = contas;
-    }
-
-    public List<ContaDTO> getContas() {
-        return contas;
-    }
-
     @Override
     public Cliente builder() {
         Cliente cliente = new Cliente( this.nome, this.email );
@@ -75,9 +62,6 @@ public class ClienteDTO extends BaseDTO<Cliente> {
         ClienteDTO clienteDTO = new ClienteDTO( entidade.getNome(), entidade.getEmail() );
         if ( entidade.getId() != null ) {
             clienteDTO.setId( entidade.getId().toString() );
-            for ( Conta conta : entidade.getContas() ) {
-                clienteDTO.getContas().add( ContaDTO.builder( conta ) );
-            }
         }
         return clienteDTO;
     }

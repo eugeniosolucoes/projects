@@ -27,13 +27,14 @@ public class ClienteServiceImpl implements ClienteService<ClienteDTO> {
     @Override
     public ClienteDTO salvar( ClienteDTO obj ) {
         Cliente clienteView = obj.builder();
-        if( !obj.isNew() ) {
-           Cliente cliente = repository.retornar( clienteView.getId() );
-           cliente.setNome( clienteView.getNome() );
-           cliente.setEmail( clienteView.getEmail() );
-           repository.salvar( cliente );
+        if ( !obj.isNew() ) {
+            Cliente cliente = repository.retornar( clienteView.getId() );
+            cliente.setNome( clienteView.getNome() );
+            cliente.setEmail( clienteView.getEmail() );
+            repository.salvar( cliente );
         } else {
             repository.salvar( clienteView );
+            obj.setId( clienteView.getId().toString() );
         }
         return obj;
     }

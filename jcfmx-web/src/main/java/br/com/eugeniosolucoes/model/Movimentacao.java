@@ -10,11 +10,15 @@ import br.com.eugeniosolucoes.model.types.TipoMovimentacao;
 import br.com.eugeniosolucoes.repository.Entidade;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -24,8 +28,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.joda.time.LocalDate;
 
 /**
@@ -33,33 +39,41 @@ import org.joda.time.LocalDate;
  * @author eugenio
  */
 @Entity
-public abstract class Movimentacao implements Entidade<Long>, Serializable {
+public class Movimentacao implements Entidade<Long>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    protected Long id;
+    private Long id;
 
-    protected String descricao;
+    private String descricao;
 
-    protected BigDecimal valor = BigDecimal.ZERO;
+    private BigDecimal valor = BigDecimal.ZERO;
 
     @Enumerated( EnumType.STRING )
-    protected TipoMovimentacao tipo = TipoMovimentacao.SAIDA;
+    private TipoMovimentacao tipo = TipoMovimentacao.SAIDA;
 
     @Column( name = "data_movimentacao" )
     @Temporal( TemporalType.DATE )
-    protected Date data = LocalDate.now().toDate();
+    private Date data = LocalDate.now().toDate();
 
+    @Transient
+    private Date primeiraParcela;
+   
     @Enumerated( EnumType.STRING )
-    protected TipoFrequencia frequencia = TipoFrequencia.MENSAL;
+    private TipoFrequencia frequencia = TipoFrequencia.MENSAL;
+
+    private int parcelas;
 
     @ManyToOne
-    protected Conta conta;
+    private Conta conta;
 
     @ElementCollection
-    protected final Set<String> categorias = new HashSet<>();
+    private final Set<String> categorias = new HashSet<>();
+
+    @OneToMany( mappedBy = "origem", orphanRemoval = true, cascade = CascadeType.ALL )
+    private final Set<MovimentacaoParcelada> parceladas = new HashSet<>();
 
     protected Movimentacao() {
     }
@@ -135,6 +149,46 @@ public abstract class Movimentacao implements Entidade<Long>, Serializable {
 
     public void setData( Date data ) {
         this.data = data;
+    }
+
+    public Date getPrimeiraParcela() {
+        return primeiraParcela;
+    }
+
+    public void setPrimeiraParcela( Date primeiraParcela ) {
+        this.primeiraParcela = primeiraParcela;
+    }
+
+    public int getParcelas() {
+        return parcelas;
+    }
+
+    public void setParcelas( int parcelas ) {
+        this.parcelas = parcelas;
+    }
+
+    Set<MovimentacaoParcelada> getParceladas() {
+        return parceladas;
+    }
+
+    public void gerarParcelas() {
+        if ( this.parceladas.isEmpty() && this.parcelas > 0 ) {
+            Date dataParcela = primeiraParcela == null ? this.data : LocalDate.fromDateFields( this.primeiraParcela ).plusMonths( -1 ).toDate();
+            BigDecimal valorParcelado = this.getValor().divide( new BigDecimal( this.parcelas ), RoundingMode.CEILING );
+            for ( int parcela = 1; parcela <= this.parcelas; parcela++ ) {
+                MovimentacaoParcelada parcelada = new MovimentacaoParcelada( parcela,
+                        valorParcelado,
+                        LocalDate.fromDateFields( dataParcela ).plusMonths( parcela ).toDate(),
+                        this );
+                this.getParceladas().add( parcelada );
+            }
+        }
+    }
+
+    public List<MovimentacaoParcelada> getParceladasOrdenadas() {
+        List<MovimentacaoParcelada> list = new ArrayList<>( this.parceladas );
+        Collections.sort( list );
+        return list;
     }
 
     @Override

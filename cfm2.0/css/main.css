@@ -1,0 +1,127 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.hero-unit {
+    padding: 10px;
+}
+
+.mensagem {
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #dddddd;
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* Old Firefox */
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+    background-color: #f9f9f9;
+}
+
+.lancamento_credito {
+    color: blue;
+}
+
+.lancamento_debito {
+    color: red;
+}
+
+.total_positivo {
+    color: blue;
+}
+
+.total_negativo {
+    color: red;
+}
+
+.lancamento_nao_realizado {
+    color: green;
+}
+
+div.dataTables_length label {
+    width: auto;
+    float: left;
+    text-align: left;
+}
+
+div.dataTables_length select {
+    width: auto;
+}
+
+div.dataTables_filter label {
+    float: left;
+    width: auto;
+}
+
+div.dataTables_info {
+    padding-top: 8px;
+}
+
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+}
+
+table {
+    margin: 1em 0;
+    clear: both;
+}
+
+#tbl_lancamentos {
+    font-family: verdana;
+    font-size: 0.8em;   
+}
+
+#tbl_lancamentos_filter {
+    float: none;
+}
+
+#tbl_lancamentos_paginate {
+    margin-top: 10px;
+}
+
+#tbl_lancamentos_info {
+    font-family: verdana;
+    font-size: 0.8em;   
+}
+
+#tbl_lancamentos_previous {
+    font-family: verdana;
+    font-size: 0.8em;
+}
+
+#tbl_lancamentos_next {
+    font-family: verdana;
+    font-size: 0.8em;
+}
+
+#div-balanco { padding: 0.4em; margin-bottom: 4px; display: none; }
+#div-balanco h3 { margin: 0; padding: 0.1em; text-align: center; font-size: 0.9em; }
+.group-balanco { text-align: center; }
+.group-balanco ul { margin: 0; padding: 0; }
+.group-balanco li { font-size: 0.8em; 
+                    list-style: none; display: inline;
+                    white-space: nowrap;
+                    padding: 5px; }
+
+#btn_limpar {
+    vertical-align: top;
+}
+
+#btn_pesquisar {
+    vertical-align: top;
+}
+
+
+.link_descricao {
+    cursor:pointer; 
+    text-decoration: none;
+    color: black;
+}
+
+.link_descricao:hover {
+    text-decoration: none;
+}

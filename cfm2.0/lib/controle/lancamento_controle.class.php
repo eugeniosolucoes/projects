@@ -101,6 +101,7 @@ class lancamento_controle extends core_controle {
             $lancamento->id = NULL;
             $lancamento->quantidade = @$_REQUEST['quantidade'] ? @$_REQUEST['quantidade'] : '0';
             $lancamento->tipo = @$_REQUEST['tipo'] ? @$_REQUEST['tipo'] : '0';
+            $lancamento->set_link(@$_REQUEST['link']);
             $lancamento->usuario = unserialize($_SESSION['usuario'])->get_id();
             $servico = new lancamento_servico();
             $servico->salvar($lancamento);
@@ -123,6 +124,7 @@ class lancamento_controle extends core_controle {
             }
             $lancamento->quantidade = @$_REQUEST['quantidade'] ? @$_REQUEST['quantidade'] : '0';
             $lancamento->tipo = @$_REQUEST['tipo'] ? @$_REQUEST['tipo'] : '0';
+            $lancamento->set_link(@$_REQUEST['link']);
             $lancamento->usuario = unserialize($_SESSION['usuario'])->get_id();
             $servico = new lancamento_servico();
             $servico->salvar($lancamento);

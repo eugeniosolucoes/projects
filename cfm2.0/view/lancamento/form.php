@@ -83,6 +83,12 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                 $select->render();
                                 ?>
                             </label>
+                            <input class="input-block-level" type="text" id="link" name="link" placeholder="Link(URL)" value="<?php echo $lancamento->get_link(); ?>" />
+                            <?php 
+                                if($lancamento->get_link()){
+                                    printf("<a href='%s' target='_blank'><img src='../../img/external-link.png' /></a>", $lancamento->get_link());
+                                }
+                            ?>
                         </div>
                     </div>
                     <div class="control-group">

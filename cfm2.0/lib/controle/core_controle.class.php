@@ -25,7 +25,7 @@ class core_controle {
         }
         return $obj;
     }
-    
+
     function execute() {
         switch (@$_REQUEST['comando']) {
             case 'novo':
@@ -48,8 +48,6 @@ class core_controle {
                 break;
         }
     }
-
-    
 
 }
 

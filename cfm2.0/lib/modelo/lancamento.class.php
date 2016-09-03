@@ -21,6 +21,7 @@ class lancamento {
     var $valor;
     var $frequencia;
     var $categorias;
+    var $link;
     var $usuario;
 
     function __construct() {
@@ -106,6 +107,14 @@ class lancamento {
 
     public function set_categorias($categorias) {
         $this->categorias = $categorias;
+    }
+
+    function get_link() {
+        return urldecode( $this->link );
+    }
+
+    function set_link($link) {
+        $this->link = urlencode( $link );
     }
 
 }

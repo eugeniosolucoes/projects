@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConsultarSituacaoLoteRpsEnvio xmlns="http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd http://notacarioca.rio.gov.br/WSNacional/XSD/1/tipos_nfse_v01.xsd">
+	<Prestador>
+		<Cnpj>10851328000175</Cnpj>
+		<InscricaoMunicipal>4521935</InscricaoMunicipal>
+	</Prestador>
+	<Protocolo>00000000000000000000000000000000000000000001633209</Protocolo>
+</ConsultarSituacaoLoteRpsEnvio>

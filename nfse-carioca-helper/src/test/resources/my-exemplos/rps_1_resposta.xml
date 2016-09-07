@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EnviarLoteRpsResposta
+  xmlns="http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NumeroLote>1</NumeroLote>
+  <DataRecebimento>2016-08-30T13:54:05</DataRecebimento>
+  <Protocolo>00000000000000000000000000000000000000000001633209</Protocolo>
+</EnviarLoteRpsResposta>

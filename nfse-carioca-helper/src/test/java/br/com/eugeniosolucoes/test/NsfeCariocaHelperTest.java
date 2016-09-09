@@ -5,6 +5,7 @@
  */
 package br.com.eugeniosolucoes.test;
 
+import br.com.eugeniosolucoes.nfse.model.ConsultarSituacaoLoteRpsResposta;
 import br.com.eugeniosolucoes.nfse.model.EnviarLoteRpsEnvio;
 import br.com.eugeniosolucoes.nfse.servico.NsfeServico;
 import br.com.eugeniosolucoes.nfse.servico.impl.NsfeServicoImpl;
@@ -85,9 +86,8 @@ public class NsfeCariocaHelperTest {
         InputStream xsd1 = this.getClass().getResourceAsStream( XSD1 );
         InputStream xsd2 = this.getClass().getResourceAsStream( XSD2 );
 
-        String validatedXml = XmlUtils.validateXml( xml, xsd1, xsd2 );
+        XmlUtils.validateXml( xml, xsd1, xsd2 );
 
-        assertEquals( "", validatedXml );
     }
 
     @Test
@@ -105,42 +105,27 @@ public class NsfeCariocaHelperTest {
         String xmlAssinadoFormatado = XmlUtils.format( xmlAssinado );
 
         System.out.println( xmlAssinadoFormatado );
-
-        String erros = XmlUtils.validateXml( xmlAssinadoFormatado, xsd1, xsd2 );
-
-        assertEquals( "", erros );
+        XmlUtils.validateXml( xmlAssinadoFormatado, xsd1, xsd2 );
     }
 
-    @Test
+    @Test( expected = IllegalStateException.class )
     public void testAssinarValidarXmlComErro() throws Exception {
-
         InputStream is = this.getClass().getResourceAsStream( ARQUIVO_XML );
-
         String xml = XmlUtils.lerArquivo( is );
-
         String xmlAssinado = subscriber.assinarLoteRps( xml );
-
         InputStream xsd1 = this.getClass().getResourceAsStream( XSD1 );
         InputStream xsd2 = this.getClass().getResourceAsStream( XSD2 );
-
         String xmlAssinadoFormatado = XmlUtils.format( xmlAssinado );
-
-        String erros = XmlUtils.validateXml( xmlAssinadoFormatado.replace( "<Cnpj>00000000000000</Cnpj>", "" ), xsd1, xsd2 );
-
-        System.out.println( erros );
-
-        assertNotEquals( "", erros );
+        XmlUtils.validateXml( xmlAssinadoFormatado.replace( "<Cnpj>00000000000000</Cnpj>", "" ), xsd1, xsd2 );
     }
 
     @Test
     public void testAutenticar() throws Exception {
-
         NfseSoap conectar = servico.conectar();
-
         ConsultarSituacaoLoteRpsRequest request = new ConsultarSituacaoLoteRpsRequest();
-
         ConsultarSituacaoLoteRpsResponse consultarSituacaoLoteRps = conectar.consultarSituacaoLoteRps( request );
-
-        System.out.println( consultarSituacaoLoteRps.getOutputXML() );
+        ConsultarSituacaoLoteRpsResposta resposta = XmlUtils.createObjectFromXml(
+                consultarSituacaoLoteRps.getOutputXML(), ConsultarSituacaoLoteRpsResposta.class );
+        assertEquals( "E972", resposta.getListaMensagemRetorno().getMensagemRetorno().get( 0 ).getCodigo() );
     }
 }

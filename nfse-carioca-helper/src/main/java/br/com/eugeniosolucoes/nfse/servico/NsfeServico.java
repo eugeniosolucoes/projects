@@ -18,7 +18,6 @@ import br.com.eugeniosolucoes.nfse.model.ConsultarSituacaoLoteRpsResposta;
 import br.com.eugeniosolucoes.nfse.model.EnviarLoteRpsEnvio;
 import br.com.eugeniosolucoes.nfse.model.EnviarLoteRpsResposta;
 import br.com.eugeniosolucoes.nfse.ws.NfseSoap;
-import javax.xml.bind.JAXBException;
 
 /**
  *

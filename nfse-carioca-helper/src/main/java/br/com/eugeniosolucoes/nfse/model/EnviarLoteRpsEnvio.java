@@ -57,6 +57,9 @@ public class EnviarLoteRpsEnvio {
      *     
      */
     public TcLoteRps getLoteRps() {
+        if ( loteRps == null ) {
+            loteRps = new TcLoteRps();
+        }
         return loteRps;
     }
 

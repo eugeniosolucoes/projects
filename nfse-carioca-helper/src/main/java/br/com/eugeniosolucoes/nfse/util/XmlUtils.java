@@ -44,7 +44,7 @@ import org.xml.sax.SAXException;
  */
 public class XmlUtils {
 
-    private static final Logger LOG = Logger.getLogger(XmlUtils.class.getName() );
+    private static final Logger LOG = Logger.getLogger( XmlUtils.class.getName() );
 
     public static <E> String createXmlFromObject( E objeto ) {
         try {
@@ -88,7 +88,7 @@ public class XmlUtils {
      * @return
      * @throws Exception
      */
-    public static String validateXml( String xml, InputStream... xsds ) throws Exception {
+    public static void validateXml( String xml, InputStream... xsds ) throws Exception {
         StringBuilder sb = new StringBuilder();
         List<Source> sources = new ArrayList<>();
         for ( InputStream is : xsds ) {
@@ -109,11 +109,12 @@ public class XmlUtils {
 
         if ( !errorHandlder.getMensagens().isEmpty() ) {
             for ( String erro : errorHandlder.getMensagens() ) {
-                sb.append( erro ).append( "\n" ) ;
+                sb.append( erro ).append( "\n" );
             }
         }
-
-        return sb.toString();
+        if ( !sb.toString().isEmpty() ) {
+            throw new IllegalStateException( sb.toString() );
+        }
     }
 
     public static String format( String unformattedXml ) {

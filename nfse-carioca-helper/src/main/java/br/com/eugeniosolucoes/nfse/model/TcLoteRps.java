@@ -172,6 +172,9 @@ public class TcLoteRps {
      *     
      */
     public TcLoteRps.ListaRps getListaRps() {
+        if( listaRps == null ){
+            listaRps = new ListaRps();
+        }
         return listaRps;
     }
 

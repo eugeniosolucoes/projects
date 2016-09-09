@@ -5,7 +5,6 @@
  */
 package br.com.eugeniosolucoes.nfse.util;
 
-import br.com.eugeniosolucoes.nfse.servico.impl.NsfeServicoImpl;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class Config {
 
     static {
         try {
-            PROP.load( new FileInputStream( "application.properties" ) );
+            PROP.load( new FileInputStream( "nfse.properties" ) );
         } catch ( FileNotFoundException ex ) {
            LOG.error( ex.getMessage(), ex );
         } catch ( IOException ex ) {

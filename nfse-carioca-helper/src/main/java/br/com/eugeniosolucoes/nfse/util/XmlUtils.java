@@ -68,7 +68,7 @@ public class XmlUtils {
             StringWriter writer = new StringWriter();
             
             jaxbMarshaller.marshal( objeto, writer );
-            jaxbMarshaller.marshal( objeto, System.out );
+            //jaxbMarshaller.marshal( objeto, System.out );
             
             return writer.toString();
             
@@ -214,6 +214,22 @@ public class XmlUtils {
     }
 
     /**
+     * 
+     * @param data
+     * @return 
+     */
+    public static XMLGregorianCalendar createDataXml( Date data ) {
+        try {
+            GregorianCalendar c = new GregorianCalendar();
+            c.setTime( data );
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar( c );
+        } catch ( DatatypeConfigurationException ex ) {
+            LOG.error( ex.getMessage(), ex );
+        }
+        return null;
+    }
+
+    /**
      *
      * @param data
      * @param format
@@ -230,4 +246,6 @@ public class XmlUtils {
         }
         return null;
     }
+    
+    
 }

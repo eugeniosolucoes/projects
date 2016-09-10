@@ -51,16 +51,6 @@ public class NsfeServicoImpl implements NsfeServico {
 
     private static final String XSD2 = "/schemas/xmldsig-core-schema_v01.xsd";
 
-    private static Subscriber subscriber;
-
-    static {
-        try {
-            subscriber = new Subscriber();
-        } catch ( Exception ex ) {
-            LOG.error( ex.getMessage(), ex );
-        }
-    }
-
     private void autenticar() {
 
         String caminhoDoCertificadoDoCliente = PROP.getProperty( "path.certificado" );
@@ -106,7 +96,7 @@ public class NsfeServicoImpl implements NsfeServico {
     public EnviarLoteRpsResposta enviarLoteRps( EnviarLoteRpsEnvio envio ) {
         try {
             String xml = XmlUtils.createXmlFromObject( envio );
-            String xmlAssinado = subscriber.assinarLoteRps( xml );
+            String xmlAssinado = Subscriber.getInstance().assinarLoteRps( xml );
             InputStream xsd1 = this.getClass().getResourceAsStream( XSD1 );
             InputStream xsd2 = this.getClass().getResourceAsStream( XSD2 );
             String xmlAssinadoFormatado = XmlUtils.format( xmlAssinado );
@@ -116,6 +106,7 @@ public class NsfeServicoImpl implements NsfeServico {
             RecepcionarLoteRpsResponse resposta = conectar().recepcionarLoteRps( parameters );
             return XmlUtils.createObjectFromXml( resposta.getOutputXML(), EnviarLoteRpsResposta.class );
         } catch ( Exception e ) {
+            LOG.error( e.getMessage(), e );
             throw new IllegalStateException( e );
         }
     }

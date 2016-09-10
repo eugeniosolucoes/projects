@@ -55,15 +55,6 @@ public class Subscriber {
 
     private static String PASSWD;
 
-    static {
-        try {
-            CERT = new FileInputStream( Config.PROP.getProperty( "path.certificado" ) );
-            PASSWD = Config.PROP.getProperty( "passwd.certificado" );
-        } catch ( FileNotFoundException ex ) {
-            LOG.error( ex.getMessage(), ex );
-        }
-    }
-
     private static final String RPS = "Rps";
 
     private PrivateKey privateKey;
@@ -72,9 +63,24 @@ public class Subscriber {
 
     private final XMLSignatureFactory signatureFactory;
 
-    public Subscriber() throws Exception {
+    private static Subscriber instance;
+
+    private Subscriber() throws Exception {
         signatureFactory = XMLSignatureFactory.getInstance( "DOM" );
+        CERT = new FileInputStream( Config.PROP.getProperty( "path.certificado" ) );
+        PASSWD = Config.PROP.getProperty( "passwd.certificado" );
         loadCertificates( signatureFactory );
+    }
+
+    public static Subscriber getInstance() {
+        if ( instance == null ) {
+            try {
+                instance = new Subscriber();
+            } catch ( Exception ex ) {
+                LOG.error( ex.getMessage(), ex );
+            }
+        }
+        return instance;
     }
 
     /**
@@ -156,7 +162,7 @@ public class Subscriber {
 
         KeyStore.PrivateKeyEntry pkEntry = null;
         Enumeration<String> aliasesEnum = ks.aliases();
-        while ( aliasesEnum.hasMoreElements() ) {
+        while (aliasesEnum.hasMoreElements()) {
             String alias = (String) aliasesEnum.nextElement();
             if ( ks.isKeyEntry( alias ) ) {
                 pkEntry = (KeyStore.PrivateKeyEntry) ks.getEntry( alias,
@@ -183,7 +189,7 @@ public class Subscriber {
         Transformer trans = tf.newTransformer();
         trans.transform( new DOMSource( doc ), new StreamResult( os ) );
         String xml = os.toString();
-        if ( (xml != null) && (!"".equals( xml )) ) {
+        if ( ( xml != null ) && ( !"".equals( xml ) ) ) {
             xml = xml.replaceAll( "\\r\\n", "" );
             xml = xml.replaceAll( " standalone=\"no\"", "" );
         }

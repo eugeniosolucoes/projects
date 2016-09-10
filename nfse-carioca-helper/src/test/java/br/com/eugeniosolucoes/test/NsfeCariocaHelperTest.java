@@ -34,17 +34,7 @@ public class NsfeCariocaHelperTest {
 
     private static final String XSD2 = "/schemas/xmldsig-core-schema_v01.xsd";
 
-    private static Subscriber subscriber;
-
     private final NsfeServico servico = new NsfeServicoImpl();
-
-    static {
-        try {
-            subscriber = new Subscriber();
-        } catch ( Exception ex ) {
-            LOG.error( ex.getMessage(), ex );
-        }
-    }
 
     /**
      *
@@ -97,7 +87,7 @@ public class NsfeCariocaHelperTest {
 
         String xml = XmlUtils.lerArquivo( is );
 
-        String xmlAssinado = subscriber.assinarLoteRps( xml );
+        String xmlAssinado = Subscriber.getInstance().assinarLoteRps( xml );
 
         InputStream xsd1 = this.getClass().getResourceAsStream( XSD1 );
         InputStream xsd2 = this.getClass().getResourceAsStream( XSD2 );
@@ -112,7 +102,7 @@ public class NsfeCariocaHelperTest {
     public void testAssinarValidarXmlComErro() throws Exception {
         InputStream is = this.getClass().getResourceAsStream( ARQUIVO_XML );
         String xml = XmlUtils.lerArquivo( is );
-        String xmlAssinado = subscriber.assinarLoteRps( xml );
+        String xmlAssinado = Subscriber.getInstance().assinarLoteRps( xml );
         InputStream xsd1 = this.getClass().getResourceAsStream( XSD1 );
         InputStream xsd2 = this.getClass().getResourceAsStream( XSD2 );
         String xmlAssinadoFormatado = XmlUtils.format( xmlAssinado );

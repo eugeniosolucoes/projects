@@ -9,6 +9,7 @@ import br.com.eugeniosolucoes.nfse.model.ConsultarSituacaoLoteRpsResposta;
 import br.com.eugeniosolucoes.nfse.model.EnviarLoteRpsEnvio;
 import br.com.eugeniosolucoes.nfse.servico.NsfeServico;
 import br.com.eugeniosolucoes.nfse.servico.impl.NsfeServicoImpl;
+import br.com.eugeniosolucoes.nfse.util.MunicipioRJ;
 import br.com.eugeniosolucoes.nfse.util.Subscriber;
 import br.com.eugeniosolucoes.nfse.util.XmlUtils;
 import br.com.eugeniosolucoes.nfse.ws.ConsultarSituacaoLoteRpsRequest;
@@ -117,5 +118,12 @@ public class NsfeCariocaHelperTest {
         ConsultarSituacaoLoteRpsResposta resposta = XmlUtils.createObjectFromXml(
                 consultarSituacaoLoteRps.getOutputXML(), ConsultarSituacaoLoteRpsResposta.class );
         assertEquals( "E972", resposta.getListaMensagemRetorno().getMensagemRetorno().get( 0 ).getCodigo() );
+    }
+    
+    @Test
+    public void testMunicipioRJ(){
+        String municipio = "São Gonçalo";
+        MunicipioRJ result = MunicipioRJ.getMunicipio( municipio );
+        assertEquals( MunicipioRJ.SAO_GONCALO, result);
     }
 }

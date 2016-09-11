@@ -99,10 +99,9 @@ public class NsfeServicoImpl implements NsfeServico {
             String xmlAssinado = Subscriber.getInstance().assinarLoteRps( xml );
             InputStream xsd1 = this.getClass().getResourceAsStream( XSD1 );
             InputStream xsd2 = this.getClass().getResourceAsStream( XSD2 );
-            String xmlAssinadoFormatado = XmlUtils.format( xmlAssinado );
-            XmlUtils.validateXml( xmlAssinadoFormatado, xsd1, xsd2 );
+            XmlUtils.validateXml( xmlAssinado, xsd1, xsd2 );
             RecepcionarLoteRpsRequest parameters = new RecepcionarLoteRpsRequest();
-            parameters.setInputXML( xmlAssinadoFormatado );
+            parameters.setInputXML( xmlAssinado );
             RecepcionarLoteRpsResponse resposta = conectar().recepcionarLoteRps( parameters );
             return XmlUtils.createObjectFromXml( resposta.getOutputXML(), EnviarLoteRpsResposta.class );
         } catch ( Exception e ) {

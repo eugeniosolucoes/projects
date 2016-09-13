@@ -49,27 +49,28 @@ import org.xml.sax.SAXException;
  * @author eugenio
  */
 public class XmlUtils {
-    
+
     private static final Logger LOG = Logger.getLogger( XmlUtils.class.getName() );
-    
+
     /**
-     * 
+     *
      * @param <E>
      * @param objeto
-     * @return 
+     * @return
      */
     public static <E> String createXmlFromObject( E objeto ) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance( objeto.getClass() );
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            
+
             jaxbMarshaller.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, true );
-            
-            StringWriter writer = new StringWriter();
-            
+            jaxbMarshaller.setProperty( Marshaller.JAXB_ENCODING, "UTF-8" );
+
+            StringWriter writer = new StringWriter( 1024 );
+
             jaxbMarshaller.marshal( objeto, writer );
             jaxbMarshaller.marshal( objeto, System.out );
-            
+
             return writer.toString();
             
         } catch ( JAXBException e ) {
@@ -77,22 +78,22 @@ public class XmlUtils {
         }
         return null;
     }
-    
+
     /**
-     * 
+     *
      * @param <E>
      * @param xml
      * @param clazz
-     * @return 
+     * @return
      */
     public static <E> E createObjectFromXml( String xml, Class<? extends E> clazz ) {
         try {
-            
+
             JAXBContext jaxbContext = JAXBContext.newInstance( clazz );
-            
+
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             E objeto = (E) jaxbUnmarshaller.unmarshal( new StringReader( xml ) );
-            
+
             return objeto;
         } catch ( JAXBException e ) {
             LOG.error( e.getMessage(), e );
@@ -114,18 +115,18 @@ public class XmlUtils {
             sources.add( new StreamSource( is ) );
         }
         Collections.reverse( sources );
-        
+
         SchemaFactory schemaFactory = SchemaFactory.newInstance( XMLConstants.W3C_XML_SCHEMA_NS_URI );
         Schema schema = schemaFactory.newSchema( sources.toArray( new Source[sources.size()] ) );
-        
+
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setNamespaceAware( true );
         factory.setValidating( false );
         XmlValidationErrorHandler errorHandlder = new XmlValidationErrorHandler();
-        
+
         factory.setSchema( schema );
         factory.newSAXParser().parse( new ByteArrayInputStream( xml.getBytes( StandardCharsets.UTF_8 ) ), errorHandlder );
-        
+
         if ( !errorHandlder.getMensagens().isEmpty() ) {
             for ( String erro : errorHandlder.getMensagens() ) {
                 sb.append( erro ).append( "\n" );
@@ -135,11 +136,11 @@ public class XmlUtils {
             throw new IllegalStateException( sb.toString() );
         }
     }
-    
+
     /**
-     * 
+     *
      * @param unformattedXml
-     * @return 
+     * @return
      */
     public static String format( String unformattedXml ) {
         try {
@@ -156,7 +157,7 @@ public class XmlUtils {
             throw new RuntimeException( e );
         }
     }
-    
+
     private static Document parseXmlFile( String in ) {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -167,12 +168,12 @@ public class XmlUtils {
             throw new RuntimeException( e );
         }
     }
-    
+
     /**
-     * 
+     *
      * @param caminho
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public static String lerArquivo( String caminho ) throws Exception {
         StringBuilder sb = new StringBuilder();
@@ -182,12 +183,12 @@ public class XmlUtils {
         }
         return sb.toString();
     }
-    
+
     /**
-     * 
+     *
      * @param caminho
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public static String lerArquivo( InputStream caminho ) throws Exception {
         StringBuilder sb = new StringBuilder();
@@ -197,10 +198,10 @@ public class XmlUtils {
         }
         return sb.toString();
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public static XMLGregorianCalendar createDataXml() {
         try {
@@ -214,9 +215,9 @@ public class XmlUtils {
     }
 
     /**
-     * 
+     *
      * @param data
-     * @return 
+     * @return
      */
     public static XMLGregorianCalendar createDataXml( Date data ) {
         try {
@@ -246,6 +247,5 @@ public class XmlUtils {
         }
         return null;
     }
-    
-    
+
 }

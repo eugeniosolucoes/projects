@@ -68,7 +68,7 @@ public class XmlUtils {
             StringWriter writer = new StringWriter();
             
             jaxbMarshaller.marshal( objeto, writer );
-            //jaxbMarshaller.marshal( objeto, System.out );
+            jaxbMarshaller.marshal( objeto, System.out );
             
             return writer.toString();
             

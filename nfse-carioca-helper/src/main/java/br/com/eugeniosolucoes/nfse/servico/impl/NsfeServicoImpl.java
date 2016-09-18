@@ -104,7 +104,7 @@ public class NsfeServicoImpl implements NsfeServico {
             XmlUtils.validateXml( xmlAssinado, xsd1, xsd2 );
             RecepcionarLoteRpsRequest parameters = new RecepcionarLoteRpsRequest();
             parameters.setInputXML( xmlAssinado );
-            System.out.println( xmlAssinado );
+            LOG.info( xmlAssinado );
             RecepcionarLoteRpsResponse resposta = conectar().recepcionarLoteRps( parameters );
             return XmlUtils.createObjectFromXml( resposta.getOutputXML(), EnviarLoteRpsResposta.class );
         } catch ( Exception e ) {

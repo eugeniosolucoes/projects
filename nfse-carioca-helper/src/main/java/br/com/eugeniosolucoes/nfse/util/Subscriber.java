@@ -3,7 +3,6 @@ package br.com.eugeniosolucoes.nfse.util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.logging.Level;
 
 import javax.xml.crypto.dsig.CanonicalizationMethod;
 import javax.xml.crypto.dsig.DigestMethod;
@@ -190,7 +188,7 @@ public class Subscriber {
         trans.transform( new DOMSource( doc ), new StreamResult( os ) );
         String xml = os.toString();
         if ( ( xml != null ) && ( !"".equals( xml ) ) ) {
-            xml = xml.replaceAll( "\\r\\n", "" );
+            //xml = xml.replaceAll( "\\r\\n", "" );
             xml = xml.replaceAll( " standalone=\"no\"", "" );
         }
         return xml;

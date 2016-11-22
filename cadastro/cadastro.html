@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Curso Adonai</title>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+            <h2>Cadastra-se para uma vaga</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <canvas id="my_canvas" ></canvas>
+                    <img id="foto_candidato" name="foto_candidato" src="" alt="">
+                    <input id="get_img" type="file" accept="image/*" >
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" required />
+                </div>
+                <div class="form-group">
+                    <label for="nome_completo">Nome completo:</label>
+                    <input type="text" class="form-control" id="nome_completo" name="nome_completo" placeholder="Nome completo" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required />
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="number" class="form-control" id="cep" name="cep" placeholder="CEP" required  />
+                    <img id="pesquisando_cep" alt="" src="img/loading.gif" />
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número:</label>
+                    <input type="number" class="form-control" id="numero" name="numero" placeholder="Número ou S/N" />
+                </div>
+                <div class="form-group">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" class="form-control" id="complemento" name="complemento" placeholder="bloco, lote, quadra, ap..." />
+                </div>
+                <div class="form-group">
+                    <label for="cursos">Opções de cursos</label>
+                    <select id="cursos" name="cursos"></select>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            $( document ).ready( function () {
+                $('#pesquisando_cep').css('display', 'none');
+                $( '#get_img' ).on( 'change', function () {
+                    preview_image();
+                } );
+                carregar_cursos();
+                $( '#cep' ).on( 'blur', function () {
+                    search_cep( $( '#cep' ).val() );
+                } );
+            } );
+        </script>
+    </body>
+</html>

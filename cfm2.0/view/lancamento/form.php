@@ -83,6 +83,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                 $select->render();
                                 ?>
                             </label>
+                            <a id="btn-qrcode" href="http://www.webqr.com/index.html" target="_blank"><img src='../../img/qrcode.gif' /></a>
                             <input class="input-block-level" type="text" id="link" name="link" placeholder="Link(URL)" value="<?php echo $lancamento->get_link(); ?>" />
                             <?php 
                                 if($lancamento->get_link()){

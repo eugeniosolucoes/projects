@@ -257,7 +257,8 @@ class lancamento_dao extends core {
         foreach ($params as $value) {
             $params_formatados[] = " (l.descricao LIKE '%$value%'
                 OR c.descricao LIKE '%$value%'
-                OR f.descricao LIKE '%$value%') ";
+                OR f.descricao LIKE '%$value%'
+		OR l.link LIKE '%$value%' ) ";
         }
         $sql = "SELECT DISTINCT l.* from lancamento l 
 LEFT OUTER JOIN frequencia f ON f.id = l.frequencia 

@@ -38,7 +38,7 @@ $controle->execute();
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit" style="padding: 10px;">
-<!--                <p><a class="btn btn-primary" href="<?php echo CONTEXT_PATH; ?>view/lancamento/form.php?comando=novo">Novo Lançamento</a></p>-->
+<!--                <p><arequire_once class="btn btn-primary" href="<?php echo CONTEXT_PATH; ?>view/lancamento/form.php?comando=novo">Novo Lançamento</a></p>-->
                 <h3>Lançamentos</h3>
                 <button type="button" class="btn-block" id="btn-balanco" >Balanço</button>
                 <div id="div-balanco" class="ui-widget-content ui-corner-all">

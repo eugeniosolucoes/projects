@@ -42,12 +42,16 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
+                <button type="button" class="btn-block" id="btn-balanco" >Balanço</button>
+                <div id="div-balanco" class="ui-widget-content ui-corner-all">
+                    <?php require_once './balanco.php'; ?>
+                </div>
                 <h3>Lançamento</h3>
                 <form class="form-inline" method="post" >
                     <div class="control-group">
                         <input type="hidden" name="id" id="id" value="<?php echo $lancamento->get_id(); ?>" />
                         <input class="input-block-level" type="text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $lancamento->get_descricao(); ?>" />
-                        <input class="span1" type="number" id="quantidade" name="quantidade" placeholder="Qtd" value="<?php echo $lancamento->get_quantidade(); ?>"  />
+                        <input class="span1" type="number" step="0.01" id="quantidade" name="quantidade" placeholder="Qtd" value="<?php echo $lancamento->get_quantidade(); ?>"  />
                         <input class="span2" type="number" step="0.01" id="valor" name="valor" placeholder="Valor" value="<?php echo $lancamento->get_valor(); ?>" />
                         <input  type="text" id="inclusao" name="inclusao" placeholder="Data" value="<?php echo $lancamento->get_inclusao(); ?>"  />
                         <div class="control-group">
@@ -83,7 +87,6 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                 $select->render();
                                 ?>
                             </label>
-                            <a id="btn-qrcode" href="http://www.webqr.com/index.html" target="_blank"><img src='../../img/qrcode.gif' /></a>
                             <input class="input-block-level" type="text" id="link" name="link" placeholder="Link(URL)" value="<?php echo $lancamento->get_link(); ?>" />
                             <?php 
                                 if($lancamento->get_link()){
@@ -114,7 +117,12 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
         <script>
             $(document).ready(function() {
     
+                $('#div-balanco').toggle('up');
 
+                $('#btn-balanco').click(function () {
+                    $('#div-balanco').toggle('blind');
+                });
+                
                 $("#inclusao").datepicker({
                     buttonText: "data do lançamento",
                     showButtonPanel: true,

@@ -116,7 +116,16 @@ class lancamento {
     function set_link($link) {
         $this->link = urlencode( $link );
     }
+    
+    function get_ano() {
+        $temp = explode('-', $this->inclusao);
+        return $temp[0];
+    }
 
+    function get_mes() {
+        $temp = explode('-', $this->inclusao);
+        return $temp[1];
+    }
 }
 
 ?>

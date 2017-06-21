@@ -39,7 +39,7 @@ if (is_array($lancamentos) && count($lancamentos)) {
                     <td style="text-align: left; width: 1px;"><?php printf("%s", $lancamento->get_tipo() ? 'credito' : 'debito'); ?></td>
                     <td><?php $controle->get_categorias_descricao_por_lancamento($lancamento); ?></td>
                     <td><?php echo $controle->get_frequencia($lancamento)->get_descricao(); ?></td>
-                    <td><a class="link_descricao" href="<?php echo CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}"; ?>"><?php echo $lancamento->get_descricao(); ?></a></td>
+                    <td><a class="link_descricao" href="<?php echo CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}"; ?>"><?php echo $lancamento->get_descricao(); ?></a></td>
                     <td style="text-align: right; width: 1px; white-space: nowrap"><?php
                         lancamento_dao::format_date_to_view($lancamento);
                         echo $lancamento->get_inclusao();

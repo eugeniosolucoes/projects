@@ -54,6 +54,8 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <input class="span1" type="number" step="0.01" id="quantidade" name="quantidade" placeholder="Qtd" value="<?php echo $lancamento->get_quantidade(); ?>"  />
                         <input class="span2" type="number" step="0.01" id="valor" name="valor" placeholder="Valor" value="<?php echo $lancamento->get_valor(); ?>" />
                         <input  type="text" id="inclusao" name="inclusao" placeholder="Data" value="<?php echo $lancamento->get_inclusao(); ?>"  />
+                        <input  type="hidden" id="ano" name="ano" value=""  />
+                        <input  type="hidden" id="mes" name="mes" value=""  />
                         <div class="control-group">
                             <label class="control-label" for="frequencia">Frequência
                                 <?php
@@ -138,6 +140,14 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
 		      $("#btn-acao-listar").text("Listar")
 		  }
 		}); 
+                
+                $('#inclusao').change(function() {
+                    var vdata = $('#inclusao').val().split('/');
+                    if( vdata.length === 3 ) {
+                        $('#ano').val(vdata[2]);
+                        $('#mes').val(vdata[1]);
+                    }
+                });
 
                 $('#btn-lancamentos').click(function(){
                     listar_periodo('<?php echo CONTEXT_PATH; ?>view/lancamento/list.php?comando=listar');

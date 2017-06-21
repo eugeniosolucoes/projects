@@ -125,6 +125,12 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                     $('#div-balanco').toggle('blind');
                 });
                 
+                var vinclusao = $('#inclusao').val().split('/');
+                if( vinclusao.length === 3 ) {
+                    $('#ano').val(vinclusao[2]);
+                    $('#mes').val(vinclusao[1]);
+                }
+                
                 $("#inclusao").datepicker({
                     buttonText: "data do lançamento",
                     showButtonPanel: true,

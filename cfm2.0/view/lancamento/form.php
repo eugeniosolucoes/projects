@@ -174,7 +174,14 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
 				  var text1 = text.substr(0, f); 
 				  var i = text1.lastIndexOf("R") 
 				  var text2 = text1.substr(i+2).trim(); 
-				  var valor = text2.replace(',', '.'); 
+				  var valor = text2.replace(',', '.');
+                                  $("#categoria option[value=30]").prop("selected", true);
+                                  var now = new Date();
+                                  var mes_corrente = now.getMonth() +1;
+                                  var proximo_mes = (mes_corrente === 12) ? 1 : mes_corrente + 1; 
+                                  var ano = (proximo_mes === 1) ? now.getFullYear() + 1 : now.getFullYear();
+                                  var strData = proximo_mes < 10 ? '11/0'+(proximo_mes)+'/'+ano : '11/'+(proximo_mes)+'/'+ano;
+                                  $('#inclusao').val(strData);
 				  $('#valor').val(valor); 
 				}
 			});

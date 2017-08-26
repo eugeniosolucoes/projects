@@ -59,7 +59,7 @@ $controle->execute();
                 <h1>CFM</h1>
                 <p>Bem-vindo ao CFM (Controle Financeiro Mensal) um aplicativo WEB desenvolvido com objetivo de auxiliar o controle de seu orçamento doméstico através do lançamento de seus débitos e créditos.</p>
                 <p>
-                    <a id="btn-periodos" class="btn btn-primary btn-large" href="#">Períodos &raquo;</a>
+                    <a id="btn-periodos" class="btn btn-primary btn-large" >Períodos &raquo;</a>
                     <a class="btn btn-primary btn-large" href="<?php echo CONTEXT_PATH; ?>view/lancamento/form.php?comando=novo">Novo lançamento &raquo;</a>
                     <a class="btn btn-primary btn-large" href="<?php echo CONTEXT_PATH; ?>view/lancamento/list.php?comando=listar">Lançamentos do Mês &raquo;</a>
                     <a class="btn btn-primary btn-large" href="<?php echo CONTEXT_PATH; ?>view/lancamento/list.php?mes=<?php echo date('m', strtotime("+1 months", strtotime(date('Y-m-d')))); ?>&ano=<?php echo date('Y', strtotime("+1 months", strtotime(date('Y-m-d')))); ?>&comando=listar">Lançamentos pr&oacute;ximo Mês &raquo;</a>
@@ -103,7 +103,6 @@ $controle->execute();
                 $('#btn-periodos').click(function () {
                     processar_periodo();
                 });
-
             });
         </script>
     </body>

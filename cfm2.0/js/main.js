@@ -196,11 +196,12 @@ function processar_periodo(vano){
         var periodos = resposta.periodos;
         
         for (var i = 0; i < periodos.length; i++) {
+            var class_balanco = periodos[i].balanco > 0 ? 'lancamento_credito' : 'lancamento_debito';
             tbl.append('<tr class="row-periodo" onclick="document.location=\'view/lancamento/list.php?comando=listar&ano='+ano+'&mes='+periodos[i].mes+'\';">' +
                     '<td>' + periodos[i].mes + '</td>' +
-                    '<td>' + new Number(periodos[i].creditos).toFixed(2) + '</td>' +
-                    '<td>' + new Number(periodos[i].debitos).toFixed(2) + '</td>' +
-                    '<td>' + new Number(periodos[i].balanco).toFixed(2) + '</td>' +
+                    '<td class="lancamento_credito">' + new Number(periodos[i].creditos).toFixed(2) + '</td>' +
+                    '<td class="lancamento_debito">' + new Number(periodos[i].debitos).toFixed(2) + '</td>' +
+                    '<td class="'+class_balanco+'">' + Math.abs(new Number(periodos[i].balanco).toFixed(2)) + '</td>' +
                     '</tr>');
         }
         $('#div-periodos').show();

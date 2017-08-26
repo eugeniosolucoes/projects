@@ -172,12 +172,12 @@ function calcular() {
 
 function processar_anos() {
     var ano = new Date().getFullYear();
+    var sel = $("#list-anos");
+    sel.empty();
     $.ajax({
         url: 'index.php?comando=periodos'
     }).done(function (resposta) {
         var anos = resposta.anos;
-        var sel = $("#list-anos");
-        sel.empty();
         for (var i = 0; i < anos.length; i++) {
             var selecionado = ano == anos[i] ? 'selected' : '';
             sel.append('<option value="' + anos[i] + '"' + selecionado + ' >' + anos[i] + '</option>');
@@ -188,12 +188,13 @@ function processar_anos() {
 function processar_periodo(vano){
     var ano = vano || new Date().getFullYear();
     $('#list-anos').val(ano);
+    var tbl = $('#tbl-periodo > tbody');
+    tbl.empty();
     $.ajax({
         url: 'index.php?comando=periodos&ano=' + ano
     }).done(function (resposta) {
         var periodos = resposta.periodos;
-        var tbl = $('#tbl-periodo > tbody');
-        tbl.empty();
+        
         for (var i = 0; i < periodos.length; i++) {
             tbl.append('<tr class="row-periodo" onclick="document.location=\'view/lancamento/list.php?comando=listar&ano='+ano+'&mes='+periodos[i].mes+'\';">' +
                     '<td>' + periodos[i].mes + '</td>' +

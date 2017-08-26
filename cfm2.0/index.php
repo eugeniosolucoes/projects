@@ -69,7 +69,7 @@ $controle->execute();
 
                     </select>
                     <table id="tbl-periodo">
-                        <row-periodothead>
+                        <thead>
                             <tr>
                                 <th>Mês</th>
                                 <th>Créditos</th>

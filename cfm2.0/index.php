@@ -38,6 +38,9 @@ $controle->execute();
             .row-periodo {
                 cursor: pointer;
             }
+            #tbl-periodo tbody tr:hover {
+                background-color: #d5ffd5;
+            }
         </style>
     </head>
     <body>

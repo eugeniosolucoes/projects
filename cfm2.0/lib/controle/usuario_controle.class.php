@@ -37,6 +37,7 @@ class usuario_controle extends core_controle {
     function get_periodos() {
         try {
             $usuario = @unserialize($_SESSION['usuario']);
+            $periodos = array();
             if ($usuario !== null) {
                 $ano = @$_REQUEST['ano'] ? @$_REQUEST['ano'] : date('Y');
                 $dao = new usuario_dao();

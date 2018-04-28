@@ -44,7 +44,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
             <div class="hero-unit">
                 <button type="button" class="btn-block" id="btn-balanco" >Balanço</button>
                 <div id="div-balanco" class="ui-widget-content ui-corner-all">
-                    <?php require_once './balanco.php'; ?>
+                    <?php //require_once './balanco.php'; ?>
                 </div>
                 <h3>Lançamento</h3>
                 <form class="form-inline" method="post" >
@@ -185,7 +185,17 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
 				  $('#valor').val(valor); 
 				}
 			});
-
+                        
+                $.ajax({
+                       url: 'balanco.php',
+                       data: {
+                            comando: 'retornar',
+                            ano: <?php echo substr($lancamento->get_inclusao(), 6); ?>,
+                            mes: <?php echo substr($lancamento->get_inclusao(), 3, 2); ?>
+                        }
+                   }).done(function (resposta) {
+                       $('#div-balanco').html(resposta);
+                   });
             });
         </script>  
 

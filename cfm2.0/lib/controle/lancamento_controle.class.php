@@ -83,10 +83,18 @@ class lancamento_controle extends core_controle {
             $usuario = unserialize($_SESSION['usuario']);
             $this->verificar_login($usuario);
             $criterio = @$_REQUEST['criterio'];
+            $inicio = @$_REQUEST['inicio'];
+            $fim = @$_REQUEST['fim'];
             if (empty($criterio)) {
                 return array();
             } else {
                 $params = preg_split("/[\s,]+/", $criterio, -1, PREG_SPLIT_NO_EMPTY);
+                if($inicio){
+                    $params[] = 'inicio:'.$inicio;
+                }
+                if($fim){
+                    $params[] = 'fim:'.$fim;
+                }
                 return $servico->pesquisar($usuario->get_id(), $params);
             }
         } catch (Exception $ex) {

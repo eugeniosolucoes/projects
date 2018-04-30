@@ -254,7 +254,20 @@ class lancamento_dao extends core {
         $colecao = array();
         $params_formatados = array();
         $api = new ReflectionClass($obj);
+        $periodo = array();
+        $inicio = '';
+        $fim = '';
         foreach ($params as $value) {
+            if (preg_match("/inicio:\d\d\/\d\d\/\d\d\d\d/", $value, $periodo)) {
+                $date = DateTime::createFromFormat('d/m/Y', substr($periodo[0], 7));
+                $inicio = $date->format('Y-m-d');
+                continue;
+            }
+            if (preg_match("/fim:\d\d\/\d\d\/\d\d\d\d/", $value, $periodo)) {
+                $date = DateTime::createFromFormat('d/m/Y', substr($periodo[0], 4));
+                $fim = $date->format('Y-m-d');
+                continue;
+            }
             $params_formatados[] = " (l.descricao LIKE '%$value%'
                 OR c.descricao LIKE '%$value%'
                 OR f.descricao LIKE '%$value%'
@@ -265,6 +278,13 @@ LEFT OUTER JOIN frequencia f ON f.id = l.frequencia
 LEFT OUTER JOIN lancamento_categoria lc ON l.id = lc.lancamentos_id  
 LEFT OUTER JOIN categoria c ON c.id = lc.categorias_id 
             WHERE l.usuario = $usuario AND " . implode(' AND ', $params_formatados);
+        if( $inicio && $fim ){
+            $sql .= " AND l.inclusao BETWEEN '$inicio' AND '$fim' ";
+        } elseif ( $inicio ) {
+            $sql .= " AND l.inclusao >= '$inicio'";
+        } elseif ( $fim ) {
+            $sql .= " AND l.inclusao <= '$fim'";
+        }
         try {
             $link = $this->get_conexao();
             $result = mysql_query($sql . " ORDER BY $sort ", $link);

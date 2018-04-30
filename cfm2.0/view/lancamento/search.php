@@ -19,7 +19,7 @@ $lancamentos = $controle->execute();
 
         <link rel="stylesheet" href="<?php echo CONTEXT_PATH; ?>js/datatable/css/demo_page.css" >
         <link rel="stylesheet" href="<?php echo CONTEXT_PATH; ?>js/datatable/css/jquery.dataTables.css" >
-        <script type="text/javascript" language="javascript" src="<?php echo CONTEXT_PATH; ?>js/datatable/js/jquery.js"></script>
+        <!--<script type="text/javascript" language="javascript" src="<?php echo CONTEXT_PATH; ?>js/datatable/js/jquery.js"></script>-->
         <script type="text/javascript" language="javascript" src="<?php echo CONTEXT_PATH; ?>js/datatable/js/jquery.dataTables.min.js"></script>
 
     </head>
@@ -39,11 +39,14 @@ $lancamentos = $controle->execute();
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit" style="padding: 10px;">
                 <h3>Pesquisar Lançamentos</h3>
+                <div class="control-group">
+                    <label class="control-label" style="width: 20px;">Início: <input id="data_inicio" type="text"></label><label class="control-label" style="width: 20px;">Fim:<input id="data_fim" type="text"></label>
+                </div>
                 <?php
                 if (empty($_REQUEST['criterio'])) {
                     ?>
                     <div id="tbl_lancamentos_filter" class="dataTables_filter">
-                        <label>Critérios: <input aria-controls="tbl_lancamentos" type="text">
+                        <label>Critérios: <input id='criterio_lancamento' aria-controls="tbl_lancamentos" type="text"></label>
                             </div>
                             <div class="clearfix"></div>
                         <?php } else { ?>
@@ -136,23 +139,37 @@ $lancamentos = $controle->execute();
                         append('<button type="button" id="btn_limpar" class="btn">Limpar</button>');
 
                     $('#btn_pesquisar').click(function() {
-                        post_to_url('search.php', {criterio: $('input:text').val(), comando: 'pesquisar'}, 'get');
+                        post_to_url('search.php', {criterio: $('input[aria-controls="tbl_lancamentos"]').val(), comando: 'pesquisar', inicio: $('#data_inicio').val(), fim: $('#data_fim').val()}, 'get');
                     }); 
                     
-                    $('input:text').val('<?php echo @$_REQUEST['criterio']; ?>');
+                    $('#criterio_lancamento').val('<?php echo @$_REQUEST['criterio']; ?>');
                 
                     $('#btn_limpar').click(function() {
                         $('input:text').val('');
                         $('#tbl_lancamentos').dataTable().fnFilter('');
                     });
-		    $('input:text').bind("enterKey",function(e){
+		    $('#criterio_lancamento').bind("enterKey",function(e){
    			$('#btn_pesquisar').click();
 		    });
- 		    $('input:text').keyup(function(e){
+ 		    $('#criterio_lancamento').keyup(function(e){
 		    	if(e.keyCode == 13){
 				$(this).trigger("enterKey");
 		    	}
-		    });     
+		    });  
+                    
+                    $('#data_inicio').datepicker({
+                        buttonText: "data do início",
+                        showButtonPanel: true,
+					changeMonth: true,
+					changeYear: true
+                    });
+                    
+                    $('#data_fim').datepicker({
+                        buttonText: "data do fim",
+                        showButtonPanel: true,
+					changeMonth: true,
+					changeYear: true
+                    });
                 });
             </script>        
     </body>

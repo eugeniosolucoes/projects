@@ -153,6 +153,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         $('#ano').val(vdata[2]);
                         $('#mes').val(vdata[1]);
                     }
+                    load_balanco(vdata[2],vdata[1]);
                 });
 
                 $('#btn-lancamentos').click(function(){
@@ -182,21 +183,25 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                   var ano = (proximo_mes === 1) ? now.getFullYear() + 1 : now.getFullYear();
                                   var strData = proximo_mes < 10 ? '11/0'+(proximo_mes)+'/'+ano : '11/'+(proximo_mes)+'/'+ano;
                                   $('#inclusao').val(strData);
+                                  $('#inclusao').change();
 				  $('#valor').val(valor); 
 				}
 			});
-                        
+                        load_balanco(<?php echo substr($lancamento->get_inclusao(), 6); ?>, <?php echo substr($lancamento->get_inclusao(), 3, 2); ?>);
+                
+            });
+            function load_balanco(ano, mes) {
                 $.ajax({
                        url: 'balanco.php',
                        data: {
                             comando: 'retornar',
-                            ano: <?php echo substr($lancamento->get_inclusao(), 6); ?>,
-                            mes: <?php echo substr($lancamento->get_inclusao(), 3, 2); ?>
+                            ano: ano,
+                            mes: mes
                         }
                    }).done(function (resposta) {
                        $('#div-balanco').html(resposta);
-                   });
-            });
+                });
+            }
         </script>  
 
     </body>

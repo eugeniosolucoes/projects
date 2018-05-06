@@ -22,6 +22,7 @@ $lancamentos = $controle->execute();
         <!--<script type="text/javascript" language="javascript" src="<?php echo CONTEXT_PATH; ?>js/datatable/js/jquery.js"></script>-->
         <script type="text/javascript" language="javascript" src="<?php echo CONTEXT_PATH; ?>js/datatable/js/jquery.dataTables.min.js"></script>
 
+        <link rel="stylesheet" href="<?php echo CONTEXT_PATH; ?>css/main.css">
     </head>
     <body>
         <!--[if lt IE 7]>

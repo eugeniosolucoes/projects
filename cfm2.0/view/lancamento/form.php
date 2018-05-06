@@ -191,6 +191,8 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                 
             });
             function load_balanco(ano, mes) {
+                $('#div-balanco').empty();
+                $('#div-balanco').html("<div style='width: 100; text-align: center;'><img src='<?php echo CONTEXT_PATH . "img/loading.gif' />Carregando Balanço...</div>"; ?>");
                 $.ajax({
                        url: 'balanco.php',
                        data: {

@@ -125,3 +125,7 @@ table {
 .link_descricao:hover {
     text-decoration: none;
 }
+
+.dataTables_filter {
+    text-align: left;
+}

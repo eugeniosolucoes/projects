@@ -51,8 +51,9 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                     <div class="control-group">
                         <input type="hidden" name="id" id="id" value="<?php echo $lancamento->get_id(); ?>" />
                         <input class="input-block-level" type="text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $lancamento->get_descricao(); ?>" />
-                        <input class="span1" type="number" step="0.01" id="quantidade" name="quantidade" placeholder="Qtd" value="<?php echo $lancamento->get_quantidade(); ?>"  />
-                        <input class="span2" type="number" step="0.01" id="valor" name="valor" placeholder="Valor" value="<?php echo $lancamento->get_valor(); ?>" />
+                        <input style="text-align: right;" class="span1" type="number" step="0.001" id="quantidade" name="quantidade" placeholder="Qtd" value="<?php echo $lancamento->get_quantidade(); ?>"  />
+                        <input style="text-align: right;" class="span2" type="number" step="0.001" id="valor" name="valor" placeholder="Valor" value="<?php echo $lancamento->get_valor(); ?>" />
+                        <input style="text-align: right;" class="span2" id="val_tot" readonly="" value="0.00" />
                         <input  type="text" id="inclusao" name="inclusao" placeholder="Data" value="<?php echo $lancamento->get_inclusao(); ?>"  />
                         <input  type="hidden" id="ano" name="ano" value=""  />
                         <input  type="hidden" id="mes" name="mes" value=""  />
@@ -169,6 +170,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
 				  var text2 = text1.substr(i+2).trim(); 
 				  var valor = text2.replace(',', '.'); 
 				  $('#valor').val(valor); 
+                                  calc_total();
 				}
 				if( text.indexOf("UNICLASS MC PLAT") != -1 ) { 
 				  var f = text.indexOf("em "); 
@@ -184,12 +186,27 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                   var strData = proximo_mes < 10 ? '11/0'+(proximo_mes)+'/'+ano : '11/'+(proximo_mes)+'/'+ano;
                                   $('#inclusao').val(strData);
                                   $('#inclusao').change();
-				  $('#valor').val(valor); 
+				  $('#valor').val(valor);
+                                  calc_total();
 				}
 			});
                         load_balanco(<?php echo substr($lancamento->get_inclusao(), 6); ?>, <?php echo substr($lancamento->get_inclusao(), 3, 2); ?>);
-                
+                        $('#valor').on('change', function(){
+                            calc_total();
+                        });
+                        $('#quantidade').on('change', function(){
+                            calc_total();
+                        });
+                        calc_total();
             });
+            function calc_total(){
+                var v = $('#valor').val();
+                var q = $('#quantidade').val();
+                if(!Number.isNaN(v) && !Number.isNaN(q)){
+                    var vt = v * q;
+                    $('#val_tot').val(vt.toFixed(2));
+                }    
+            }    
             function load_balanco(ano, mes) {
                 $('#div-balanco').empty();
                 $('#div-balanco').html("<div style='width: 100; text-align: center;'><img src='<?php echo CONTEXT_PATH . "img/loading.gif' />Carregando Balanço...</div>"; ?>");

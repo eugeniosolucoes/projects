@@ -7,6 +7,8 @@ require_once '../../config/load.php';
 $controle = new lancamento_controle();
 
 $lancamentos = $controle->execute();
+
+$temp = new lancamento();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -41,13 +43,18 @@ $lancamentos = $controle->execute();
             <div class="hero-unit" style="padding: 10px;">
                 <h3>Pesquisar Lançamentos</h3>
                 <div class="control-group">
-                    <label class="control-label" style="width: 20px;">Início: <input id="data_inicio" type="text"></label><label class="control-label" style="width: 20px;">Fim:<input id="data_fim" type="text"></label>
+                    <label class="control-label" style="width: 20px;">
+                        Início: <input id="data_inicio" type="text" value="<?php echo (@$_REQUEST['inicio'] == null) ? $temp->get_inclusao() : @$_REQUEST['inicio']; ?>"/>
+                    </label>
+                    <label class="control-label" style="width: 20px;">
+                        Fim:<input id="data_fim" type="text" value="<?php echo (@$_REQUEST['fim'] == null) ? '' : @$_REQUEST['fim']; ?>"/>
+                    </label>
                 </div>
                 <?php
                 if (empty($_REQUEST['criterio'])) {
                     ?>
                     <div id="tbl_lancamentos_filter" class="dataTables_filter">
-                        <label>Critérios: <input id='criterio_lancamento' aria-controls="tbl_lancamentos" type="text"></label>
+                        <label>Critérios: <input id='criterio_lancamento' aria-controls="tbl_lancamentos" type="text" value="<?php echo (@$_REQUEST['criterio'] == null) ? '' : @$_REQUEST['criterio']; ?>" /></label>
                             </div>
                             <div class="clearfix"></div>
                         <?php } else { ?>
@@ -68,7 +75,7 @@ $lancamentos = $controle->execute();
                                         <?php
                                         foreach ($lancamentos as $lancamento) {
                                             ?>
-                                            <tr>
+                                            <tr class="item">
                                                 <td style="text-align: left; width: 1px;"><?php printf("%s", $lancamento->get_tipo() ? 'credito' : 'debito'); ?></td>
                                                 <td><?php $controle->get_categorias_descricao_por_lancamento($lancamento); ?></td>
                                                 <td><?php echo $controle->get_frequencia($lancamento)->get_descricao(); ?></td>
@@ -91,6 +98,17 @@ $lancamentos = $controle->execute();
                                         }
                                         ?>
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td style="text-align: right; width: 1px; white-space: nowrap"><span id="total"></span></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         <?php } ?>
@@ -107,7 +125,7 @@ $lancamentos = $controle->execute();
                 $(document).ready(function() {
                     $('#tbl_lancamentos').dataTable(
                     {
-                        "bPaginate": true,
+                        "bPaginate": false,
                         "bStateSave": true,
                         "aoColumnDefs": [
                             { 'bSortable': false, 'bVisible': false, 'aTargets': [ 0 ] },
@@ -130,6 +148,9 @@ $lancamentos = $controle->execute();
                                 "sPrevious": "Anterior",
                                 "sNext": "Próxima"
                             }
+                        },
+                        "fnDrawCallback": function () {
+                                    calcular();
                         }
                     } );
 

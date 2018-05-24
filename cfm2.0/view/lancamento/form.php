@@ -55,6 +55,10 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <input style="text-align: right;" class="span2" type="number" step="0.001" id="valor" name="valor" placeholder="Valor" value="<?php echo $lancamento->get_valor(); ?>" />
                         <input style="text-align: right;" class="span2" id="val_tot" readonly="" value="0.00" />
                         <input  type="text" id="inclusao" name="inclusao" placeholder="Data" value="<?php echo $lancamento->get_inclusao(); ?>"  />
+                        <label class="control-label" for="parcelado">Parcelado
+                            <input type="checkbox" name="parcelado" id="parcelado" <?php echo $lancamento->parcelado ? 'checked' : ''; ?> />
+                        </label>
+                        <input style="text-align: right;" class="span1" type="number" step="1" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
                         <input  type="hidden" id="ano" name="ano" value=""  />
                         <input  type="hidden" id="mes" name="mes" value=""  />
                         <div class="control-group">
@@ -103,6 +107,9 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <?php if ($lancamento->get_id()) { ?>
                             <button type="submit" class="btn" name="comando" value="salvar">Salvar</button>
                         <?php } ?>
+                        <?php if ($lancamento->get_id()) { ?>
+                            <button type="button" class="btn" name="comando" value="excluir" onclick="excluir_lancamento(<?php echo $lancamento->get_id(); ?>)">Excluir</button>
+                        <?php } ?>                            
                         <button type="button" class="btn" id="btn-lancamentos" >Lançamentos</button>
                         <button type="button" class="btn" id="btn-acao-listar" name="acao_istar">Listar</button>
                     </div>
@@ -139,7 +146,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
 					changeYear: true
                 });
                 
-
+                
 		$("#btn-acao-listar").click(function() {
 		  if($("#btn-acao-listar").text() == 'Listar'){
 		      $("#btn-acao-listar").text("Não listar")
@@ -220,6 +227,20 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                    }).done(function (resposta) {
                        $('#div-balanco').html(resposta);
                 });
+            }
+            
+            function excluir_lancamento(id){
+                var resultado = confirm('Deseja realmente EXCLUIR este lançamento?');
+                if (resultado) {
+                    var vdata = $('#inclusao').val().split('/');
+                    var params = new Array();
+                    params['comando'] = 'excluir';
+                    params['lancamentos'] =  [id];
+                    params['mes'] = vdata[1];
+                    params['ano'] = vdata[2];
+                    post_to_url('list.php', params, 'post');
+                }
+                return resultado;
             }
         </script>  
 

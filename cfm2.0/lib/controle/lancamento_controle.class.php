@@ -103,18 +103,21 @@ class lancamento_controle extends core_controle {
     }
 
     function incluir() {
+        $servico = new lancamento_servico();
+        $categorias = @$_REQUEST['categoria'];
         $lancamento = new lancamento();
         try {
             $this->get_obj($lancamento);
             $lancamento->id = NULL;
             $lancamento->quantidade = @$_REQUEST['quantidade'] ? @$_REQUEST['quantidade'] : '0';
             $lancamento->tipo = @$_REQUEST['tipo'] ? @$_REQUEST['tipo'] : '0';
+            $lancamento->parcelado = @$_REQUEST['parcelado'] ? 1 : 0;
+            $lancamento->qtd_parcelas = @$_REQUEST['qtd_parcelas'] ? @$_REQUEST['qtd_parcelas'] : 0;
             $lancamento->set_link(@$_REQUEST['link']);
             $lancamento->usuario = unserialize($_SESSION['usuario'])->get_id();
-            $servico = new lancamento_servico();
             $servico->salvar($lancamento);
-            $categorias = @$_REQUEST['categoria'];
             $servico->salvar_categorias($lancamento, $categorias);
+            $this->processar_parcelas( $servico, $lancamento, $categorias );
             $_SESSION['mensagem'] = 'Lançamento incluido com sucesso!';
             return $lancamento;
         } catch (Exception $ex) {
@@ -132,12 +135,16 @@ class lancamento_controle extends core_controle {
             }
             $lancamento->quantidade = @$_REQUEST['quantidade'] ? @$_REQUEST['quantidade'] : '0';
             $lancamento->tipo = @$_REQUEST['tipo'] ? @$_REQUEST['tipo'] : '0';
+            $lancamento->parcelado = NULL;
+            $lancamento->qtd_parcelas = NULL;
             $lancamento->set_link(@$_REQUEST['link']);
             $lancamento->usuario = unserialize($_SESSION['usuario'])->get_id();
             $servico = new lancamento_servico();
             $servico->salvar($lancamento);
             $categorias = @$_REQUEST['categoria'];
             $servico->salvar_categorias($lancamento, $categorias);
+            $lancamento->parcelado = @$_REQUEST['parcelado'] ? 1 : 0;
+            $lancamento->qtd_parcelas = @$_REQUEST['qtd_parcelas'] ? @$_REQUEST['qtd_parcelas'] : 0;
             $_SESSION['mensagem'] = 'Lançamento salvo com sucesso!';
             return $lancamento;
         } catch (Exception $ex) {
@@ -192,7 +199,7 @@ class lancamento_controle extends core_controle {
     function get_categorias_descricao_por_lancamento($lancamento) {
         try {
             $servico = new lancamento_servico();
-            echo implode(' ', $servico->get_categorias_descricao_por_lancamento($lancamento));
+            return implode(' ', $servico->get_categorias_descricao_por_lancamento($lancamento));
         } catch (Exception $ex) {
             $_SESSION['mensagem'] = $ex->getMessage();
         }
@@ -347,6 +354,16 @@ class lancamento_controle extends core_controle {
         }
     }
 
+    function processar_parcelas($servico, $lancamento, $categorias){
+        if( $lancamento->parcelado ) {
+            $parcelas = $servico->gerar_parcelas($lancamento);
+            foreach($parcelas as $value){
+                $servico->salvar($value);
+                $servico->salvar_categorias($value, $categorias);
+            }
+            $servico->salvar($lancamento);
+        } 
+    }
 }
 
 ?>

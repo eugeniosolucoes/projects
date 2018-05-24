@@ -209,6 +209,29 @@ class lancamento_servico extends core_servico {
         }
     }
 
+    
+    function gerar_parcelas($obj) {
+        $lista = array();
+        if ($obj->parcelado) {
+            $qtd = $obj->qtd_parcelas;
+            $tmp = explode('/', $obj->inclusao);
+            //$lista[] = $obj;
+            for ($i = 1; $i < $qtd; $i++) {
+                $strInterval = 'P' . $i . 'M';
+                $parcela = clone $obj;
+                $parcela->id = NULL;
+                $date = new DateTime("$tmp[2]-$tmp[1]-$tmp[0]");
+                $date->add(new DateInterval($strInterval));
+                $parcela->inclusao = $date->format('d/m/Y');
+                $parcela->valor /= $qtd;
+                $parcela->lancamento_id = $obj->id;
+                $lista[] = $parcela;
+            }
+            $obj->valor /= $qtd;
+        }
+        return $lista;
+    }
+
 }
 
 ?>

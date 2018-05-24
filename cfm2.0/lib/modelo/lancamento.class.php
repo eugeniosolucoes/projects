@@ -22,6 +22,9 @@ class lancamento {
     var $frequencia;
     var $categorias;
     var $link;
+    var $parcelado;
+    var $qtd_parcelas;
+    var $lancamento_id;
     var $usuario;
 
     function __construct() {

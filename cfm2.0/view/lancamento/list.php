@@ -32,7 +32,7 @@ $controle->execute();
 
         <?php include $lib_path . 'inc/menu-main.php'; ?>
 
-        <div class="container">
+        <div class="container-fluid">
 
             <?php exibir_mensagens(); ?>
 
@@ -155,6 +155,9 @@ $controle->execute();
                 function configurar_datatable() {
                     $('#tbl_lancamentos').dataTable(
                             {
+                                responsive: true,
+                                "ajax": "table",
+                                "autoWidth": false,
                                 "bPaginate": false,
                                 "bStateSave": true,
                                 "aoColumnDefs": [

@@ -58,7 +58,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <label class="control-label" for="parcelado">Parcelado
                             <input type="checkbox" name="parcelado" id="parcelado" <?php echo $lancamento->parcelado ? 'checked' : ''; ?> />
                         </label>
-                        <input style="text-align: right;" class="span1" type="number" step="1" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
+                        <input style="text-align: right;" class="span1 parcelado" type="number" step="2" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
                         <input  type="hidden" id="ano" name="ano" value=""  />
                         <input  type="hidden" id="mes" name="mes" value=""  />
                         <div class="control-group">
@@ -146,6 +146,11 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
 					changeYear: true
                 });
                 
+                toggle_qtd_parcelas();
+                
+                $('#parcelado').click(function() {
+                    toggle_qtd_parcelas();
+                });
                 
 		$("#btn-acao-listar").click(function() {
 		  if($("#btn-acao-listar").text() == 'Listar'){
@@ -241,6 +246,14 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                     post_to_url('list.php', params, 'post');
                 }
                 return resultado;
+            }
+            
+            function toggle_qtd_parcelas(){
+                if($('#parcelado').is(':checked')){
+                    $('#qtd_parcelas').show();
+                } else {
+                    $('#qtd_parcelas').hide();
+                }
             }
         </script>  
 

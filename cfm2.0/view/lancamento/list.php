@@ -207,8 +207,17 @@ $controle->execute();
                 $('#btn-novo').click(function () {
                     window.location.href = '<?php echo CONTEXT_PATH; ?>view/lancamento/form.php?comando=novo';
                 });
-
+                
             });
+            function show_info_cat(obj){
+                var td = $(obj).parent('td')[0];
+                var info = $(td).find('span.info_cat')[0];
+                if($(info).is(":visible")){
+                    $(info).hide();
+                } else {
+                    $(info).show();
+                }
+            }
         </script>        
 
     </body>

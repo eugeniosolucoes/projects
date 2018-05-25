@@ -65,10 +65,10 @@ $temp = new lancamento();
                                             <th style="text-align: left; width: 1px;">Tipo</th>
                                             <th>Categorias</th>
                                             <th>Frequência</th>
-                                            <th>Descrição</th>
-                                            <th style="text-align: right; width: 80px;">Data</th>
-                                            <th style="text-align: right; width: 80px;">Data Sort</th>
-                                            <th style="text-align: right; width: 100px;">Valor Total</th>
+                                            <th style="width: 95%;">Descrição</th>
+                                            <th style="text-align: right;">Data</th>
+                                            <th style="text-align: right;">Data Sort</th>
+                                            <th style="text-align: right;">Valor Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>

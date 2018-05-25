@@ -22,7 +22,7 @@ if (is_array($lancamentos) && count($lancamentos)) {
                 <th style="text-align: left;">Tipo</th>
                 <th>Categorias</th>
                 <th>Frequência</th>
-                <th>Descrição</th>
+                <th style="width: 90%">Descrição</th>
                 <th style="text-align: right; width: 1%">Dia</th>
                 <th style="text-align: right;">Data Sort</th>
                 <th style="text-align: right; width: 1%;">Total</th>
@@ -43,11 +43,12 @@ if (is_array($lancamentos) && count($lancamentos)) {
                     <td>
                         <a class="link_descricao" href="<?php echo CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}"; ?>"><?php echo $lancamento->get_descricao(); ?></a>
                         <?php if($list_cat) { ?>
-                        <span class="ui-icon ui-icon-info" style="float: right; vertical-align: middle;" title="<?php echo $list_cat; ?>"></span>
+                        <span class="ui-icon ui-icon-info" style="float: right; vertical-align: middle; cursor: pointer;" title="<?php echo $list_cat; ?>" onclick="show_info_cat(this);"></span>
                         <?php } ?>
                         <?php  if($lancamento->get_link()) { ?>
                             <a href="<?php echo $lancamento->get_link(); ?>" target="_blank"><img src="../../img/external-link2.png" /></a>
                         <?php  } ?>
+                            <span class="info_cat" style="display: none; color: #0088cc;">Categorias: <?php echo $list_cat; ?></span>    
                     </td>
                     <td style="text-align: right; white-space: nowrap"><?php
                         lancamento_dao::format_date_to_view($lancamento);

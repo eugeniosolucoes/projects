@@ -67,6 +67,7 @@ $controle->execute();
                     <button type="button" class="btn" id="btn-excluir" disabled="disabled" >Excluir</button> 
                     <button type="button" class="btn" id="btn-copiar" disabled="disabled" 
                             title="Copiar lançamento(s) para o período selecionado" >Copiar</button>
+                    <button style="display: none;" type="button" class="btn" id="btn-show-categorias" title="Exibir/Ocultar Categorias" onclick="show_info_cat_all(this);" >Categorias</button> 
                 </form>
                 <button type="button" class="btn-block" id="btn-exibir" >Exibir Lançamentos</button>
                 <div class="form-inline" id="div-lancamento" >
@@ -133,6 +134,7 @@ $controle->execute();
                             $("#btn-topo").click(function () {
                                 $("html, body").animate({scrollTop: 0}, "slow");
                             });
+                            $("#btn-show-categorias").show();
                         }
                     });
                 }
@@ -217,6 +219,9 @@ $controle->execute();
                 } else {
                     $(info).show();
                 }
+            }
+            function show_info_cat_all(obj){
+                $('span.info_cat').toggle();
             }
         </script>        
 

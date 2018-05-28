@@ -48,7 +48,9 @@ if (is_array($lancamentos) && count($lancamentos)) {
                         <?php  if($lancamento->get_link()) { ?>
                             <a href="<?php echo $lancamento->get_link(); ?>" target="_blank"><img src="../../img/external-link2.png" /></a>
                         <?php  } ?>
-                            <span class="info_cat" style="display: none; color: #0088cc;">Categorias: <?php echo $list_cat; ?></span>    
+                        <?php if($list_cat) { ?>    
+                            <span class="info_cat" style="display: none; padding: 0px 5px 0px 5px; background-color: #2c82fc; color: #fff; border: cyan solid 1px;"><?php echo $list_cat; ?></span>    
+                        <?php } ?>
                     </td>
                     <td style="text-align: right; white-space: nowrap"><?php
                         lancamento_dao::format_date_to_view($lancamento);

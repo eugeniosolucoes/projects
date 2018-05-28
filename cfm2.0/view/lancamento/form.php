@@ -50,7 +50,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                 <form class="form-inline" method="post" >
                     <div class="control-group">
                         <input type="hidden" name="id" id="id" value="<?php echo $lancamento->get_id(); ?>" />
-                        <input class="input-block-level" type="text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $lancamento->get_descricao(); ?>" />
+                        <input class="input-block-level" required type="text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $lancamento->get_descricao(); ?>" />
                         <input style="text-align: right;" class="span1" type="number" step="0.001" id="quantidade" name="quantidade" placeholder="Qtd" value="<?php echo $lancamento->get_quantidade(); ?>"  />
                         <input style="text-align: right;" class="span2" type="number" step="0.001" id="valor" name="valor" placeholder="Valor" value="<?php echo $lancamento->get_valor(); ?>" />
                         <input style="text-align: right;" class="span2" id="val_tot" readonly="" value="0.00" />
@@ -58,7 +58,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <label class="control-label" for="parcelado">Parcelado
                             <input type="checkbox" name="parcelado" id="parcelado" <?php echo $lancamento->parcelado ? 'checked' : ''; ?> />
                         </label>
-                        <input style="text-align: right;" class="span1 parcelado" type="number" step="2" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
+                        <input style="text-align: right;" class="span1 parcelado" type="number" min="2" step="1" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
                         <input  type="hidden" id="ano" name="ano" value=""  />
                         <input  type="hidden" id="mes" name="mes" value=""  />
                         <div class="control-group">

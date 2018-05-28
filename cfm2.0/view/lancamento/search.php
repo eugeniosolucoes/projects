@@ -126,7 +126,6 @@ $temp = new lancamento();
                     $('#tbl_lancamentos').dataTable(
                     {
                         "bPaginate": false,
-                        "bStateSave": true,
                         "aoColumnDefs": [
                             { 'bSortable': false, 'bVisible': false, 'aTargets': [ 0 ] },
                             { 'bSortable': false, 'bVisible': false, 'aTargets': [ 1 ] },
@@ -150,7 +149,7 @@ $temp = new lancamento();
                             }
                         },
                         "fnDrawCallback": function () {
-                                    calcular();
+                            calcular();
                         }
                     } );
 
@@ -165,6 +164,7 @@ $temp = new lancamento();
                     }); 
                     
                     $('#criterio_lancamento').val('<?php echo @$_REQUEST['criterio']; ?>');
+                    $('input[aria-controls="tbl_lancamentos"]').val('<?php echo @$_REQUEST['criterio']; ?>');
                 
                     $('#btn_limpar').click(function() {
                         $('input:text').val('');

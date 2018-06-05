@@ -37,6 +37,8 @@ class lancamento_controle extends core_controle {
                 return $this->pesquisar();
             case 'get_categorias_json':
                 return $this->get_categorias_json();
+            case 'get_total_categorias_json':
+                return $this->get_total_categorias_json();
             default:
                 break;
         }
@@ -354,6 +356,34 @@ class lancamento_controle extends core_controle {
         }
     }
 
+    function get_total_categorias_json() {
+        try {
+            
+            $categorias_json = array();
+            $usuario = unserialize($_SESSION['usuario']);
+            $id = $usuario->id;
+            $mes = @$_REQUEST['mes'] ? $_REQUEST['mes'] : date('m');
+            $ano = @$_REQUEST['ano'] ? $_REQUEST['ano'] : date('Y');
+            $sql = "SELECT * FROM vw_somatorio_categorias WHERE ANO = $ano AND MES = $mes AND USUARIO = $id";
+            $dao = new lancamento_dao();
+            $link = $dao->get_conexao();
+            $result = mysql_query($sql, $link);
+            if (!$result) {
+                throw new Exception('Invalid query: ' . mysql_error());
+            } else {
+                while ($row = mysql_fetch_assoc($result)) {
+                    $categorias_json[] = $row;
+                }
+            }
+            mysql_close($link);
+            //array_unshift($categorias_json, '');
+            Header('Content-Type: application/json');
+            die(json_encode($categorias_json));
+        } catch (Exception $ex) {
+            $_SESSION['mensagem'] = $ex->getMessage();
+        }
+    }    
+    
     function processar_parcelas($servico, $lancamento, $categorias){
         if( $lancamento->parcelado ) {
             $parcelas = $servico->gerar_parcelas($lancamento);

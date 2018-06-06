@@ -364,7 +364,18 @@ class lancamento_controle extends core_controle {
             $id = $usuario->id;
             $mes = @$_REQUEST['mes'] ? $_REQUEST['mes'] : date('m');
             $ano = @$_REQUEST['ano'] ? $_REQUEST['ano'] : date('Y');
-            $sql = "SELECT * FROM vw_somatorio_categorias WHERE ANO = $ano AND MES = $mes AND USUARIO = $id";
+            $sql = "SELECT SUM(l.valor * l.quantidade) as 'total', "
+                    . "c.descricao AS 'categoria', "
+                    . "YEAR(l.inclusao) AS 'ano',"
+                    . "MONTH(l.inclusao) AS 'mes' "
+                    . "FROM lancamento l "
+                    . "INNER JOIN lancamento_categoria lc "
+                    . "ON l.id = lc.lancamentos_id "
+                    . "INNER JOIN categoria c "
+                    . "ON c.id = lc.categorias_id "
+                    . "WHERE YEAR(l.inclusao) = $ano AND MONTH(l.inclusao) = $mes AND c.usuario = $id "
+                    . "GROUP BY 2, 3, 4 "
+                    . "ORDER BY 3, 4, 2 ";
             $dao = new lancamento_dao();
             $link = $dao->get_conexao();
             $result = mysql_query($sql, $link);

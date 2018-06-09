@@ -82,10 +82,18 @@ $controle->execute();
                                 <th>
                                     Total
                                 </th>
+                                <th>
+                                    Percentual
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: center;"><button type="button" class="btn btn-top" >&uArr;</button></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -132,6 +140,7 @@ $controle->execute();
                         success: function (data) {
                             $('#div-lancamento').html(data);
                             configurar_datatable();
+                            $('#tbl_lancamentos').css('width', '100%');
                             carregar_categorias();
                             $('#tbl_lancamentos_filter label').
                                     append('<button type="button" id="btn_limpar" class="btn">Limpar</button>');
@@ -146,7 +155,7 @@ $controle->execute();
                                 $('input:text').val($('#lista_categorias').val());
                                 $('#tbl_lancamentos').dataTable().fnFilter($('#lista_categorias').val());
                             });
-                            $("#btn-topo").click(function () {
+                            $(".btn-top").click(function () {
                                 $("html, body").animate({scrollTop: 0}, "slow");
                             });
                             $("#btn-show-categorias").show();
@@ -245,8 +254,9 @@ $controle->execute();
                         var rows = [];
                         $.each(data, function (i, item) {
                             rows.push("<tr>");
-                            rows.push("<td><span style='cursor:pointer;' onclick=\"goto_categoria(this);\">" + item.categoria + "</span></td>");
-                            rows.push("<td style='text-align:right;' class='"+ (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') +"' >" + new Number(item.total).toFixed(2) + "</td>");
+                            rows.push("<td><a class=\"link_descricao\" href=\"#\" onclick=\"goto_categoria(this);\">" + item.categoria + "</a></td>");
+                            rows.push("<td style='text-align:right;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.total).toFixed(2) + "</td>");
+                            rows.push("<td style='text-align:center;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.percentual).toFixed(2) + "%</td>");
                             rows.push("</tr>");
                         });
                         $('#tbl_categorias > tbody').html(rows.join(""));
@@ -264,6 +274,13 @@ $controle->execute();
                                     }
                                 });
                         $('#div-categorias').show();
+                        $('html,body').animate({
+                            scrollTop: $("#div-categorias").offset().top},
+                                'slow');
+                        $(".btn-top").click(function () {
+                                $("html, body").animate({scrollTop: 0}, "slow");
+                            });
+
                     }
                 });
             }
@@ -281,13 +298,15 @@ $controle->execute();
                 $('span.info_cat').toggle();
             }
             function goto_categoria(obj){
-                var text = $(obj).text();
-                $('input:text').val(text);
-                $('#tbl_lancamentos').dataTable().fnFilter(text);
-                $('html,body').animate({
+                if($('#tbl_lancamentos').length > 0){
+                    var text = $(obj).text();
+                    $('input:text').val(text);
+                    $('#tbl_lancamentos').dataTable().fnFilter(text);
+                    $('html,body').animate({
                         scrollTop: $("#div-lancamento").offset().top},
                             'slow');
-            }    
+                }
+            }
         </script>        
 
     </body>

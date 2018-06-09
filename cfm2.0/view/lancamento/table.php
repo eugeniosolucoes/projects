@@ -72,7 +72,7 @@ if (is_array($lancamentos) && count($lancamentos)) {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td style="text-align: center;"><button type="button" class="btn" id="btn-topo" >&uArr;</button></td>
+                <td style="text-align: center;"><button type="button" class="btn btn-top" >&uArr;</button></td>
                 <td></td>
                 <td></td>
                 <td style="text-align: right; white-space: nowrap"><span id="total"></span></td>

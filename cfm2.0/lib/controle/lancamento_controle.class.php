@@ -358,12 +358,26 @@ class lancamento_controle extends core_controle {
 
     function get_total_categorias_json() {
         try {
-            
+            $dao = new lancamento_dao();
+            $link = $dao->get_conexao();
             $categorias_json = array();
+            $total_creditos = 0;
             $usuario = unserialize($_SESSION['usuario']);
             $id = $usuario->id;
+            $valor_creditos = 
             $mes = @$_REQUEST['mes'] ? $_REQUEST['mes'] : date('m');
             $ano = @$_REQUEST['ano'] ? $_REQUEST['ano'] : date('Y');
+            $sql = "SELECT SUM(l.valor * l.quantidade) as 'total_creditos' 
+                FROM lancamento l 
+                WHERE YEAR(l.inclusao) = $ano AND MONTH(l.inclusao) = $mes AND l.usuario = 1 AND l.tipo = $id ";
+            $result1 = mysql_query($sql, $link);
+            if (!$result1) {
+                throw new Exception('Invalid query: ' . mysql_error());
+            } else {
+                while ($row = mysql_fetch_assoc($result1)) {
+                    $total_creditos = $row['total_creditos'];
+                }
+            }
             $sql = "SELECT SUM(l.valor * l.quantidade) as 'total', "
                     . "c.descricao AS 'categoria', "
                     . "YEAR(l.inclusao) AS 'ano',"
@@ -377,13 +391,13 @@ class lancamento_controle extends core_controle {
                     . "WHERE YEAR(l.inclusao) = $ano AND MONTH(l.inclusao) = $mes AND c.usuario = $id "
                     . "GROUP BY 2, 3, 4 "
                     . "ORDER BY 3, 4, 2 ";
-            $dao = new lancamento_dao();
-            $link = $dao->get_conexao();
-            $result = mysql_query($sql, $link);
-            if (!$result) {
+            $result2 = mysql_query($sql, $link);
+            if (!$result2) {
                 throw new Exception('Invalid query: ' . mysql_error());
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysql_fetch_assoc($result2)) {
+                    $row['total_creditos'] = $total_creditos;
+                    $row['percentual'] = $row['total']*100/$total_creditos ;
                     $categorias_json[] = $row;
                 }
             }

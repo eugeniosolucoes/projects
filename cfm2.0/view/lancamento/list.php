@@ -245,8 +245,8 @@ $controle->execute();
                         var rows = [];
                         $.each(data, function (i, item) {
                             rows.push("<tr>");
-                            rows.push("<td>" + item.categoria + "</td>");
-                            rows.push("<td style='text-align:right;'>" + new Number(item.total).toFixed(2) + "</td>");
+                            rows.push("<td><span style='cursor:pointer;' onclick=\"goto_categoria(this);\">" + item.categoria + "</span></td>");
+                            rows.push("<td style='text-align:right;' class='"+ (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') +"' >" + new Number(item.total).toFixed(2) + "</td>");
                             rows.push("</tr>");
                         });
                         $('#tbl_categorias > tbody').html(rows.join(""));
@@ -280,6 +280,14 @@ $controle->execute();
             function show_info_cat_all() {
                 $('span.info_cat').toggle();
             }
+            function goto_categoria(obj){
+                var text = $(obj).text();
+                $('input:text').val(text);
+                $('#tbl_lancamentos').dataTable().fnFilter(text);
+                $('html,body').animate({
+                        scrollTop: $("#div-lancamento").offset().top},
+                            'slow');
+            }    
         </script>        
 
     </body>

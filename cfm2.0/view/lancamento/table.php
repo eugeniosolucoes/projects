@@ -14,7 +14,7 @@ if (is_array($lancamentos) && count($lancamentos)) {
     ?>
     <label for="lista_categorias" >Categorias: </label>
     <select class='span10' id="lista_categorias"></select>
-    <table id="tbl_lancamentos">
+    <table id="tbl_lancamentos" style="width: 100%;">
         <thead>
             <tr>
                 <th style="text-align: left; width: 1%;"><input type="checkbox" onclick="chk_lancamentos(this);

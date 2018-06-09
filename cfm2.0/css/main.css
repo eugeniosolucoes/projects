@@ -129,3 +129,13 @@ table {
 .dataTables_filter {
     text-align: left;
 }
+
+#tbl_categorias {
+    font-family: verdana;
+    font-size: 0.8em;   
+}
+
+#tbl_categorias_info {
+    font-family: verdana;
+    font-size: 0.8em;   
+}

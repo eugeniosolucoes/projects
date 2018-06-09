@@ -67,11 +67,26 @@ $controle->execute();
                     <button type="button" class="btn" id="btn-excluir" disabled="disabled" >Excluir</button> 
                     <button type="button" class="btn" id="btn-copiar" disabled="disabled" 
                             title="Copiar lançamento(s) para o período selecionado" >Copiar</button>
-                    <button style="display: none;" type="button" class="btn" id="btn-show-categorias" title="Exibir/Ocultar Categorias" onclick="show_info_cat_all(this);" >Categorias</button> 
+                    <button style="display: none;" type="button" class="btn" id="btn-show-categorias" title="Exibir/Ocultar Categorias" onclick="show_info_cat_all();" >Categorias</button> 
                 </form>
                 <button type="button" class="btn-block" id="btn-exibir" >Exibir Lançamentos</button>
-                <div class="form-inline" id="div-lancamento" >
-
+                <button type="button" class="btn-block" id="btn-total-categorias" onclick="exibir_total_categorias();" >Exibir Totais por Categorias</button>
+                <div class="form-inline" id="div-lancamento"></div>
+                <div class="form-inline" id="div-categorias" style="display: none;">
+                    <table id="tbl_categorias" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Categorias
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <footer>
@@ -85,27 +100,27 @@ $controle->execute();
         <script>
 
             $(document).ready(function () {
-                
+
                 $('#div-balanco').toggle('up');
 
-		var getUrlParameter = function getUrlParameter(sParam) {
-		    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-			sURLVariables = sPageURL.split('&'),
-			sParameterName,
-			i;
+                var getUrlParameter = function getUrlParameter(sParam) {
+                    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                            sURLVariables = sPageURL.split('&'),
+                            sParameterName,
+                            i;
 
-		    for (i = 0; i < sURLVariables.length; i++) {
-			sParameterName = sURLVariables[i].split('=');
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        sParameterName = sURLVariables[i].split('=');
 
-			if (sParameterName[0] === sParam) {
-			    return sParameterName[1] === undefined ? true : sParameterName[1];
-			}
-		    }
-		};
+                        if (sParameterName[0] === sParam) {
+                            return sParameterName[1] === undefined ? true : sParameterName[1];
+                        }
+                    }
+                };
 
-		if(getUrlParameter('acao')=='true') {
-			show_lancamentos();
-		}
+                if (getUrlParameter('acao') == 'true') {
+                    show_lancamentos();
+                }
 
                 function show_lancamentos() {
                     $('#div-lancamento').empty();
@@ -124,7 +139,7 @@ $controle->execute();
                             $('#btn_limpar').click(function () {
                                 $('input:text').val('');
                                 $('#tbl_lancamentos').dataTable().fnFilter('');
-				$( "#lista_categorias" ).val('');
+                                $("#lista_categorias").val('');
                             });
 
                             $('#lista_categorias').change(function () {
@@ -159,7 +174,6 @@ $controle->execute();
                             {
                                 responsive: true,
                                 "ajax": "table",
-                                "autoWidth": false,
                                 "bPaginate": false,
                                 "bStateSave": true,
                                 "aoColumnDefs": [
@@ -209,18 +223,61 @@ $controle->execute();
                 $('#btn-novo').click(function () {
                     window.location.href = '<?php echo CONTEXT_PATH; ?>view/lancamento/form.php?comando=novo';
                 });
-                
+
             });
-            function show_info_cat(obj){
+
+            function exibir_total_categorias() {
+                if ($('#tbl_categorias').is(':visible')) {
+                    $('html,body').animate({
+                        scrollTop: $("#div-categorias").offset().top},
+                            'slow');
+                    return;
+                }
+                var dados = new Object();
+                dados.comando = 'get_total_categorias_json';
+                dados.mes = <?php echo @$_REQUEST['mes'] ? $_REQUEST['mes'] : date('m'); ?>;
+                dados.ano = <?php echo @$_REQUEST['ano'] ? $_REQUEST['ano'] : date('Y'); ?>;
+                $('#tbl_categorias > tbody').empty();
+                $.ajax({
+                    url: 'list.php',
+                    data: dados,
+                    success: function (data) {
+                        var rows = [];
+                        $.each(data, function (i, item) {
+                            rows.push("<tr>");
+                            rows.push("<td>" + item.categoria + "</td>");
+                            rows.push("<td style='text-align:right;'>" + new Number(item.total).toFixed(2) + "</td>");
+                            rows.push("</tr>");
+                        });
+                        $('#tbl_categorias > tbody').html(rows.join(""));
+                        $('#tbl_categorias').dataTable(
+                                {
+                                    responsive: true,
+                                    "bPaginate": false,
+                                    "bStateSave": true,
+                                    "oLanguage": {
+                                        "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
+                                        "sSearch": "Buscar:",
+                                        "sLengthMenu": 'Registros: _MENU_ ',
+                                        "sInfoFiltered": "(filtro de _MAX_ total registros)",
+                                        "sInfoEmpty": "Nenhum resultado",
+                                    }
+                                });
+                        $('#div-categorias').show();
+                    }
+                });
+            }
+
+            function show_info_cat(obj) {
                 var td = $(obj).parent('td')[0];
                 var info = $(td).find('span.info_cat')[0];
-                if($(info).is(":visible")){
+                if ($(info).is(":visible")) {
                     $(info).hide();
                 } else {
                     $(info).show();
                 }
             }
-            function show_info_cat_all(obj){
+            function show_info_cat_all() {
                 $('span.info_cat').toggle();
             }
         </script>        

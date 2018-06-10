@@ -62,10 +62,10 @@ $temp = new lancamento();
                                 <table id="tbl_lancamentos">
                                     <thead>
                                         <tr>
-                                            <th style="text-align: left; width: 1px;">Tipo</th>
+                                            <th>Tipo</th>
                                             <th>Categorias</th>
                                             <th>Frequência</th>
-                                            <th style="width: 95%;">Descrição</th>
+                                            <th>Descrição</th>
                                             <th style="text-align: right;">Data</th>
                                             <th style="text-align: right;">Data Sort</th>
                                             <th style="text-align: right;">Valor Total</th>
@@ -76,7 +76,7 @@ $temp = new lancamento();
                                         foreach ($lancamentos as $lancamento) {
                                             ?>
                                             <tr class="item">
-                                                <td style="text-align: left; width: 1px;"><?php printf("%s", $lancamento->get_tipo() ? 'credito' : 'debito'); ?></td>
+                                                <td><?php printf("%s", $lancamento->get_tipo() ? 'credito' : 'debito'); ?></td>
                                                 <td><?php echo $controle->get_categorias_descricao_por_lancamento($lancamento); ?></td>
                                                 <td><?php echo $controle->get_frequencia($lancamento)->get_descricao(); ?></td>
                                                 <td><a class="link_descricao"  href="<?php echo CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}"; ?>"><?php echo $lancamento->get_descricao(); ?></a>
@@ -84,11 +84,11 @@ $temp = new lancamento();
                             <a href="<?php echo $lancamento->get_link(); ?>" target="_blank"><img src="../../img/external-link2.png" /></a>
                         <?php  } ?>
 </td>
-                                                <td style="text-align: right; width: 80px; white-space: nowrap"><?php
+                                                <td style="text-align: right;"><?php
                                     lancamento_dao::format_date_to_view($lancamento);
                                     echo $lancamento->get_inclusao();
                                             ?></td>
-                                                <td style="text-align: right; width: 80px; white-space: nowrap"><?php
+                                                <td style="text-align: right;"><?php
                                             lancamento_dao::format_date_to_bd($lancamento);
                                             echo $lancamento->get_inclusao();
                                             ?></td>
@@ -192,6 +192,7 @@ $temp = new lancamento();
 					changeMonth: true,
 					changeYear: true
                     });
+                    $('#tbl_lancamentos').css('width', '100%');
                 });
             </script>        
     </body>

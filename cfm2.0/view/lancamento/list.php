@@ -83,7 +83,7 @@ $controle->execute();
                                     Total
                                 </th>
                                 <th>
-                                    Percentual
+                                    %
                                 </th>
                             </tr>
                         </thead>
@@ -254,7 +254,7 @@ $controle->execute();
                         var rows = [];
                         $.each(data, function (i, item) {
                             rows.push("<tr>");
-                            rows.push("<td><a class=\"link_descricao\" href=\"#\" onclick=\"goto_categoria(this);\">" + item.categoria + "</a></td>");
+                            rows.push("<td style=\"width: 90%;\"><a class=\"link_descricao\" href=\"#\" onclick=\"goto_categoria(this);\">" + item.categoria + "</a></td>");
                             rows.push("<td style='text-align:right;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.total).toFixed(2) + "</td>");
                             rows.push("<td style='text-align:center;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.percentual).toFixed(2) + "%</td>");
                             rows.push("</tr>");
@@ -265,6 +265,9 @@ $controle->execute();
                                     responsive: true,
                                     "bPaginate": false,
                                     "bStateSave": true,
+                                    "aoColumnDefs": [
+                                        {'iDataSort': 1, 'aTargets': [2]}
+                                    ],
                                     "oLanguage": {
                                         "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
                                         "sSearch": "Buscar:",

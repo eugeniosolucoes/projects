@@ -369,7 +369,7 @@ class lancamento_controle extends core_controle {
             $ano = @$_REQUEST['ano'] ? $_REQUEST['ano'] : date('Y');
             $sql = "SELECT SUM(l.valor * l.quantidade) as 'total_creditos' 
                 FROM lancamento l 
-                WHERE YEAR(l.inclusao) = $ano AND MONTH(l.inclusao) = $mes AND l.usuario = 1 AND l.tipo = $id ";
+                WHERE YEAR(l.inclusao) = $ano AND MONTH(l.inclusao) = $mes AND l.usuario = $id AND l.tipo = 1 ";
             $result1 = mysql_query($sql, $link);
             if (!$result1) {
                 throw new Exception('Invalid query: ' . mysql_error());
@@ -397,7 +397,10 @@ class lancamento_controle extends core_controle {
             } else {
                 while ($row = mysql_fetch_assoc($result2)) {
                     $row['total_creditos'] = $total_creditos;
-                    $row['percentual'] = $row['total']*100/$total_creditos ;
+                    if($total_creditos) 
+                        $row['percentual'] = $row['total']*100/$total_creditos;
+                    else 
+                        $row['percentual'] = 0;
                     $categorias_json[] = $row;
                 }
             }

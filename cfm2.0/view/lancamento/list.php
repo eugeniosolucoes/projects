@@ -73,9 +73,13 @@ $controle->execute();
                 <button type="button" class="btn-block" id="btn-total-categorias" onclick="exibir_total_categorias();" >Exibir Totais por Categorias</button>
                 <div class="form-inline" id="div-lancamento"></div>
                 <div class="form-inline" id="div-categorias" style="display: none;">
+                    <button class="btn" type="button" onclick="get_grafico();" >Gráfico</button>
                     <table id="tbl_categorias" style="width: 100%;">
                         <thead>
                             <tr>
+                                <th>
+                                    <input type="checkbox" onclick="chk_all(this);" />
+                                </th>
                                 <th>
                                     Categorias
                                 </th>
@@ -95,6 +99,7 @@ $controle->execute();
                             </tr>
                         </tfoot>
                     </table>
+                    <img id="img_chart" src="" style="width: 100%;" />
                 </div>
             </div>
             <footer>
@@ -254,6 +259,7 @@ $controle->execute();
                         var rows = [];
                         $.each(data, function (i, item) {
                             rows.push("<tr>");
+                            rows.push("<td><input class='chk_cat_item' type='checkbox' /></td>");
                             rows.push("<td style=\"width: 90%;\"><a class=\"link_descricao\" href=\"#\" onclick=\"goto_categoria(this);\">" + item.categoria + "</a></td>");
                             rows.push("<td style='text-align:right;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.total).toFixed(2) + "</td>");
                             rows.push("<td style='text-align:center;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.percentual).toFixed(2) + "%</td>");
@@ -266,6 +272,7 @@ $controle->execute();
                                     "bPaginate": false,
                                     "bStateSave": true,
                                     "aoColumnDefs": [
+                                        {'bSortable': false, 'aTargets': [0]},
                                         {'iDataSort': 1, 'aTargets': [2]}
                                     ],
                                     "oLanguage": {
@@ -310,6 +317,24 @@ $controle->execute();
                             'slow');
                 }
             }
+            function chk_all(obj) {
+                $('#tbl_categorias .chk_cat_item').prop("checked", obj.checked);
+            }
+            function get_grafico(){
+               var list = $('.chk_cat_item:checked');
+               var dados = [];
+               $.each(list, function (i, item) {
+                   var row = $(item).parent('td').parent('tr')[0];
+                   dados.push(new Array(row.cells[1].innerText, new Number(row.cells[2].innerText)));
+                });
+                if(dados.length > 0) {
+                  var params = encodeURIComponent(JSON.stringify(dados));
+                  $('#img_chart').attr('src', 'barchart.php?dados='+params);
+                  $('html,body').animate({
+                        scrollTop: $("#img_chart").offset().top},
+                            'slow');
+                }
+            }    
         </script>        
 
     </body>

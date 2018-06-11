@@ -74,7 +74,7 @@ $controle->execute();
                 <div class="form-inline" id="div-lancamento"></div>
                 <div class="form-inline" id="div-categorias" style="display: none; clear: both;">
                     <div>
-                        <button id="btn-grafico-categorias" style="display: none;" class="btn btn-block" type="button" onclick="get_grafico();" >Gerar Gráfico de Categorias</ button>
+                        <button id="btn-grafico-categorias" class="btn btn-block" type="button" disabled="disabled" onclick="get_grafico();" >Gerar Gráfico de Categorias</ button>
                     </div>
                     <table id="tbl_categorias" style="width: 100%;">
                         <thead>
@@ -340,9 +340,9 @@ $controle->execute();
             function chk_cat() {
                 var cont = $(".chk_cat_item:checked").length;
                 if (cont > 0) {
-                    $('#btn-grafico-categorias').show();
+                    $('#btn-grafico-categorias').removeAttr('disabled');
                 } else {
-                    $('#btn-grafico-categorias').hide();
+                    $('#btn-grafico-categorias').attr("disabled", "disabled");
                 }
             }
         </script>        

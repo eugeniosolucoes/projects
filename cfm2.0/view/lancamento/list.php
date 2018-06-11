@@ -72,13 +72,15 @@ $controle->execute();
                 <button type="button" class="btn-block" id="btn-exibir" >Exibir Lançamentos</button>
                 <button type="button" class="btn-block" id="btn-total-categorias" onclick="exibir_total_categorias();" >Exibir Totais por Categorias</button>
                 <div class="form-inline" id="div-lancamento"></div>
-                <div class="form-inline" id="div-categorias" style="display: none;">
-                    <button class="btn" type="button" onclick="get_grafico();" >Gráfico</button>
+                <div class="form-inline" id="div-categorias" style="display: none; clear: both;">
+                    <div>
+                        <button id="btn-grafico-categorias" style="display: none;" class="btn btn-block" type="button" onclick="get_grafico();" >Gerar Gráfico de Categorias</ button>
+                    </div>
                     <table id="tbl_categorias" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>
-                                    <input type="checkbox" onclick="chk_all(this);" />
+                                    <input id="chk_cat_all" type="checkbox" onclick="chk_all(this);chk_cat();" />
                                 </th>
                                 <th>
                                     Categorias
@@ -259,7 +261,7 @@ $controle->execute();
                         var rows = [];
                         $.each(data, function (i, item) {
                             rows.push("<tr>");
-                            rows.push("<td><input class='chk_cat_item' type='checkbox' /></td>");
+                            rows.push("<td><input class='chk_cat_item' type='checkbox' onclick='chk_cat();' /></td>");
                             rows.push("<td style=\"width: 90%;\"><a class=\"link_descricao\" href=\"#\" onclick=\"goto_categoria(this);\">" + item.categoria + "</a></td>");
                             rows.push("<td style='text-align:right;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.total).toFixed(2) + "</td>");
                             rows.push("<td style='text-align:center;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.percentual).toFixed(2) + "%</td>");
@@ -273,7 +275,7 @@ $controle->execute();
                                     "bStateSave": true,
                                     "aoColumnDefs": [
                                         {'bSortable': false, 'aTargets': [0]},
-                                        {'iDataSort': 1, 'aTargets': [2]}
+                                        {'iDataSort': 2, 'aTargets': [3]}
                                     ],
                                     "oLanguage": {
                                         "sInfo": "Resultado _START_ a _END_ de _TOTAL_ ",
@@ -334,7 +336,15 @@ $controle->execute();
                         scrollTop: $("#img_chart").offset().top},
                             'slow');
                 }
-            }    
+            }
+            function chk_cat() {
+                var cont = $(".chk_cat_item:checked").length;
+                if (cont > 0) {
+                    $('#btn-grafico-categorias').show();
+                } else {
+                    $('#btn-grafico-categorias').hide();
+                }
+            }
         </script>        
 
     </body>

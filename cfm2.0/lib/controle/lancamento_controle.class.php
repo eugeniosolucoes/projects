@@ -111,6 +111,7 @@ class lancamento_controle extends core_controle {
         try {
             $this->get_obj($lancamento);
             $lancamento->id = NULL;
+            $lancamento->descricao = trim($lancamento->descricao);
             $lancamento->quantidade = @$_REQUEST['quantidade'] ? @$_REQUEST['quantidade'] : '0';
             $lancamento->tipo = @$_REQUEST['tipo'] ? @$_REQUEST['tipo'] : '0';
             $lancamento->parcelado = @$_REQUEST['parcelado'] ? 1 : 0;

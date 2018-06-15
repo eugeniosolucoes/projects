@@ -158,9 +158,10 @@ $controle->execute();
                                 $("#lista_categorias").val('');
                             });
 
-                            $('#lista_categorias').change(function () {
-                                $('input:text').val($('#lista_categorias').val());
-                                $('#tbl_lancamentos').dataTable().fnFilter($('#lista_categorias').val());
+                            $('#lista_categorias').on('blur', function () {
+                                var txt = $('#lista_categorias').val();
+                                $('input:text').val(txt);
+                                $('#tbl_lancamentos').dataTable().fnFilter(txt);
                             });
                             $(".btn-top").click(function () {
                                 $("html, body").animate({scrollTop: 0}, "slow");
@@ -176,11 +177,16 @@ $controle->execute();
                         async: true,
                         dataType: 'json',
                         success: function (data) {
-                            var sel = $("#lista_categorias");
-                            sel.empty();
+                            //var sel = $("#lista_categorias");
+                            var tags = [];
+                            //sel.empty();
                             for (var i = 0; i < data.length; i++) {
-                                sel.append('<option value="' + data[i] + '">' + data[i] + '</option>');
+                                //sel.append('<option value="' + data[i] + '">' + data[i] + '</option>');
+                                tags.push(data[i]);
                             }
+                            $( "#lista_categorias" ).autocomplete({
+                                source: tags
+                            });
                         }
                     });
                 }
@@ -290,8 +296,8 @@ $controle->execute();
                             scrollTop: $("#div-categorias").offset().top},
                                 'slow');
                         $(".btn-top").click(function () {
-                                $("html, body").animate({scrollTop: 0}, "slow");
-                            });
+                            $("html, body").animate({scrollTop: 0}, "slow");
+                        });
 
                     }
                 });
@@ -309,8 +315,8 @@ $controle->execute();
             function show_info_cat_all() {
                 $('span.info_cat').toggle();
             }
-            function goto_categoria(obj){
-                if($('#tbl_lancamentos').length > 0){
+            function goto_categoria(obj) {
+                if ($('#tbl_lancamentos').length > 0) {
                     var text = $(obj).text();
                     $('input:text').val(text);
                     $('#tbl_lancamentos').dataTable().fnFilter(text);
@@ -322,17 +328,17 @@ $controle->execute();
             function chk_all(obj) {
                 $('#tbl_categorias .chk_cat_item').prop("checked", obj.checked);
             }
-            function get_grafico(){
-               var list = $('.chk_cat_item:checked');
-               var dados = [];
-               $.each(list, function (i, item) {
-                   var row = $(item).parent('td').parent('tr')[0];
-                   dados.push(new Array(row.cells[1].innerText, new Number(row.cells[2].innerText)));
+            function get_grafico() {
+                var list = $('.chk_cat_item:checked');
+                var dados = [];
+                $.each(list, function (i, item) {
+                    var row = $(item).parent('td').parent('tr')[0];
+                    dados.push(new Array(row.cells[1].innerText, new Number(row.cells[2].innerText)));
                 });
-                if(dados.length > 0) {
-                  var params = encodeURIComponent(JSON.stringify(dados));
-                  $('#img_chart').attr('src', 'barchart.php?dados='+params);
-                  $('html,body').animate({
+                if (dados.length > 0) {
+                    var params = encodeURIComponent(JSON.stringify(dados));
+                    $('#img_chart').attr('src', 'barchart.php?dados=' + params);
+                    $('html,body').animate({
                         scrollTop: $("#img_chart").offset().top},
                             'slow');
                 }

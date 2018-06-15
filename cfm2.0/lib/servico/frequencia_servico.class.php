@@ -22,6 +22,9 @@ class frequencia_servico {
 
     function salvar($frequencia) {
         try {
+            if (!$frequencia->descricao) {
+                throw new Exception('A descrição é requerida!');
+            }
             $dao = new frequencia_dao();
             if (is_null($frequencia->get_id())) {
                 $dao->incluir($frequencia);

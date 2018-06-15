@@ -26,6 +26,7 @@ class categoria_controle extends core_controle {
             if(!$categoria->get_id()) {
                 $categoria->set_id(NULL);
             }
+            $categoria->descricao = strtolower(trim($categoria->descricao));
             $categoria->tipo = @$_REQUEST['tipo'] ? @$_REQUEST['tipo'] : '0';
             $categoria->usuario = unserialize($_SESSION['usuario'])->get_id();
             $servico = new categoria_servico();

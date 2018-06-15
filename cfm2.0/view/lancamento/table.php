@@ -13,7 +13,7 @@ $lancamentos = $controle->execute();
 if (is_array($lancamentos) && count($lancamentos)) {
     ?>
     <label for="lista_categorias" >Categorias: </label>
-    <select class='span10' id="lista_categorias"></select>
+    <input type="text" id="lista_categorias"  />
     <table id="tbl_lancamentos" style="width: 100%;">
         <thead>
             <tr>

@@ -23,6 +23,9 @@ class categoria_servico extends core_servico {
 
     function salvar($categoria) {
         try {
+            if (!$categoria->descricao) {
+                throw new Exception('A descrição é requerida!');
+            }
             $dao = new categoria_dao();
             if (is_null($categoria->get_id())) {
                 $dao->incluir($categoria);

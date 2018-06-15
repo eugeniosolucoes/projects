@@ -25,6 +25,7 @@ class frequencia_controle extends core_controle {
             if(!$frequencia->get_id()){
                 $frequencia->set_id(NULL);
             }
+            $frequencia->descricao = strtolower(trim($frequencia->descricao));
             $frequencia->usuario = unserialize($_SESSION['usuario'])->get_id();
             $servico = new frequencia_servico();
             $servico->salvar($frequencia);

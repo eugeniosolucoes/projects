@@ -43,14 +43,11 @@ if (is_array($lancamentos) && count($lancamentos)) {
                     <td>
                         <a class="link_descricao" href="<?php echo CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}"; ?>"><?php echo $lancamento->get_descricao(); ?></a>
                         <?php if($list_cat) { ?>
-                        <span class="ui-icon ui-icon-info" style="float: right; vertical-align: middle; cursor: pointer;" title="<?php echo $list_cat; ?>" onclick="show_info_cat(this);"></span>
+                        <span class="ui-icon ui-icon-info info_cat" style="float: right; vertical-align: middle; cursor: pointer;" title="<?php echo $list_cat; ?>" ></span>
                         <?php } ?>
                         <?php  if($lancamento->get_link()) { ?>
                             <a href="<?php echo $lancamento->get_link(); ?>" target="_blank"><img src="../../img/external-link2.png" /></a>
                         <?php  } ?>
-                        <?php if($list_cat) { ?>    
-                            <span class="info_cat" style="display: none; padding: 0px 5px 0px 5px; background-color: #2c82fc; color: #fff; border: cyan solid 1px;"><?php echo $list_cat; ?></span>    
-                        <?php } ?>
                     </td>
                     <td style="text-align: right; white-space: nowrap"><?php
                         lancamento_dao::format_date_to_view($lancamento);

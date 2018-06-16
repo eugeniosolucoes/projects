@@ -67,7 +67,6 @@ $controle->execute();
                     <button type="button" class="btn" id="btn-excluir" disabled="disabled" >Excluir</button> 
                     <button type="button" class="btn" id="btn-copiar" disabled="disabled" 
                             title="Copiar lançamento(s) para o período selecionado" >Copiar</button>
-                    <button style="display: none;" type="button" class="btn" id="btn-show-categorias" title="Exibir/Ocultar Categorias" onclick="show_info_cat_all();" >Categorias</button> 
                 </form>
                 <button type="button" class="btn-block" id="btn-exibir" >Exibir Lançamentos</button>
                 <button type="button" class="btn-block" id="btn-total-categorias" onclick="exibir_total_categorias();" >Exibir Totais por Categorias</button>
@@ -166,7 +165,7 @@ $controle->execute();
                             $(".btn-top").click(function () {
                                 $("html, body").animate({scrollTop: 0}, "slow");
                             });
-                            $("#btn-show-categorias").show();
+                            $('.info_cat').tooltip();
                         }
                     });
                 }
@@ -184,7 +183,7 @@ $controle->execute();
                                 //sel.append('<option value="' + data[i] + '">' + data[i] + '</option>');
                                 tags.push(data[i]);
                             }
-                            $( "#lista_categorias" ).autocomplete({
+                            $("#lista_categorias").autocomplete({
                                 source: tags
                             });
                         }
@@ -303,18 +302,6 @@ $controle->execute();
                 });
             }
 
-            function show_info_cat(obj) {
-                var td = $(obj).parent('td')[0];
-                var info = $(td).find('span.info_cat')[0];
-                if ($(info).is(":visible")) {
-                    $(info).hide();
-                } else {
-                    $(info).show();
-                }
-            }
-            function show_info_cat_all() {
-                $('span.info_cat').toggle();
-            }
             function goto_categoria(obj) {
                 if ($('#tbl_lancamentos').length > 0) {
                     var text = $(obj).text();

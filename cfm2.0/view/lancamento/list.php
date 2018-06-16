@@ -155,6 +155,7 @@ $controle->execute();
                                 $('input:text').val('');
                                 $('#tbl_lancamentos').dataTable().fnFilter('');
                                 $("#lista_categorias").val('');
+                                $('.info_cat').tooltip();
                             });
 
                             $('#lista_categorias').on('blur', function () {

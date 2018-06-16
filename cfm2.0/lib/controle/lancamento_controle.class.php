@@ -391,7 +391,7 @@ class lancamento_controle extends core_controle {
                     . "INNER JOIN categoria c "
                     . "ON c.id = lc.categorias_id "
                     . "WHERE YEAR(l.inclusao) = $ano AND MONTH(l.inclusao) = $mes AND c.usuario = $id "
-                    . "GROUP BY 2, 3, 4 "
+                    . "GROUP BY 2, 3, 4, 5 "
                     . "ORDER BY 3, 4, 2 ";
             $result2 = mysql_query($sql, $link);
             if (!$result2) {

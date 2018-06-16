@@ -249,6 +249,7 @@ class lancamento_controle extends core_controle {
                 $categorias_json[$categoria->id]['selected'] = in_array($categoria->id, $categorias_lancamento) ? true : false;
             }
             Header('Content-Type: application/json');
+            usort($categorias_json, 'compare_categoria');
             die(json_encode($categorias_json));
         } catch (Exception $ex) {
             $_SESSION['mensagem'] = $ex->getMessage();
@@ -424,6 +425,10 @@ class lancamento_controle extends core_controle {
             $servico->salvar($lancamento);
         } 
     }
+}
+
+function compare_categoria($a, $b){
+    return strcasecmp($a['descricao'], $b['descricao']);
 }
 
 ?>

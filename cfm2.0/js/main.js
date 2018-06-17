@@ -90,6 +90,7 @@ function retornar_categorias_json(categoria, lancamento) {
         dataType: "json",
         success: function (data) {
             $("#categoria").get(0).options.length = 0;
+            var lista = [];
             $.each(data, function (key, item) {
                 if (item.selected) {
                     $('#categoria')
@@ -103,7 +104,9 @@ function retornar_categorias_json(categoria, lancamento) {
                                     .attr("value", item.id)
                                     .text(item.descricao));
                 }
+                lista.push(item.descricao);
             });
+            $('#categoria_busca').autocomplete( { source: lista } );
         },
         error: function () {
             alert("Erro ao recuperar os dados!");

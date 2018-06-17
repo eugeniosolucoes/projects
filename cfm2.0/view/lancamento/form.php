@@ -82,8 +82,9 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                 printf("</select>");
                                 ?>
                             </label>
+                            <input type="text" id="categoria_busca" name="categoria_busca" placeholder="adiciona ou busca categoria" value="" />
                             <label class="control-label" for="categoria">Categorias
-                                <?php
+                                <?php /*
                                 $select = new dropdownlist();
                                 $select->set_collection($categorias);
                                 $select->set_name('categoria[]');
@@ -91,8 +92,9 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                 $select->set_select_class('');
                                 $select->set_multiple('multiple');
                                 $select->set_selected_values($controle->get_categorias($lancamento));
-                                $select->render();
+                                $select->render(); */
                                 ?>
+                                <select name="categoria[]" id="categoria" multiple ></select>
                             </label>
                             <input class="input-block-level" type="text" id="link" name="link" placeholder="Link(URL)" value="<?php echo $lancamento->get_link(); ?>" />
                             <?php 
@@ -210,6 +212,17 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                             calc_total();
                         });
                         calc_total();
+                        
+                        retornar_categorias_json(<?php echo "$lancamento->tipo, ". ($lancamento->get_id() ? $lancamento->get_id() : -1); ?>);
+                            
+                        $('#categoria_busca').on('blur', function(){
+                            var txt = $('#categoria_busca').val();
+                            $('#categoria option').filter(function() { 
+                                return ($(this).text() == txt); 
+                            }).prop('selected', true);
+
+                        });    
+                            
             });
             function calc_total(){
                 var v = $('#valor').val();

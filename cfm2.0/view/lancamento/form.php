@@ -205,7 +205,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         });
                         calc_total();
                         
-                        retornar_categorias_json(<?php echo "$lancamento->tipo, ". ($lancamento->get_id() ? $lancamento->get_id() : -1); ?>);
+                        retornar_categorias_json(<?php echo ($lancamento->tipo ? 1 : 0). ", ". ($lancamento->get_id() ? $lancamento->get_id() : -1); ?>);
                             
                         $('#categoria_busca').on('blur', function(){
                             var txt = $('#categoria_busca').val();

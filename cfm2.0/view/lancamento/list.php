@@ -79,7 +79,7 @@ $controle->execute();
                         <thead>
                             <tr>
                                 <th>
-                                    <input id="chk_cat_all" type="checkbox" onclick="chk_all(this);chk_cat();" />
+                                    <input id="chk_cat_all" type="checkbox" onclick="chk_all(this);chk_cat();calcular_categorias();" />
                                 </th>
                                 <th>
                                     Categorias
@@ -96,7 +96,9 @@ $controle->execute();
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3" style="text-align: center;"><button type="button" class="btn btn-top" >&uArr;</button></td>
+                                <td colspan="2" style="text-align: center;"><button type="button" class="btn btn-top" >&uArr;</button></td>
+                                <td id="total_categorias" style="text-align: right;"></td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -278,8 +280,8 @@ $controle->execute();
                     success: function (data) {
                         var rows = [];
                         $.each(data, function (i, item) {
-                            rows.push("<tr>");
-                            rows.push("<td><input class='chk_cat_item' type='checkbox' onclick='chk_cat();' /></td>");
+                            rows.push("<tr class='item'>");
+                            rows.push("<td><input class='chk_cat_item' type='checkbox' onclick='chk_cat();calcular_categorias();' /></td>");
                             rows.push("<td style=\"width: 90%;\"><a class=\"link_descricao\" href=\"#\" onclick=\"goto_categoria(this);\">" + item.categoria + "</a></td>");
                             rows.push("<td style='text-align:right;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.total).toFixed(2) + "</td>");
                             rows.push("<td style='text-align:center;' class='" + (item.tipo == 1 ? 'lancamento_credito' : 'lancamento_debito') + "' >" + new Number(item.percentual).toFixed(2) + "%</td>");

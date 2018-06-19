@@ -151,7 +151,7 @@ function calcular() {
     var creditos = 0;
     var debitos = 0;
     $("tr.item").each(function () {
-        $this = $(this)
+        $this = $(this);
         var valor_credito = $this.find("span.lancamento_credito").html();
         if (!isNaN(valor_credito)) {
             creditos += new Number(valor_credito);
@@ -170,7 +170,32 @@ function calcular() {
         $('#total').removeClass('total_positivo');
         $('#total').addClass('total_negativo');
     }
+}
 
+function calcular_categorias() {
+    var creditos = 0;
+    var debitos = 0;
+    $("#tbl_categorias tr.item .chk_cat_item:checked").each(function (i, item) {
+        var row = $(item).parent('td').parent('tr');
+        console.log(item);
+        var valor_credito = row.find("td.lancamento_credito").html();
+        if (!isNaN(valor_credito)) {
+            creditos += new Number(valor_credito);
+        }
+        var value_debito = row.find("td.lancamento_debito").html();
+        if (!isNaN(value_debito)) {
+            debitos += new Number(value_debito);
+        }
+    });
+    var resultado = creditos - debitos;
+    $('#total_categorias').html(Math.abs(resultado).toFixed(2));
+    if (resultado >= 0) {
+        $('#total_categorias').removeClass('total_negativo');
+        $('#total_categorias').addClass('total_positivo');
+    } else {
+        $('#total_categorias').removeClass('total_positivo');
+        $('#total_categorias').addClass('total_negativo');
+    }
 }
 
 function processar_anos() {

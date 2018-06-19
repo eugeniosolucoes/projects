@@ -82,7 +82,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                                 printf("</select>");
                                 ?>
                             </label>
-                            <input type="text" id="categoria_busca" name="categoria_busca" placeholder="adiciona ou busca categoria" value="" />
+                            <input type="text" id="categoria_busca" name="categoria_busca" placeholder="busca categoria" value="" />
                             <label class="control-label" for="categoria">Categorias
                                 <?php /*
                                 $select = new dropdownlist();
@@ -113,7 +113,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                             <button type="button" class="btn" name="comando" value="excluir" onclick="excluir_lancamento(<?php echo $lancamento->get_id(); ?>)">Excluir</button>
                         <?php } ?>                            
                         <button type="button" class="btn" id="btn-lancamentos" >Lançamentos</button>
-                        <button type="button" class="btn" id="btn-acao-listar" name="acao_istar">Listar</button>
+                        <input type="checkbox" id="btn-acao-listar" checked title="Carregar lançamentos" />
                     </div>
                 </form>
             </div>
@@ -153,14 +153,6 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                 $('#parcelado').click(function() {
                     toggle_qtd_parcelas();
                 });
-                
-		$("#btn-acao-listar").click(function() {
-		  if($("#btn-acao-listar").text() == 'Listar'){
-		      $("#btn-acao-listar").text("Não listar")
-		  } else {
-		      $("#btn-acao-listar").text("Listar")
-		  }
-		}); 
                 
                 $('#inclusao').change(function() {
                     var vdata = $('#inclusao').val().split('/');

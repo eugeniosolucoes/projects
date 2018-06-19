@@ -116,7 +116,7 @@ function retornar_categorias_json(categoria, lancamento) {
 
 function listar_periodo(url) {
     var data = $("#inclusao").val().split("/");
-    var acao = $("#btn-acao-listar").text() == 'Listar' ? true : false;
+    var acao = $("#btn-acao-listar").is(':checked');
     window.location.href = url + '&ano=' + data[2] + '&mes=' + data[1] + '&acao=' + acao;
 }
 

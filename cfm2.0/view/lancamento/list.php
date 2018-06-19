@@ -155,14 +155,26 @@ $controle->execute();
                                 $('input:text').val('');
                                 $('#tbl_lancamentos').dataTable().fnFilter('');
                                 $("#lista_categorias").val('');
+                                $("#cmb_categorias").val('');
                                 $('.info_cat').tooltip();
                             });
 
                             $('#lista_categorias').on('blur', function () {
                                 var txt = $('#lista_categorias').val();
+                                $('#cmb_categorias option').filter(function() { 
+                                    return ($(this).text() == txt); 
+                                }).prop('selected', true);
+                                $('#cmb_categorias').change();
+//                                $('input:text').val(txt);
+//                                $('#tbl_lancamentos').dataTable().fnFilter(txt);
+                            });
+                            
+                            $('#cmb_categorias').change(function() {
+                                var txt = $(this).val();
                                 $('input:text').val(txt);
                                 $('#tbl_lancamentos').dataTable().fnFilter(txt);
                             });
+                            
                             $(".btn-top").click(function () {
                                 $("html, body").animate({scrollTop: 0}, "slow");
                             });
@@ -177,11 +189,11 @@ $controle->execute();
                         async: true,
                         dataType: 'json',
                         success: function (data) {
-                            //var sel = $("#lista_categorias");
+                            var sel = $("#cmb_categorias");
                             var tags = [];
-                            //sel.empty();
+                            sel.empty();
                             for (var i = 0; i < data.length; i++) {
-                                //sel.append('<option value="' + data[i] + '">' + data[i] + '</option>');
+                                sel.append('<option value="' + data[i] + '">' + data[i] + '</option>');
                                 tags.push(data[i]);
                             }
                             $("#lista_categorias").autocomplete({

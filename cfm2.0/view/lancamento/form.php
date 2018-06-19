@@ -58,7 +58,7 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <label class="control-label" for="parcelado">Parcelado
                             <input type="checkbox" name="parcelado" id="parcelado" <?php echo $lancamento->parcelado ? 'checked' : ''; ?> />
                         </label>
-                        <input style="text-align: right;" class="span1 parcelado" type="number" min="2" step="1" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
+                        <input style="text-align: right;" class="span1 parcelado" type="number" min="0" step="1" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
                         <input  type="hidden" id="ano" name="ano" value=""  />
                         <input  type="hidden" id="mes" name="mes" value=""  />
                         <div class="control-group">
@@ -255,8 +255,10 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
             
             function toggle_qtd_parcelas(){
                 if($('#parcelado').is(':checked')){
+                    $('#qtd_parcelas').attr('min', 2);
                     $('#qtd_parcelas').show();
                 } else {
+                    $('#qtd_parcelas').attr('min', 0);
                     $('#qtd_parcelas').hide();
                 }
             }

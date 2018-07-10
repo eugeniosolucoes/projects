@@ -224,6 +224,7 @@ class lancamento_servico extends core_servico {
                 $date->add(new DateInterval($strInterval));
                 $parcela->inclusao = $date->format('d/m/Y');
                 $parcela->valor /= $qtd;
+                $parcela->num_parcela = $i + 1;
                 $parcela->lancamento_id = $obj->id;
                 $lista[] = $parcela;
             }

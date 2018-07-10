@@ -23,6 +23,7 @@ class lancamento {
     var $categorias;
     var $link;
     var $parcelado;
+    var $num_parcela;
     var $qtd_parcelas;
     var $lancamento_id;
     var $usuario;

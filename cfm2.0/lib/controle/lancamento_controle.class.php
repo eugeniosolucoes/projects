@@ -115,6 +115,7 @@ class lancamento_controle extends core_controle {
             $lancamento->quantidade = @$_REQUEST['quantidade'] ? @$_REQUEST['quantidade'] : '0';
             $lancamento->tipo = @$_REQUEST['tipo'] ? @$_REQUEST['tipo'] : '0';
             $lancamento->parcelado = @$_REQUEST['parcelado'] ? 1 : 0;
+            $lancamento->num_parcela = @$_REQUEST['parcelado'] ? 1 : NULL;
             $lancamento->qtd_parcelas = @$_REQUEST['qtd_parcelas'] ? @$_REQUEST['qtd_parcelas'] : 0;
             $lancamento->set_link(@$_REQUEST['link']);
             $lancamento->usuario = unserialize($_SESSION['usuario'])->get_id();

@@ -10,6 +10,8 @@ $controle = new lancamento_controle();
 
 $lancamentos = $controle->execute();
 
+$months = array ('01'=>'Jan','02'=>'Fev','03'=>'Mar','04'=>'Abr','05'=>'Mai','06'=>'Jun','07'=>'Jul','08'=>'Ago','09'=>'Set','10'=>'Out','11'=>'Nov','12'=>'Dez');
+
 if (is_array($lancamentos) && count($lancamentos)) {
     ?>
     <label for="lista_categorias" >Categorias: </label>
@@ -50,10 +52,15 @@ if (is_array($lancamentos) && count($lancamentos)) {
                             <a href="<?php echo $lancamento->get_link(); ?>" target="_blank"><img src="../../img/external-link2.png" /></a>
                         <?php  } ?>
                     </td>
-                    <td style="text-align: right; white-space: nowrap"><?php
-                        lancamento_dao::format_date_to_view($lancamento);
-                        echo substr($lancamento->get_inclusao(), 0, 2);
-                        ?></td>
+                    <td style="text-align: right; white-space: nowrap">
+                        <span class="info_cat" title="<?php 
+                            echo "{$months[$lancamento->get_mes()]}{$lancamento->get_ano()}"; ?>">
+                                <?php 
+                                    lancamento_dao::format_date_to_view($lancamento);
+                                    echo substr($lancamento->get_inclusao(), 0, 2);
+                                ?>
+                        </span>
+                    </td>
                     <td style="text-align: right; white-space: nowrap"><?php
                         lancamento_dao::format_date_to_bd($lancamento);
                         echo $lancamento->get_inclusao();

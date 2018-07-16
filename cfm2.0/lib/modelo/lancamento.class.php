@@ -122,13 +122,30 @@ class lancamento {
     }
     
     function get_ano() {
-        $temp = explode('-', $this->inclusao);
-        return $temp[0];
+        $delimiter = '-';
+        $pos = 0;
+        if( strpos($this->inclusao, $delimiter) === false ){
+            $delimiter = '/';
+            $pos = 2;
+        }
+        $temp = explode($delimiter, $this->inclusao);
+        return $temp[$pos];
     }
 
     function get_mes() {
-        $temp = explode('-', $this->inclusao);
+        $delimiter = '-';
+        if( strpos($this->inclusao, $delimiter) === false ){
+            $delimiter = '/';
+        }
+        $temp = explode($delimiter, $this->inclusao);
         return $temp[1];
+    }
+    
+    function get_parcela_fmt(){
+        if($this->parcelado && $this->num_parcela) {
+            return sprintf("(%s/%s)", $this->num_parcela, $this->qtd_parcelas);
+        }
+        return '';
     }
 }
 

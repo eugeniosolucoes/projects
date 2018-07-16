@@ -44,7 +44,7 @@ if (is_array($lancamentos) && count($lancamentos)) {
                     <td><?php echo $controle->get_categorias_descricao_por_lancamento($lancamento); ?></td>
                     <td><?php echo $controle->get_frequencia($lancamento)->get_descricao(); ?></td>
                     <td>
-                        <a class="link_descricao" href="<?php echo CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}"; ?>"><?php echo $lancamento->get_descricao(); ?></a>
+                        <a class="link_descricao" href="<?php echo CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}"; ?>"><?php echo "{$lancamento->get_descricao()} {$lancamento->get_parcela_fmt()} " ; ?></a>
                         <?php if($list_cat) { ?>
                         <span class="ui-icon ui-icon-info info_cat" style="float: right; vertical-align: middle; cursor: pointer;" title="<?php echo $list_cat; ?>" ></span>
                         <?php } ?>

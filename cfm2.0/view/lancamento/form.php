@@ -57,6 +57,13 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <input  type="text" id="inclusao" name="inclusao" placeholder="Data" value="<?php echo $lancamento->get_inclusao(); ?>"  />
                         <label class="control-label" for="parcelado">Parcelado
                             <input type="checkbox" name="parcelado" id="parcelado" <?php echo $lancamento->parcelado ? 'checked' : ''; ?> />
+                            <?php
+                              if( $lancamento->parcelado && $lancamento->lancamento_id ) {
+                                $parcelado_inicial = "form.php?comando=retornar&id={$lancamento->lancamento_id}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}";
+                                printf("<div style='float:left;'><a href=\"%s\" ><span class=\"ui-icon ui-icon-arrowreturnthick-1-n\" title=\"Ir para parcela inicial\"></span></a></div>", 
+                                        $parcelado_inicial);
+                              }
+                            ?>
                         </label>
                         <input style="text-align: right;" class="span1 parcelado" type="number" min="0" step="1" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
                         <input style="text-align: right;" class="span1 parcelado" readonly="" id="num_parcela" value="<?php echo $lancamento->num_parcela; ?>"  />

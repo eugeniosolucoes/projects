@@ -220,7 +220,17 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                             $('#categoria option').filter(function() { 
                                 return ($(this).text() == txt); 
                             }).prop('selected', true);
-
+                            if( txt.indexOf("nubank") !== -1 ) { 
+                                $("#categoria option[value=30]").prop("selected", true);
+                                var now = new Date();
+                                var mes_corrente = ( now.getDate() >= 7 ) ? ( now.getMonth() + 1 ) : now.getMonth();
+                                var proximo_mes = (mes_corrente === 12) ? 1 : mes_corrente + 1; 
+                                var ano = (proximo_mes === 1) ? now.getFullYear() + 1 : now.getFullYear();
+                                var strData = proximo_mes < 10 ? '14/0'+(proximo_mes)+'/'+ano : '14/'+(proximo_mes)+'/'+ano;
+                                $('#inclusao').val(strData);
+                                $('#inclusao').change();
+                                calc_total();
+                            }
                         });    
                             
             });

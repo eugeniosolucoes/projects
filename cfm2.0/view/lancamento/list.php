@@ -42,7 +42,10 @@ $controle->execute();
                 <h3>Lançamentos</h3>
                 <button type="button" class="btn-block" id="btn-balanco" >Balanço</button>
                 <div id="div-balanco" class="ui-widget-content ui-corner-all">
-                    <?php require_once './balanco.php'; ?>
+                    <h3 id="titulo_balanco" class="ui-widget-header ui-corner-all">Balanço</h3>
+                    <div id="div-conteudo-balanco" >
+                        <?php require_once './balanco.php'; ?>
+                    </div>
                 </div>
                 <form id="menu-opcoes" class="form-inline" action="<?php echo CONTEXT_PATH; ?>view/lancamento/list.php" method="get" >
                     <select class='span2' name="mes" id="mes">

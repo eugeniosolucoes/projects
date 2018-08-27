@@ -7,8 +7,6 @@ require_once '../../config/load.php';
 $controle = new lancamento_controle();
 
 ?>
-
-<h3 class="ui-widget-header ui-corner-all">Balanço</h3>
 <ul class="group-balanco">
     <li>Previsão</li>
     <li>Créditos:  <span class="lancamento_credito"><?php printf("%.2f", $controle->get_creditos()); ?></span></li>

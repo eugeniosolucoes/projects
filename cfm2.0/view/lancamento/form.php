@@ -44,7 +44,10 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
             <div class="hero-unit">
                 <button type="button" class="btn-block" id="btn-balanco" >Balanço</button>
                 <div id="div-balanco" class="ui-widget-content ui-corner-all">
-                    <?php //require_once './balanco.php'; ?>
+                    <h3 id="titulo_balanco" class="ui-widget-header ui-corner-all">Balanço</h3>
+                    <div id="div-conteudo-balanco" >
+                        <?php //require_once './balanco.php'; ?>
+                    </div>    
                 </div>
                 <h3>Lançamento</h3>
                 <form class="form-inline" method="post" >
@@ -243,8 +246,8 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                 }    
             }    
             function load_balanco(ano, mes) {
-                $('#div-balanco').empty();
-                $('#div-balanco').html("<div style='width: 100; text-align: center;'><img src='<?php echo CONTEXT_PATH . "img/loading.gif' />Carregando Balanço...</div>"; ?>");
+                //$('#div-balanco').empty();
+                $('#titulo_balanco').html("<div style='width: 100%; text-align: center;'><img src='<?php echo CONTEXT_PATH . "img/loading.gif' />Carregando Balanço...</div>"; ?>");
                 $.ajax({
                        url: 'balanco.php',
                        data: {
@@ -253,7 +256,8 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                             mes: mes
                         }
                    }).done(function (resposta) {
-                       $('#div-balanco').html(resposta);
+                       $('#div-conteudo-balanco').html(resposta);
+                       $('#titulo_balanco').html('Balanço');
                 });
             }
             

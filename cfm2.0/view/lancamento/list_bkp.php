@@ -73,35 +73,7 @@ $controle->execute();
                 </form>
                 <button type="button" class="btn-block" id="btn-exibir" >Exibir Lançamentos</button>
                 <button type="button" class="btn-block" id="btn-total-categorias" onclick="exibir_total_categorias();" >Exibir Totais por Categorias</button>
-                <div class="form-inline" id="div-lancamento">
-                    <div id="load_lancamentos_progress"><img src='<?php echo CONTEXT_PATH; ?>img/loading.gif' />Carregando Lançamentos...</div>
-                    <label for="lista_categorias" >Categorias: </label>
-                    <input type="text" id="lista_categorias" placeholder="busca categorias" />
-                    <select class="btn btn-block" id="cmb_categorias"></select>
-                    <table id="tbl_lancamentos" style="width: 100%;">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left; width: 1%;"><input type="checkbox" onclick="chk_lancamentos(this);
-                        chk_excluir();" id="chk_all"  /></th>
-                                <th style="text-align: left;">Tipo</th>
-                                <th>Categorias</th>
-                                <th>Frequência</th>
-                                <th style="width: 90%">Descrição</th>
-                                <th style="text-align: right; width: 1%">Dia</th>
-                                <th style="text-align: right;">Data Sort</th>
-                                <th style="text-align: right; width: 1%;">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="7" style="text-align: center;"><button type="button" class="btn btn-top" >&uArr;</button></td>
-                                <td style="text-align: right; white-space: nowrap"><span id="total"></span></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                <div class="form-inline" id="div-lancamento"></div>
                 <div class="form-inline" id="div-categorias" style="display: none; clear: both;">
                     <div>
                         <button id="btn-grafico-categorias" class="btn btn-block" type="button" disabled="disabled" onclick="get_grafico();" >Gerar Gráfico de Categorias</ button>
@@ -149,8 +121,6 @@ $controle->execute();
             $(document).ready(function () {
 
                 $('#div-balanco').toggle('up');
-                $('#load_lancamentos_progress').hide();
-                $('#tbl_lancamentos').hide();
 
                 var getUrlParameter = function getUrlParameter(sParam) {
                     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -172,17 +142,14 @@ $controle->execute();
                 }
 
                 function show_lancamentos() {
-                    $('#load_lancamentos_progress').show();
-
-                    //$('#div-lancamento').empty();
-                    //$('#div-lancamento').html("<div><img src='<?php echo CONTEXT_PATH . "img/loading.gif' />Carregando Lançamentos...</div>"; ?>");
+                    $('#div-lancamento').empty();
+                    $('#div-lancamento').html("<img src='<?php echo CONTEXT_PATH . "img/loading.gif' />Carregando Lançamentos..."; ?>");
                     $.ajax({
                         url: '<?php echo CONTEXT_PATH . "view/lancamento/table.php?comando=listar_tabela&mes=" . @$_REQUEST['mes'] . "&ano=" . @$_REQUEST['ano']; ?>',
                         async: true,
-                        dataType: 'json',
+                        dataType: 'html',
                         success: function (data) {
-                            //$('#div-lancamento').html(data);
-                            load_lancamentos_json(data);
+                            $('#div-lancamento').html(data);
                             configurar_datatable();
                             $('#tbl_lancamentos').css('width', '100%');
                             carregar_categorias();
@@ -217,9 +184,6 @@ $controle->execute();
                                 $("html, body").animate({scrollTop: 0}, "slow");
                             });
                             $('.info_cat').tooltip();
-                            
-                            $('#load_lancamentos_progress').hide();
-                            $('#tbl_lancamentos').show();
                         }
                     });
                 }
@@ -248,10 +212,9 @@ $controle->execute();
                     $('#tbl_lancamentos').dataTable(
                             {
                                 responsive: true,
-                                "ajax": "json",
+                                "ajax": "table",
                                 "bPaginate": false,
                                 "bStateSave": true,
-                                "bDestroy": true,
                                 "aoColumnDefs": [
                                     {'bSortable': false, 'aTargets': [0]},
                                     {'bSortable': false, 'bVisible': false, 'aTargets': [1]},
@@ -299,6 +262,7 @@ $controle->execute();
                 $('#btn-novo').click(function () {
                     window.location.href = '<?php echo CONTEXT_PATH; ?>view/lancamento/form.php?comando=novo';
                 });
+
             });
 
             function exibir_total_categorias() {
@@ -391,36 +355,6 @@ $controle->execute();
                 } else {
                     $('#btn-grafico-categorias').attr("disabled", "disabled");
                 }
-            }
-            
-            function load_lancamentos_json(data){
-                $('#tbl_lancamentos > tbody').empty();
-                var rows = [];
-                $.each(data, function (i, item) {
-                    rows.push("<tr class='item'>");
-                    rows.push("<td style=\"text-align: left;\">");
-                    rows.push("    <input type=\"checkbox\" class=\"chk_item\" name=\"chk_item\" onclick=\"chk_excluir();\" value="+ item.id +" />");
-                    rows.push("</td>");
-                    rows.push("<td style=\"text-align: left; width: 1px;\">"+ item.tipo +"</td>");
-                    rows.push("<td>"+ item.categorias + "</td>");
-                    rows.push("<td>"+ item.frequencias + "</td>");
-                    rows.push("<td>");
-                    rows.push("    <a class=\"link_descricao\" href='"+ item.link_descricao+ "'>"+ item.descricao + "</a>");
-                    if(item.categorias){
-                        rows.push("    <span class=\"ui-icon ui-icon-info info_cat\" style=\"float: right; vertical-align: middle; cursor: pointer;\" title='"+item.categorias+"' ></span>");
-                    }    
-                    if(item.link){
-                        rows.push("    <a href='"+item.link+"' target=\"_blank\"><img src=\"../../img/external-link2.png\" /></a>");
-                    }
-                    rows.push("</td>");
-                    rows.push("<td style=\"text-align: right; white-space: nowrap\">");
-                    rows.push("    <span class=\"info_cat\" title='"+item.info_cat_title+"'>"+item.info_cat_value+"</span>");
-                    rows.push("</td>");
-                    rows.push("<td style=\"text-align: right; white-space: nowrap\">"+item.inclusao+"</td>");
-                    rows.push("<td style=\"text-align: right;\"><span class='"+item.class_valor+"'>"+item.valor+"</span></td>");
-                    rows.push("</tr>");
-                });
-                $('#tbl_lancamentos > tbody').html(rows.join(""));
             }
         </script>        
 

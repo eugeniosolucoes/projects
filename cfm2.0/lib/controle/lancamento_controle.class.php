@@ -23,7 +23,7 @@ class lancamento_controle extends core_controle {
                 $this->excluir();
                 break;
             case 'listar_tabela':
-                return $this->listar();
+                return $this->listar_tabela_json();
             case 'retornar':
                 return $this->retornar();
             case 'novo':
@@ -411,6 +411,40 @@ class lancamento_controle extends core_controle {
             //array_unshift($categorias_json, '');
             Header('Content-Type: application/json');
             die(json_encode($categorias_json));
+        } catch (Exception $ex) {
+            $_SESSION['mensagem'] = $ex->getMessage();
+        }
+    }
+
+    function listar_tabela_json() {
+        try {
+            $dao = new lancamento_dao();
+            $link = $dao->get_conexao();
+            $colecao = array();
+            $usuario = unserialize($_SESSION['usuario']);
+            $id = $usuario->id;
+            $mes = @$_REQUEST['mes'] ? $_REQUEST['mes'] : date('m');
+            $ano = @$_REQUEST['ano'] ? $_REQUEST['ano'] : date('Y');
+            $sql = "SELECT l.*, 
+                DATE_FORMAT(l.inclusao, '%d') as dia,
+                DATE_FORMAT(l.inclusao, '%m') as mes, 
+                DATE_FORMAT(l.inclusao, '%Y') as ano, 
+                DATE_FORMAT(l.inclusao, '%d/%m/%Y') as inclusao_fmt, 
+                (select f.descricao FROM frequencia f 
+                WHERE f.id = l.frequencia) as frequencia, ( select GROUP_CONCAT(c.descricao SEPARATOR ' ') 
+                from categoria c inner join lancamento_categoria lc on c.id = lc.categorias_id inner join lancamento l1 on l1.id = lc.lancamentos_id 
+                where l1.id = l.id ) as categorias 
+                FROM lancamento l WHERE l.usuario = $id AND MONTH(l.inclusao) = $mes AND YEAR(l.inclusao) = $ano";
+            $result = mysql_query($sql, $link);
+            if (!$result) {
+                throw new Exception('Invalid query: ' . mysql_error());
+            } else {
+                while ($row = mysql_fetch_assoc($result)) {
+                    $colecao[] = $row;
+                }
+            }
+            mysql_close($link);
+            return $colecao;
         } catch (Exception $ex) {
             $_SESSION['mensagem'] = $ex->getMessage();
         }

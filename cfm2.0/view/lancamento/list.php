@@ -75,9 +75,9 @@ $controle->execute();
                 <button type="button" class="btn-block" id="btn-total-categorias" onclick="exibir_total_categorias();" >Exibir Totais por Categorias</button>
                 <div class="form-inline" id="div-lancamento">
                     <div id="load_lancamentos_progress"><img src='<?php echo CONTEXT_PATH; ?>img/loading.gif' />Carregando Lançamentos...</div>
-                    <label for="lista_categorias" >Categorias: </label>
-                    <input type="text" id="lista_categorias" placeholder="busca categorias" />
-                    <select class="btn btn-block" id="cmb_categorias"></select>
+                    <label class="div-lancamento-categorias" for="lista_categorias" >Categorias: </label>
+                    <input class="div-lancamento-categorias" type="text" id="lista_categorias" placeholder="busca categorias" />
+                    <select class="div-lancamento-categorias btn btn-block" id="cmb_categorias"></select>
                     <table id="tbl_lancamentos" style="width: 100%;">
                         <thead>
                             <tr>
@@ -150,6 +150,7 @@ $controle->execute();
 
                 $('#div-balanco').toggle('up');
                 $('#load_lancamentos_progress').hide();
+                $('.div-lancamento-categorias').hide();
                 $('#tbl_lancamentos').hide();
 
                 var getUrlParameter = function getUrlParameter(sParam) {
@@ -220,6 +221,7 @@ $controle->execute();
                             
                             $('#load_lancamentos_progress').hide();
                             $('#tbl_lancamentos').show();
+                            $('.div-lancamento-categorias').show();
                         }
                     });
                 }
@@ -406,11 +408,11 @@ $controle->execute();
                     rows.push("<td>"+ item.frequencias + "</td>");
                     rows.push("<td>");
                     rows.push("    <a class=\"link_descricao\" href='"+ item.link_descricao+ "'>"+ item.descricao + "</a>");
-                    if(item.categorias){
+                    if( item.categorias ){
                         rows.push("    <span class=\"ui-icon ui-icon-info info_cat\" style=\"float: right; vertical-align: middle; cursor: pointer;\" title='"+item.categorias+"' ></span>");
                     }    
-                    if(item.link){
-                        rows.push("    <a href='"+item.link+"' target=\"_blank\"><img src=\"../../img/external-link2.png\" /></a>");
+                    if( item.link ){
+                        rows.push("    <a href=\""+ item.link +"\" target=\"_blank\"><img src=\"../../img/external-link2.png\" /></a>");
                     }
                     rows.push("</td>");
                     rows.push("<td style=\"text-align: right; white-space: nowrap\">");

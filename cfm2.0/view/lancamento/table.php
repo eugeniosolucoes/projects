@@ -34,20 +34,22 @@ $lista_json = array();
 if (is_array($lancamentos) && count($lancamentos)) {
     foreach ($lancamentos as $lancamento) {
         $obj = new LancamentoDTO();
-        $obj->id = $lancamento->get_id();
-        $obj->tipo = $lancamento->get_tipo() ? 'credito' : 'debito';
-        $obj->frequencias = $controle->get_frequencia($lancamento)->get_descricao();
-        $obj->categorias = $controle->get_categorias_descricao_por_lancamento($lancamento);
-        $obj->link_descricao = CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento->get_id()}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}";
-        $obj->descricao = "{$lancamento->get_descricao()} {$lancamento->get_parcela_fmt()} ";
-        $obj->link = $lancamento->get_link();
-        $obj->info_cat_title = "{$months[$lancamento->get_mes()]}{$lancamento->get_ano()}";
-        lancamento_dao::format_date_to_view($lancamento);
-        $obj->info_cat_value = substr($lancamento->get_inclusao(), 0, 2);
-        lancamento_dao::format_date_to_bd($lancamento);
-        $obj->inclusao = $lancamento->get_inclusao();
-        $obj->class_valor = $lancamento->get_tipo() ? 'lancamento_credito' : 'lancamento_debito';
-        $obj->valor = sprintf("%.2f", $lancamento->get_valor() * $lancamento->get_quantidade());
+        $obj->id = $lancamento['id'];
+        $obj->tipo = $lancamento['tipo'] ? 'credito' : 'debito';
+        $obj->frequencias = $lancamento['frequencia'];
+        $obj->categorias = $lancamento['categorias'];
+        $obj->link_descricao = CONTEXT_PATH . "view/lancamento/form.php?comando=retornar&id={$lancamento['id']}&mes={$lancamento['mes']}&ano={$lancamento['ano']}";
+        $parcela_fmt = '';
+        if($lancamento['parcelado'] && $lancamento['num_parcela']) {
+            $parcela_fmt = sprintf("(%s/%s)", $lancamento['num_parcela'], $lancamento['qtd_parcelas']);
+        }
+        $obj->descricao = "{$lancamento['descricao']} {$parcela_fmt} ";
+        $obj->link = urldecode( $lancamento['link'] );
+        $obj->info_cat_title = "{$months[$lancamento['mes']]}{$lancamento['ano']}";
+        $obj->info_cat_value = $lancamento['dia'];
+        $obj->inclusao = $lancamento['inclusao'];
+        $obj->class_valor = $lancamento['tipo'] ? 'lancamento_credito' : 'lancamento_debito';
+        $obj->valor = sprintf("%.2f", $lancamento['valor'] * $lancamento['quantidade']);
         $lista_json[] = $obj;
     }
 }

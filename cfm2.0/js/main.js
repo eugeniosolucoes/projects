@@ -345,3 +345,17 @@ function apagar_form_salvo(form_id){
 }
 
 
+function get_proxima_data(mydate) {
+    var now =  mydate || new Date();
+    var limite = now.getMonth() === 1 ? 28 : 30;
+    var day = now.getDate();
+    if( day >= limite ){
+        now.setMonth( now.getMonth() + 2 );
+    } else {
+        now.setMonth( now.getMonth() + 1 );
+    }
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var strDate = now.getMonth() < 10 ? '07/0'+(month)+'/'+year : '07/'+(month)+'/'+year;
+    return strDate;
+}

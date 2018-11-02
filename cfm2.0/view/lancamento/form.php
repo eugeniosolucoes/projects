@@ -46,7 +46,18 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                 <div id="div-balanco" class="ui-widget-content ui-corner-all">
                     <h3 id="titulo_balanco" class="ui-widget-header ui-corner-all">Balanço</h3>
                     <div id="div-conteudo-balanco" >
-                        <?php //require_once './balanco.php'; ?>
+                        <ul class="group-balanco">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <ul class="group-balanco">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
                     </div>    
                 </div>
                 <h3>Lançamento</h3>
@@ -61,11 +72,10 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                         <label class="control-label" for="parcelado">Parcelado
                             <input type="checkbox" name="parcelado" id="parcelado" <?php echo $lancamento->parcelado ? 'checked' : ''; ?> />
                             <?php
-                              if( $lancamento->parcelado && $lancamento->lancamento_id ) {
+                            if ($lancamento->parcelado && $lancamento->lancamento_id) {
                                 $parcelado_inicial = "form.php?comando=retornar&id={$lancamento->lancamento_id}&mes={$lancamento->get_mes()}&ano={$lancamento->get_ano()}";
-                                printf("<div style='float:left;'><a href=\"%s\" ><span class=\"ui-icon ui-icon-arrowreturnthick-1-n\" title=\"Ir para parcela inicial\"></span></a></div>", 
-                                        $parcelado_inicial);
-                              }
+                                printf("<div style='float:left;'><a href=\"%s\" ><span class=\"ui-icon ui-icon-arrowreturnthick-1-n\" title=\"Ir para parcela inicial\"></span></a></div>", $parcelado_inicial);
+                            }
                             ?>
                         </label>
                         <input style="text-align: right;" class="span1 parcelado" type="number" min="0" step="1" id="qtd_parcelas" name="qtd_parcelas" placeholder="Qtd Parcelas" value="<?php echo $lancamento->qtd_parcelas; ?>"  />
@@ -96,22 +106,22 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
                             <input type="text" id="categoria_busca" name="categoria_busca" placeholder="busca categoria" value="" />
                             <label class="control-label" for="categoria">Categorias
                                 <?php /*
-                                $select = new dropdownlist();
-                                $select->set_collection($categorias);
-                                $select->set_name('categoria[]');
-                                $select->set_id('categoria');
-                                $select->set_select_class('');
-                                $select->set_multiple('multiple');
-                                $select->set_selected_values($controle->get_categorias($lancamento));
-                                $select->render(); */
+                                  $select = new dropdownlist();
+                                  $select->set_collection($categorias);
+                                  $select->set_name('categoria[]');
+                                  $select->set_id('categoria');
+                                  $select->set_select_class('');
+                                  $select->set_multiple('multiple');
+                                  $select->set_selected_values($controle->get_categorias($lancamento));
+                                  $select->render(); */
                                 ?>
                                 <select name="categoria[]" id="categoria" multiple ></select>
                             </label>
                             <input class="input-block-level" type="text" id="link" name="link" placeholder="Link(URL)" value="<?php echo $lancamento->get_link(); ?>" />
-                            <?php 
-                                if($lancamento->get_link()){
-                                    printf("<a href='%s' target='_blank'><img src='../../img/external-link.png' /></a>", $lancamento->get_link());
-                                }
+                            <?php
+                            if ($lancamento->get_link()) {
+                                printf("<a href='%s' target='_blank'><img src='../../img/external-link.png' /></a>", $lancamento->get_link());
+                            }
                             ?>
                         </div>
                     </div>
@@ -138,145 +148,141 @@ $categorias = $categoria_controle->listar_por_tipo($lancamento);
         <?php include $lib_path . 'inc/footer_bootstrap.php'; ?>
 
         <script>
-            $(document).ready(function() {
-    
+            $(document).ready(function () {
+
                 $('#div-balanco').toggle('up');
 
                 $('#btn-balanco').click(function () {
                     $('#div-balanco').toggle('blind');
                 });
-                
+
                 var vinclusao = $('#inclusao').val().split('/');
-                if( vinclusao.length === 3 ) {
+                if (vinclusao.length === 3) {
                     $('#ano').val(vinclusao[2]);
                     $('#mes').val(vinclusao[1]);
                 }
-                
+
                 $("#inclusao").datepicker({
                     buttonText: "data do lançamento",
                     showButtonPanel: true,
-					changeMonth: true,
-					changeYear: true
+                    changeMonth: true,
+                    changeYear: true
                 });
-                
+
                 toggle_qtd_parcelas();
-                
-                $('#parcelado').click(function() {
+
+                $('#parcelado').click(function () {
                     toggle_qtd_parcelas();
                 });
-                
-                $('#inclusao').change(function() {
+
+                $('#inclusao').change(function () {
                     var vdata = $('#inclusao').val().split('/');
-                    if( vdata.length === 3 ) {
+                    if (vdata.length === 3) {
                         $('#ano').val(vdata[2]);
                         $('#mes').val(vdata[1]);
                     }
-                    load_balanco(vdata[2],vdata[1]);
+                    load_balanco(vdata[2], vdata[1]);
                 });
 
-                $('#btn-lancamentos').click(function(){
+                $('#btn-lancamentos').click(function () {
                     listar_periodo('<?php echo CONTEXT_PATH; ?>view/lancamento/list.php?comando=listar');
                 });
 
-			$('#valor').on('focus',function() {
-				var text = $('#descricao').val(); 
-				if( text.indexOf("ITAU UNICLASS:") != -1 ) { 
-				  var f = text.indexOf("Local:"); 
-				  var text1 = text.substr(0, f); 
-				  var i = text1.lastIndexOf("R") 
-				  var text2 = text1.substr(i+2).trim(); 
-				  var valor = text2.replace(',', '.'); 
-				  $('#valor').val(valor); 
-                                  calc_total();
-				}
-				if( text.indexOf("UNICLASS MC PLAT") != -1 ) { 
-				  var f = text.indexOf("em "); 
-				  var text1 = text.substr(0, f); 
-				  var i = text1.lastIndexOf("R") 
-				  var text2 = text1.substr(i+2).trim(); 
-				  var valor = text2.replace(',', '.');
-                                  $("#categoria option[value=30]").prop("selected", true);
-                                  var now = new Date();
-                                  var mes_corrente = now.getMonth() +1;
-                                  var proximo_mes = (mes_corrente === 12) ? 1 : mes_corrente + 1; 
-                                  var ano = (proximo_mes === 1) ? now.getFullYear() + 1 : now.getFullYear();
-                                  var strData = proximo_mes < 10 ? '11/0'+(proximo_mes)+'/'+ano : '11/'+(proximo_mes)+'/'+ano;
-                                  $('#inclusao').val(strData);
-                                  $('#inclusao').change();
-				  $('#valor').val(valor);
-                                  calc_total();
-				}
-			});
-                        load_balanco(<?php echo substr($lancamento->get_inclusao(), 6); ?>, <?php echo substr($lancamento->get_inclusao(), 3, 2); ?>);
-                        $('#valor').on('change', function(){
-                            calc_total();
-                        });
-                        $('#quantidade').on('change', function(){
-                            calc_total();
-                        });
+                $('#valor').on('focus', function () {
+                    var text = $('#descricao').val();
+                    if (text.indexOf("ITAU UNICLASS:") != -1) {
+                        var f = text.indexOf("Local:");
+                        var text1 = text.substr(0, f);
+                        var i = text1.lastIndexOf("R")
+                        var text2 = text1.substr(i + 2).trim();
+                        var valor = text2.replace(',', '.');
+                        $('#valor').val(valor);
                         calc_total();
-                        
-                        retornar_categorias_json(<?php echo ($lancamento->tipo ? 1 : 0). ", ". ($lancamento->get_id() ? $lancamento->get_id() : -1); ?>);
-                            
-                        $('#categoria_busca').on('blur', function(){
-                            var txt = $('#categoria_busca').val();
-                            $('#categoria option').filter(function() { 
-                                return ($(this).text() == txt); 
-                            }).prop('selected', true);
-                            if( txt.indexOf("nubank") !== -1 ) { 
-                                $("#categoria option[value=30]").prop("selected", true);
-                                var now = new Date();
-                                var mes_corrente = ( now.getMonth() + 1 );
-                                var proximo_mes = (mes_corrente === 12) ? 1 : mes_corrente + 1; 
-                                var ano = (proximo_mes === 1) ? now.getFullYear() + 1 : now.getFullYear();
-                                var strData = proximo_mes < 10 ? '07/0'+(proximo_mes)+'/'+ano : '07/'+(proximo_mes)+'/'+ano;
-                                $('#inclusao').val(strData);
-                                $('#inclusao').change();
-                                calc_total();
-                            }
-                        });    
-                            
+                    }
+                    if (text.indexOf("UNICLASS MC PLAT") != -1) {
+                        var f = text.indexOf("em ");
+                        var text1 = text.substr(0, f);
+                        var i = text1.lastIndexOf("R")
+                        var text2 = text1.substr(i + 2).trim();
+                        var valor = text2.replace(',', '.');
+                        $("#categoria option[value=30]").prop("selected", true);
+                        var now = new Date();
+                        var mes_corrente = now.getMonth() + 1;
+                        var proximo_mes = (mes_corrente === 12) ? 1 : mes_corrente + 1;
+                        var ano = (proximo_mes === 1) ? now.getFullYear() + 1 : now.getFullYear();
+                        var strData = proximo_mes < 10 ? '11/0' + (proximo_mes) + '/' + ano : '11/' + (proximo_mes) + '/' + ano;
+                        $('#inclusao').val(strData);
+                        $('#inclusao').change();
+                        $('#valor').val(valor);
+                        calc_total();
+                    }
+                });
+                load_balanco(<?php echo substr($lancamento->get_inclusao(), 6); ?>, <?php echo substr($lancamento->get_inclusao(), 3, 2); ?>);
+                $('#valor').on('change', function () {
+                    calc_total();
+                });
+                $('#quantidade').on('change', function () {
+                    calc_total();
+                });
+                calc_total();
+
+                retornar_categorias_json(<?php echo ($lancamento->tipo ? 1 : 0) . ", " . ($lancamento->get_id() ? $lancamento->get_id() : -1); ?>);
+
+                $('#categoria_busca').on('blur', function () {
+                    var txt = $('#categoria_busca').val();
+                    $('#categoria option').filter(function () {
+                        return ($(this).text() == txt);
+                    }).prop('selected', true);
+                    if (txt.indexOf("nubank") !== -1) {
+                        $("#categoria option[value=30]").prop("selected", true);
+                        var strData = get_proxima_data();
+                        $('#inclusao').val(strData);
+                        $('#inclusao').change();
+                        calc_total();
+                    }
+                });
+
             });
-            function calc_total(){
+            function calc_total() {
                 var v = $('#valor').val();
                 var q = $('#quantidade').val();
-                if(!Number.isNaN(v) && !Number.isNaN(q)){
+                if (!Number.isNaN(v) && !Number.isNaN(q)) {
                     var vt = v * q;
                     $('#val_tot').val(vt.toFixed(2));
-                }    
-            }    
+                }
+            }
             function load_balanco(ano, mes) {
                 //$('#div-balanco').empty();
                 $('#titulo_balanco').html("<div style='width: 100%; text-align: center;'><img src='<?php echo CONTEXT_PATH . "img/loading.gif' />Carregando Balanço...</div>"; ?>");
                 $.ajax({
-                       url: 'balanco.php',
-                       data: {
-                            comando: 'retornar',
-                            ano: ano,
-                            mes: mes
-                        }
-                   }).done(function (resposta) {
-                       $('#div-conteudo-balanco').html(resposta);
-                       $('#titulo_balanco').html('Balanço');
+                    url: 'balanco.php',
+                    data: {
+                        comando: 'retornar',
+                        ano: ano,
+                        mes: mes
+                    }
+                }).done(function (resposta) {
+                    $('#div-conteudo-balanco').html(resposta);
+                    $('#titulo_balanco').html('Balanço');
                 });
             }
-            
-            function excluir_lancamento(id){
+
+            function excluir_lancamento(id) {
                 var resultado = confirm('Deseja realmente EXCLUIR este lançamento?');
                 if (resultado) {
                     var vdata = $('#inclusao').val().split('/');
                     var params = new Array();
                     params['comando'] = 'excluir';
-                    params['lancamentos'] =  [id];
+                    params['lancamentos'] = [id];
                     params['mes'] = vdata[1];
                     params['ano'] = vdata[2];
                     post_to_url('list.php', params, 'post');
                 }
                 return resultado;
             }
-            
-            function toggle_qtd_parcelas(){
-                if($('#parcelado').is(':checked')){
+
+            function toggle_qtd_parcelas() {
+                if ($('#parcelado').is(':checked')) {
                     $('#qtd_parcelas').attr('min', 2);
                     $('#qtd_parcelas').show();
                     $('#num_parcela').show();

@@ -18,12 +18,6 @@ import br.com.eugeniosolucoes.nfse.model.ConsultarSituacaoLoteRpsResposta;
 import br.com.eugeniosolucoes.nfse.model.EnviarLoteRpsEnvio;
 import br.com.eugeniosolucoes.nfse.model.EnviarLoteRpsResposta;
 import br.com.eugeniosolucoes.nfse.servico.NsfeServico;
-import br.com.eugeniosolucoes.nfse.ws.Nfse;
-import br.com.eugeniosolucoes.nfse.ws.NfseSoap;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
-import java.util.Properties;
-import javax.xml.namespace.QName;
 import static br.com.eugeniosolucoes.nfse.util.Config.PROP;
 import br.com.eugeniosolucoes.nfse.util.Subscriber;
 import br.com.eugeniosolucoes.nfse.util.XmlUtils;
@@ -35,9 +29,15 @@ import br.com.eugeniosolucoes.nfse.ws.ConsultarNfseRequest;
 import br.com.eugeniosolucoes.nfse.ws.ConsultarNfseResponse;
 import br.com.eugeniosolucoes.nfse.ws.ConsultarSituacaoLoteRpsRequest;
 import br.com.eugeniosolucoes.nfse.ws.ConsultarSituacaoLoteRpsResponse;
+import br.com.eugeniosolucoes.nfse.ws.Nfse;
+import br.com.eugeniosolucoes.nfse.ws.NfseSoap;
 import br.com.eugeniosolucoes.nfse.ws.RecepcionarLoteRpsRequest;
 import br.com.eugeniosolucoes.nfse.ws.RecepcionarLoteRpsResponse;
 import java.io.InputStream;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+import java.util.Properties;
+import javax.xml.namespace.QName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,6 +97,7 @@ public class NsfeServicoImpl implements NsfeServico {
         try {
             String xml = XmlUtils.createXmlFromObject( envio );
             xml = XmlUtils.format( xml );
+            xml = xml.replaceAll( ".\\d\\d\\d[+,-]\\d\\d:\\d\\d</DataEmissao>", "</DataEmissao>" );
             String xmlAssinado = Subscriber.getInstance().assinarLoteRps( xml );
             xmlAssinado = XmlUtils.format( xmlAssinado );
             InputStream xsd1 = this.getClass().getResourceAsStream( XSD1 );

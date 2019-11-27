@@ -16,8 +16,8 @@ import br.com.eugeniosolucoes.nfse.ws.ConsultarSituacaoLoteRpsRequest;
 import br.com.eugeniosolucoes.nfse.ws.ConsultarSituacaoLoteRpsResponse;
 import br.com.eugeniosolucoes.nfse.ws.NfseSoap;
 import java.io.InputStream;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -126,4 +126,23 @@ public class NsfeCariocaHelperTest {
         MunicipioRJ result = MunicipioRJ.getMunicipio( municipio );
         assertEquals( MunicipioRJ.SAO_GONCALO, result);
     }
+
+    @Test
+    public void testFixDataXML() {
+        String xmlData = "";
+        xmlData += ".000-02:00</DataEmissao>\n";
+        xmlData += ".000-03:00</DataEmissao>\n";
+        xmlData += ".000-04:00</DataEmissao>\n";
+        xmlData += ".999+04:00</DataEmissao>\n";
+        xmlData += ".111+05:00</DataEmissao>\n";
+        String expected = "";
+        expected += "</DataEmissao>\n";
+        expected += "</DataEmissao>\n";
+        expected += "</DataEmissao>\n";
+        expected += "</DataEmissao>\n";
+        expected += "</DataEmissao>\n";
+        String result = xmlData.replaceAll( ".\\d\\d\\d[+,-]\\d\\d:\\d\\d</DataEmissao>", "</DataEmissao>" );
+        assertEquals( expected, result );
+    }
+
 }

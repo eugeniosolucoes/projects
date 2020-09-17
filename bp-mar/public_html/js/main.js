@@ -62,10 +62,31 @@ $(document).ready(function () {
 function calcular() {
     let formDados = new Object();
     let indexPosto = $('#patentes option:selected').index();
-    formDados.posto = soldos.soldos[indexPosto];
     let indexAdCompDisp = $('#ad_comp_disp option:selected').index();
+    
+    formDados.posto = soldos.soldos[indexPosto];
     formDados.adCompDisp = soldos.soldos[indexAdCompDisp].ad_comp_disp;
-    formDados.adHab = $('#ad_habilitacao_perc').val();
+    formDados.adMilitar = soldos.soldos[indexPosto].ad_militar;
+    formDados.adHab = parseInt( $('#ad_habilitacao_perc').val() );
+    formDados.fusma = soldos.fusma;
+    formDados.fusmaDep = soldos.fusma_dep;
+    formDados.percPensao = parseFloat( $('#perc_pensao').val() );
+    formDados.qtdDep = parseInt( $('#qtd_dep').val() );
+    
+    let rendimentoBruto = formDados.posto.soldo 
+            + ( formDados.posto.soldo * (formDados.adCompDisp/100) ) 
+            + ( formDados.posto.soldo * (formDados.adMilitar/100) )
+            + ( formDados.posto.soldo * (formDados.adHab/100) );
+    
+    formDados.rendimentoBruto = rendimentoBruto.toFixed(2);
+    
+    let descontos = ( formDados.rendimentoBruto * (formDados.percPensao/100) ) 
+            + ( formDados.rendimentoBruto * ( formDados.fusma/100 ) )
+            + ( formDados.rendimentoBruto * ( (formDados.fusmaDep * formDados.qtdDep) / 100) );
+    
+    formDados.descontos = descontos.toFixed(2);
     console.log(formDados);
     
+    console.log(formDados.rendimentoBruto);
+    console.log(formDados.descontos);
 }

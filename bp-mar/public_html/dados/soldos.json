@@ -6,85 +6,100 @@
             "descricao": "Almirante de Esquadra",
             "sigla": "AESQ",
             "soldo": 13471.00,
-            "ad_comp_disp": 41
+            "ad_comp_disp": 41,
+            "ad_militar": 28
         },
         {
             "descricao": "Vice-Almirante",
             "sigla": "VALTE",
             "soldo": 12912.00,
-            "ad_comp_disp": 38
+            "ad_comp_disp": 38,
+            "ad_militar": 28
         },
         {
             "descricao": "Contra-Almirante",
             "sigla": "CALTE",
             "soldo": 12490.00,
-            "ad_comp_disp": 35
+            "ad_comp_disp": 35,
+            "ad_militar": 28
         },
         {
             "descricao": "Capitão de Mar e Guerra",
             "sigla": "CMG",
             "soldo": 11451.00,
-            "ad_comp_disp": 32
+            "ad_comp_disp": 32,
+            "ad_militar": 25
         },
         {
             "descricao": "Capitão de Fragata",
             "sigla": "CF",
             "soldo": 11250.00,
-            "ad_comp_disp": 26
+            "ad_comp_disp": 26,
+            "ad_militar": 25
         },
         {
             "descricao": "Capitão de Corveta",
             "sigla": "CC",
             "soldo": 11088.00,
-            "ad_comp_disp": 20
+            "ad_comp_disp": 20,
+            "ad_militar": 25
         },
         {
             "descricao": "Capitão-Tenente",
             "sigla": "CT",
             "soldo": 9135.00,
-            "ad_comp_disp": 12
+            "ad_comp_disp": 12,
+            "ad_militar": 23,
+            "ad_militar": 22
         },
         {
             "descricao": "Primeiro-Tenente",
             "sigla": "1T",
             "soldo": 8245.00,
-            "ad_comp_disp": 6
+            "ad_comp_disp": 6,
+            "ad_militar": 19
         },
         {
             "descricao": "Segundo-Tenente",
             "sigla": "2T",
             "soldo": 7490.00,
-            "ad_comp_disp": 5
+            "ad_comp_disp": 5,
+            "ad_militar": 19
         },
         {
             "descricao": "Suboficial",
             "sigla": "SO",
             "soldo": 6169.00,
-            "ad_comp_disp": 32
+            "ad_comp_disp": 32,
+            "ad_militar": 16
         },
         {
             "descricao": "Primeiro-Sargento",
             "sigla": "1SG",
             "soldo": 5483.00,
-            "ad_comp_disp": 20
+            "ad_comp_disp": 20,
+            "ad_militar": 16
         },
         {
             "descricao": "Segundo-Sargento",
             "sigla": "2SG",
             "soldo": 4770.00,
-            "ad_comp_disp": 12
+            "ad_comp_disp": 12,
+            "ad_militar": 16
         },
         {
             "descricao": "Segundo-Sargento (QESM)",
             "sigla": "2SG(QESM)",
             "soldo": 4770.00,
-            "ad_comp_disp": 26
+            "ad_comp_disp": 26,
+            "ad_militar": 16
         },
         {
             "descricao": "Terceiro-Sargento",
             "sigla": "3SG",
             "soldo": 3825.00,
-            "ad_comp_disp": 6
+            "ad_comp_disp": 6,
+            "ad_militar": 16
         },
         {
             "descricao": "Terceiro-Sargento (QESM)",
@@ -96,13 +111,15 @@
             "descricao": "Cabo",
             "sigla": "CB",
             "soldo": 2627.00,
-            "ad_comp_disp": 6
+            "ad_comp_disp": 6,
+            "ad_militar": 13
         },
         {
             "descricao": "Marinheiro",
             "sigla": "MN",
             "soldo": 1765.00,
-            "ad_comp_disp": 5
+            "ad_comp_disp": 5,
+            "ad_militar": 13
         }    
 
     ]

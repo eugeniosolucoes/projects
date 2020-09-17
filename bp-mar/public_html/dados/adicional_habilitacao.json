@@ -1,0 +1,97 @@
+{
+    "habilitacoes": [
+        {
+            "tipo": "Alto Estudos Categoria I", 
+            "percentuais": [ 
+                {
+                    "data": "2020-07-01",
+                    "percentual": 42
+                }, 
+                {
+                    "data": "2021-07-01",
+                    "percentual": 54
+                }, 
+                {
+                    "data": "2022-07-01",
+                    "percentual": 66
+                }, 
+                {
+                    "data": "2023-07-01",
+                    "percentual": 73
+                } 
+            ]
+        },
+        {
+            "tipo": "Alto Estudos Categoria II", 
+            "percentuais": [ 
+                {
+                    "data": "2020-07-01",
+                    "percentual": 37
+                }, 
+                {
+                    "data": "2021-07-01",
+                    "percentual": 49
+                }, 
+                {
+                    "data": "2022-07-01",
+                    "percentual": 61
+                }, 
+                {
+                    "data": "2023-07-01",
+                    "percentual": 68
+                } 
+            ]
+        },
+        {
+            "tipo": "Aperfeicoamento", 
+            "percentuais": [ 
+                {
+                    "data": "2020-07-01",
+                    "percentual": 27
+                }, 
+                {
+                    "data": "2021-07-01",
+                    "percentual": 34
+                }, 
+                {
+                    "data": "2022-07-01",
+                    "percentual": 41
+                }, 
+                {
+                    "data": "2023-07-01",
+                    "percentual": 45
+                } 
+            ]
+        },
+        {
+            "tipo": "Especialização", 
+            "percentuais": [ 
+                {
+                    "data": "2020-07-01",
+                    "percentual": 19
+                }, 
+                {
+                    "data": "2021-07-01",
+                    "percentual": 22
+                }, 
+                {
+                    "data": "2022-07-01",
+                    "percentual": 25
+                }, 
+                {
+                    "data": "2023-07-01",
+                    "percentual": 27
+                } 
+            ]
+        },        
+        {
+            "tipo": "Formação", 
+            "percentuais": [ 
+                {
+                    "data": "2020-06-30",
+                    "percentual": 12
+                } 
+            ]
+        }        
+    ]
+}

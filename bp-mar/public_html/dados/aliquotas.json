@@ -1,0 +1,21 @@
+{
+    "aliquotas": [
+        {
+           "valor":  1903.98,
+           "indice": 7.5
+        },
+        {
+           "valor":  2826.65,
+           "indice":  15
+        },
+        {
+           "valor":  3751.05,
+           "indice":  22.5
+        },
+        {
+           "valor":  4664.68,
+           "indice":  27.5
+        }
+    ],
+    "deducao_dependente" : 189.59
+}

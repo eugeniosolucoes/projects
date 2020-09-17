@@ -1,7 +1,13 @@
 let soldos;
+let aliquotas;
 let adicional_habilitacao;
+let formDados = new Object();
 
 $(document).ready(function () {
+
+    $.getJSON("dados/aliquotas.json", function (data) {
+        aliquotas = data;
+    });
 
     $.getJSON("dados/soldos.json", function (data) {
         soldos = data;
@@ -60,7 +66,6 @@ $(document).ready(function () {
 });
 
 function calcular() {
-    let formDados = new Object();
     let indexPosto = $('#patentes option:selected').index();
     let indexAdCompDisp = $('#ad_comp_disp option:selected').index();
     
@@ -72,6 +77,7 @@ function calcular() {
     formDados.fusmaDep = soldos.fusma_dep;
     formDados.percPensao = parseFloat( $('#perc_pensao').val() );
     formDados.qtdDep = parseInt( $('#qtd_dep').val() );
+    formDados.deducaoDependentes = formDados.qtdDep * aliquotas.deducao_dependente;
     
     let rendimentoBruto = formDados.posto.soldo 
             + ( formDados.posto.soldo * (formDados.adCompDisp/100) ) 
@@ -80,13 +86,41 @@ function calcular() {
     
     formDados.rendimentoBruto = rendimentoBruto.toFixed(2);
     
-    let descontos = ( formDados.rendimentoBruto * (formDados.percPensao/100) ) 
-            + ( formDados.rendimentoBruto * ( formDados.fusma/100 ) )
-            + ( formDados.rendimentoBruto * ( (formDados.fusmaDep * formDados.qtdDep) / 100) );
+    formDados.pensaoMilitar = parseFloat( formDados.rendimentoBruto * (formDados.percPensao/100) ).toFixed(2);
+    formDados.fusmaCalculado = parseFloat( formDados.rendimentoBruto * ( formDados.fusma/100 ) ).toFixed(2);
+    formDados.fusmaCalculadoDep = parseFloat( formDados.rendimentoBruto * ( (formDados.fusmaDep * formDados.qtdDep) / 100) ).toFixed(2);
     
-    formDados.descontos = descontos.toFixed(2);
-    console.log(formDados);
+    let descontos = parseFloat ( formDados.pensaoMilitar ) + parseFloat( formDados.fusmaCalculado ) + parseFloat( formDados.fusmaCalculadoDep );
+    
+    console.log(descontos);
+    formDados.descontos = parseFloat( descontos ).toFixed(2);
     
     console.log(formDados.rendimentoBruto);
     console.log(formDados.descontos);
+    console.log(formDados.deducaoDependentes);
+    
+    formDados.baseCalculo = formDados.rendimentoBruto - formDados.descontos - formDados.deducaoDependentes;
+    
+    let imposto = 0;
+    let faixa = 0;
+    for ( i = 0; i < aliquotas.aliquotas.length; i++ ) {
+        var aliquota = aliquotas.aliquotas[i];
+        var proxima = (i+1) == aliquotas.aliquotas.length ? formDados.baseCalculo : aliquotas.aliquotas[i+1].valor;
+        if ( formDados.baseCalculo >= aliquota.valor ) {
+            faixa = ( proxima - aliquota.valor ).toFixed( 2 );
+            imposto += faixa * aliquota.indice / 100;
+        }
+    }
+    formDados.impostoRenda = imposto.toFixed(2);
+    
+    formDados.salarioLiquido = formDados.rendimentoBruto - formDados.descontos - formDados.impostoRenda;
+    
+    console.log(formDados);
+    
+    $('#salario_bruto').html(formDados.rendimentoBruto);
+    $('#pensao_militar').html(formDados.pensaoMilitar);
+    $('#fusma').html(formDados.fusmaCalculado);
+    $('#fusma_dep').html(formDados.fusmaCalculadoDep);
+    $('#imposto_renda').html(formDados.impostoRenda);
+    $('#salario_liquido').html(formDados.salarioLiquido);
 }

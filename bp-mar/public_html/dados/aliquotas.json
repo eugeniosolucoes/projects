@@ -1,6 +1,10 @@
 {
     "aliquotas": [
         {
+           "valor":  0,
+           "indice": 0
+        },
+        {
            "valor":  1903.98,
            "indice": 7.5
         },

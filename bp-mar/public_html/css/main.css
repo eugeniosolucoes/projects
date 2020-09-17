@@ -10,6 +10,11 @@ table tr td {
     border: 1px solid black;
 }
 
+#tb_resultado tbody tr td:nth-child(2) {
+    width: 200px;
+    text-align: right;
+}
+
 
 
 

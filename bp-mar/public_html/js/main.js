@@ -89,8 +89,12 @@ function calcular() {
     formDados.pensaoMilitar = parseFloat( formDados.rendimentoBruto * (formDados.percPensao/100) ).toFixed(2);
     formDados.fusmaCalculado = parseFloat( formDados.rendimentoBruto * ( formDados.fusma/100 ) ).toFixed(2);
     formDados.fusmaCalculadoDep = parseFloat( formDados.rendimentoBruto * ( (formDados.fusmaDep * formDados.qtdDep) / 100) ).toFixed(2);
+    formDados.mntlp = $('#chkMntlp').is(":checked") ? parseFloat( formDados.rendimentoBruto * ( (1.5) / 100) ).toFixed(2) : 0;
     
-    let descontos = parseFloat ( formDados.pensaoMilitar ) + parseFloat( formDados.fusmaCalculado ) + parseFloat( formDados.fusmaCalculadoDep );
+    let descontos = parseFloat ( formDados.pensaoMilitar ) 
+            + parseFloat( formDados.fusmaCalculado ) 
+            + parseFloat( formDados.fusmaCalculadoDep )
+            + parseFloat( formDados.mntlp );
     
     console.log(descontos);
     formDados.descontos = parseFloat( descontos ).toFixed(2);
@@ -113,7 +117,7 @@ function calcular() {
     }
     formDados.impostoRenda = imposto.toFixed(2);
     
-    formDados.salarioLiquido = formDados.rendimentoBruto - formDados.descontos - formDados.impostoRenda;
+    formDados.salarioLiquido = parseFloat(formDados.rendimentoBruto - formDados.descontos - formDados.impostoRenda ).toFixed(2);
     
     console.log(formDados);
     
@@ -121,6 +125,7 @@ function calcular() {
     $('#pensao_militar').html(formDados.pensaoMilitar);
     $('#fusma').html(formDados.fusmaCalculado);
     $('#fusma_dep').html(formDados.fusmaCalculadoDep);
+    $('#mntlp').html(formDados.mntlp);
     $('#imposto_renda').html(formDados.impostoRenda);
     $('#salario_liquido').html(formDados.salarioLiquido);
 }

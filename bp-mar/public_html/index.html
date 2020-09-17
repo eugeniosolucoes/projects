@@ -55,7 +55,7 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <table class="table_dados">
+                <table id="tb_dados">
                     <tbody>
                         <tr><td>Posto/Graduação: </td><td><select id="patentes"></select></td></tr>
                         <tr><td>Ad. Comp. Disp: </td><td><select id="ad_comp_disp"></select></td></tr>
@@ -74,13 +74,17 @@
                             <td>Qtd. Dependentes</td>
                             <td><input type="number" id="qtd_dep" name="qtd_dep" value="0" /></td>
                         </tr>
+                        <tr>
+                            <td>MNT LP 1.5</td>
+                            <td><input type="checkbox" id="chkMntlp" /> </td>
+                        </tr>
                     </tbody>
                 </table>
                 <div style="padding-top: 8px;">
                     <p><a id="btn_calcular" class="btn btn-default" href="#" role="button">Calcular</a></p>
                 </div>
                 <div>
-                    <table>
+                    <table id="tb_resultado" >
                         <tbody>
                             <tr>
                                 <td>
@@ -114,6 +118,14 @@
                                     <span id="fusma_dep">0.0</span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    MNT LP 1.5
+                                </td>
+                                <td>
+                                    <span id="mntlp">0.0</span>
+                                </td>
+                            </tr>                            
                             <tr>
                                 <td>
                                     Imposto de Renda

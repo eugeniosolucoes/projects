@@ -12,12 +12,6 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -27,31 +21,6 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">BP - Marinha</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <!--          <form class="navbar-form navbar-right" role="form">
-                                <div class="form-group">
-                                  <input type="text" placeholder="Email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <input type="password" placeholder="Password" class="form-control">
-                                </div>
-                                <button type="submit" class="btn btn-success">Sign in</button>
-                              </form>-->
-                </div><!--/.navbar-collapse -->
-            </div>
-        </nav>
-
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
@@ -232,170 +201,197 @@
         <div class="container">
             <!-- Example row of columns -->
             <div class="row">
-                <div class="col-md-10" >
-                    <div style="padding-top: 50px;"></div>
-                    <table style="width: 100%;">
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Descrição</th>
-                                <th>Referências</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <span id="dica-1" >Posto / Graduação</span>
-                                </td>
-                                <td>
-                                    <b>POSTO OU GRADUAÇÃO</b> de acordo com a tabela de soldos dos Oficiais e Praças.
-                                </td>
-                                <td>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="dica-2" >Ad. Comp. Disp:</span>
-                                </td>
-                                <td>
-                                    <b>ADICIONAL DE COMPENSAÇÃO POR DISPONIBILIDADE</b> militar, consiste na parcela remuneratória mensal devida ao militar em razão da disponibilidade permanente e da dedicação exclusiva, nos termos estabelecidos em regulamento.
-                                </td>
-                                <td>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm#art8" target="_blank">Art. 8º da Lei nº 13.954, de 16 de dezembro de 2019</a>
-                                    <br/><br/>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/Decreto/D10471.htm" target="_blank">DECRETO Nº 10.471, DE 24 DE AGOSTO DE 2020</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="dica-3" >Ad. Habilitação:</span>
-                                </td>
-                                <td>
-                                    <b>ADICIONAL DE HABILITAÇÃO</b> - Art. 9º Os percentuais do adicional de habilitação, devido em razão de cursos realizados com aproveitamento pelo militar, são definidos no Anexo III a esta Lei e produzirão efeitos financeiros a partir das datas nele especificadas.
-                                </td>
-                                <td>
-                                    <a href="https://www.marinha.mil.br/spsm/sites/www.marinha.mil.br.spsm/files/BONO_436_27052019.pdf" target="_blank">BONO Nº 436 DE 27 DE MAIO DE 2019</a>
-                                    <br/><br/>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="dica-4" >Grat. Loc. Esp.:</span>
-                                </td>
-                                <td>
-                                    <b>GRATIFICAÇÃO DE LOCALIDADE ESPECIAL</b> - ANEXO III - TABELAS DE GRATIFICAÇÕES - TABELA I
-                                    <br/>
-                                    20% - Categoria A.
-                                    <br/>
-                                    10% - Categoria B.
-                                </td>
-                                <td>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">Arts. 1º e 3º - MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="dica-5" >Grat. Rep.:</span>
-                                </td>
-                                <td>
-                                    <b>GRATIFICAÇÃO DE REPRESENTAÇÃO</b> - ANEXO III - TABELAS DE GRATIFICAÇÕES - TABELA II
-                                    <br/>
-                                    10% - Oficial General.
-                                    <br/>
-                                    10% - Oficial Superior, Intermediário e Subalterno em cargo de Comando, Direção ou Chefia.
-                                    <br/>
-                                    2% - Participante em viagem de representação, instrução, emprego operacional ou por estar às ordens de autoridade estrangeira, no País.
-                                </td>
-                                <td>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">Arts. 1º e 3º - MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="dica-6" >Ad. Comp. Org.:</span>
-                                </td>
-                                <td>
-                                    <b>ADICIONAL DE COMPENSAÇÃO ORGÂNICA</b> - ANEXO II - TABELAS DE ADICIONAIS - TABELA V 
-                                    <br/>
-                                    20%<br/>
-                                    <ul>
-                                        <li>
-                                            Vôo em aeronave militar como tripulante orgânico, observador meteorológico, observador aéreo e fotogramétrico.
-                                        </li>
-                                        <li>
-                                            Salto em pára-quedas, cumprindo missão militar.
-                                        </li>
-                                        <li>
-                                            Imersão no exercício de funções regulamentares a bordo de submarinos.
-                                        </li>
-                                        <li>
-                                            Mergulho com escafandro ou com aparelho.
-                                        </li>
-                                        <li>
-                                            Controle de Tráfego Aéreo.
-                                        </li>
-                                    </ul>
-                                    10%
-                                    <br/>
-                                    <ul>
-                                        <li>
-                                            Trabalho com Raios X ou substâncias radioativas.
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="dica-7" >Ad. Perm.:</span>
-                                </td>
-                                <td>
-                                    <b>ADICIONAL DE PERMANÊNCIA</b>  - ANEXO II - TABELAS DE ADICIONAIS - TABELA VI<br/> 
-                                    5%<br/>
-                                    <ul>
-                                        <li>
-                                            Militar que, em atividade, a partir de 29 de dezembro de 2000, tenha completado, ou venha a completar, 720 dias a mais que o tempo requerido para transferência para a inatividade remunerada.
-                                        </li>
-                                    </ul>
-                                    5% a cada promoção<br/>
-                                    <ul>
-                                        <li>
-                                            Militar que, tendo satisfeito o requisito da alínea "a" acima, venha a ser promovido em atividade ao posto ou graduação superior.
+                <div class="col-md-4" >
+                    <div style="padding-top: 50px;">
+                        <table id="dicas">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Descrição</th>
+                                    <th>Referências</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span id="dica-1" >Posto / Graduação</span>
+                                    </td>
+                                    <td>
+                                        <b>POSTO OU GRADUAÇÃO</b> de acordo com a tabela de soldos dos Oficiais e Praças.
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-2" >Ad. Comp. Disp:</span>
+                                    </td>
+                                    <td>
+                                        <b>ADICIONAL DE COMPENSAÇÃO POR DISPONIBILIDADE</b> militar, consiste na parcela remuneratória mensal devida ao militar em razão da disponibilidade permanente e da dedicação exclusiva, nos termos estabelecidos em regulamento.
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm#art8" target="_blank">Art. 8º da Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                        <br/><br/>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/Decreto/D10471.htm" target="_blank">DECRETO Nº 10.471, DE 24 DE AGOSTO DE 2020</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-3" >Ad. Habilitação:</span>
+                                    </td>
+                                    <td>
+                                        <b>ADICIONAL DE HABILITAÇÃO</b> - Art. 9º Os percentuais do adicional de habilitação, devido em razão de cursos realizados com aproveitamento pelo militar, são definidos no Anexo III a esta Lei e produzirão efeitos financeiros a partir das datas nele especificadas.
+                                    </td>
+                                    <td>
+                                        <a href="https://www.marinha.mil.br/spsm/sites/www.marinha.mil.br.spsm/files/BONO_436_27052019.pdf" target="_blank">BONO Nº 436 DE 27 DE MAIO DE 2019</a>
+                                        <br/><br/>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-4" >Grat. Loc. Esp.:</span>
+                                    </td>
+                                    <td>
+                                        <b>GRATIFICAÇÃO DE LOCALIDADE ESPECIAL</b> - ANEXO III - TABELAS DE GRATIFICAÇÕES - TABELA I
+                                        <br/>
+                                        20% - Categoria A.
+                                        <br/>
+                                        10% - Categoria B.
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">Arts. 1º e 3º - MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-5" >Grat. Rep.:</span>
+                                    </td>
+                                    <td>
+                                        <b>GRATIFICAÇÃO DE REPRESENTAÇÃO</b> - ANEXO III - TABELAS DE GRATIFICAÇÕES - TABELA II
+                                        <br/>
+                                        10% - Oficial General.
+                                        <br/>
+                                        10% - Oficial Superior, Intermediário e Subalterno em cargo de Comando, Direção ou Chefia.
+                                        <br/>
+                                        2% - Participante em viagem de representação, instrução, emprego operacional ou por estar às ordens de autoridade estrangeira, no País.
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">Arts. 1º e 3º - MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-6" >Ad. Comp. Org.:</span>
+                                    </td>
+                                    <td>
+                                        <b>ADICIONAL DE COMPENSAÇÃO ORGÂNICA</b> - ANEXO II - TABELAS DE ADICIONAIS - TABELA V 
+                                        <br/>
+                                        20%<br/>
+                                        <ul>
+                                            <li>
+                                                Vôo em aeronave militar como tripulante orgânico, observador meteorológico, observador aéreo e fotogramétrico.
+                                            </li>
+                                            <li>
+                                                Salto em pára-quedas, cumprindo missão militar.
+                                            </li>
+                                            <li>
+                                                Imersão no exercício de funções regulamentares a bordo de submarinos.
+                                            </li>
+                                            <li>
+                                                Mergulho com escafandro ou com aparelho.
+                                            </li>
+                                            <li>
+                                                Controle de Tráfego Aéreo.
+                                            </li>
+                                        </ul>
+                                        10%
+                                        <br/>
+                                        <ul>
+                                            <li>
+                                                Trabalho com Raios X ou substâncias radioativas.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-7" >Ad. Perm.:</span>
+                                    </td>
+                                    <td>
+                                        <b>ADICIONAL DE PERMANÊNCIA</b>  - ANEXO II - TABELAS DE ADICIONAIS - TABELA VI<br/> 
+                                        5%<br/>
+                                        <ul>
+                                            <li>
+                                                Militar que, em atividade, a partir de 29 de dezembro de 2000, tenha completado, ou venha a completar, 720 dias a mais que o tempo requerido para transferência para a inatividade remunerada.
+                                            </li>
+                                        </ul>
+                                        5% a cada promoção<br/>
+                                        <ul>
+                                            <li>
+                                                Militar que, tendo satisfeito o requisito da alínea "a" acima, venha a ser promovido em atividade ao posto ou graduação superior.
 
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span id="dica-8" >Pensão Militar:</span>
-                                </td>
-                                <td>
-                                    CAPÍTULO I<br/>
-                                    DOS CONTRIBUINTES, DAS CONTRIBUIÇÕES E DOS DESCONTOS<br/>
-                                    “Art. 1º São contribuintes obrigatórios da <b>pensão militar</b>, mediante desconto mensal em folha de pagamento, os militares das Forças Armadas e os seus pensionistas.<br/>
-                                    Parágrafo único. O desconto mensal da pensão militar de que trata o caput deste artigo será aplicado, a partir de 1º de janeiro de 2020, para:<br/>
-                                    .................................................................................................................................<br/>
-                                    III -   pensionistas.” (NR)<br/>
-                                    “Art. 3º-A. A contribuição para a pensão militar incidirá sobre as parcelas que compõem os proventos na inatividade e sobre o valor integral da quota-parte percebida a título de pensão militar.<br/>
-                                    § 1º ........................................................................................................................<br/>
-                                    § 2º A alíquota referida no § 1º deste artigo será:<br/>
-                                    I - de 9,5% (nove e meio por cento), a partir de 1º de janeiro de 2020;<br/>
-                                    II - de 10,5% (dez e meio por cento), a partir de 1º de janeiro de 2021.<br/>
-                                </td>
-                                <td>
-                                    <a href="http://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2019/Lei/L13954.htm#art4" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-8" >Pensão Militar:</span>
+                                    </td>
+                                    <td>
+                                        <b>PENSÃO MILITAR</b>
+                                        CAPÍTULO I<br/>
+                                        DOS CONTRIBUINTES, DAS CONTRIBUIÇÕES E DOS DESCONTOS<br/>
+                                        “Art. 1º São contribuintes obrigatórios da <b>pensão militar</b>, mediante desconto mensal em folha de pagamento, os militares das Forças Armadas e os seus pensionistas.<br/>
+                                        Parágrafo único. O desconto mensal da pensão militar de que trata o caput deste artigo será aplicado, a partir de 1º de janeiro de 2020, para:<br/>
+                                        .................................................................................................................................<br/>
+                                        III -   pensionistas.” (NR)<br/>
+                                        “Art. 3º-A. A contribuição para a pensão militar incidirá sobre as parcelas que compõem os proventos na inatividade e sobre o valor integral da quota-parte percebida a título de pensão militar.<br/>
+                                        § 1º ........................................................................................................................<br/>
+                                        § 2º A alíquota referida no § 1º deste artigo será:<br/>
+                                        I - de 9,5% (nove e meio por cento), a partir de 1º de janeiro de 2020;<br/>
+                                        II - de 10,5% (dez e meio por cento), a partir de 1º de janeiro de 2021.<br/>
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2019/Lei/L13954.htm#art4" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-9" >FUSMA (Dependentes)</span>
+                                    </td>
+                                    <td>
+                                        <b>FUSMA</b> - 0.3% por Dependentes.<br/>
+                                        O Fundo de Saúde da Marinha (FUSMA) é um dos recursos financeiros oriundos de contribuições mensais obrigatórias dos militares, da ativa e na inatividade, e dos pensionistas dos militares, para custeio da assistência médico-hospitalar (AMH) fornecida pela MB, previsto na  Medida Provisória nº 2.215/2001, art. 15, II e III, e 25 e Decreto nº 92.512/86, art. 11, 13 e 24.
+                                    </td>
+                                    <td>
+                                        <a href="https://www.marinha.mil.br/content/fusma" target="_blank">FUSMA</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span id="dica-10" >MNT LP 1.5:</span>
+                                    </td>
+                                    <td>
+                                        <b>MNT LP 1.5</b><br/>
+                                        Art. 31.  Fica assegurada aos atuais militares, mediante contribuição específica de um vírgula cinco por cento das parcelas constantes do art. 10 desta Medida Provisória, a manutenção dos benefícios previstos na Lei no 3.765, de 1960, até 29 de dezembro de 2000.
+                                    </td>
+                                    <td>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/mpv/2215-10.htm" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a><br/><br/>
+                                        <a href="http://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2019/Lei/L13954.htm#art4" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

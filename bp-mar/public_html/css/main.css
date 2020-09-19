@@ -4,6 +4,11 @@
    Author's custom styles
    ========================================================================== */
 
+body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
 
 table tr td {
     padding: 5px;
@@ -23,13 +28,7 @@ table tr td {
     font-weight: bold;
 }
 
-
-
-
-
-
-
-
-
-
+#dicas tbody tr td {
+    vertical-align: top;
+}
 

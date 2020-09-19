@@ -57,89 +57,144 @@
             <div class="container">
                 <table id="tb_dados">
                     <tbody>
-                        <tr><td>Posto/Graduação: </td><td><select id="patentes"></select></td></tr>
-                        <tr><td>Ad. Comp. Disp: </td><td><select id="ad_comp_disp"></select></td></tr>
-                        <tr><td>Ad. Habilitação Tipo: </td><td><select id="ad_habilitacao_tipo"></select></td></tr>
-                        <tr><td>Ad. Habilitação Perc: </td><td><select id="ad_habilitacao_perc"></select></td></tr>
                         <tr>
-                            <td>Pensão Militar(%): </td>
+                            <td colspan="2"><span class="bp-bold">Simulador BP Marinha</span></td>
+                        </tr>
+                        <tr>
+                            <td>Posto/Graduação:</td>
                             <td>
-                                <select id="perc_pensao">
-                                    <option value="9.5">9.5</option>
-                                    <option value="10.5">10.5</option>
+                                <select id="patentes"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><span class="bp-bold">Adicionais e Gratificações</span></td>
+                        </tr>
+                        <tr>
+                            <td>Ad. Comp. Disp:</td>
+                            <td>
+                                <select class="adicionais" id="ad_comp_disp"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ad. Habilitação:</td>
+                            <td>
+                                <select class="adicionais" id="ad_habilitacao_tipo"></select>
+                                <select class="adicionais" id="ad_habilitacao_perc"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Grat. Rep.:</td>
+                            <td>
+                                <select class="adicionais" id="grat_rep">
+                                    <option value="0">N/A</option>
+                                    <option value="10">10</option>
+                                    <option value="2">2</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>Qtd. Dependentes</td>
-                            <td><input type="number" id="qtd_dep" name="qtd_dep" value="0" min="0" /></td>
+                            <td>Ad. Comp. Org.:</td>
+                            <td>
+                                <select class="adicionais" id="ad_comp_org">
+                                    <option value="0">N/A</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
-                            <td>MNT LP 1.5</td>
+                            <td>Ad. Perm.:</td>
+                            <td>
+                                <select class="adicionais" id="ad_permanencia">
+                                    <option value="0">N/A</option>
+                                    <option value="20">5</option>
+                                </select>
+                                <input style="width: 5em;" type="number" id="qtd_ad_permanencia" name="qtd_ad_permanencia" value="1" min="1" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><span class="bp-bold">Descontos</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pensão Militar(%):</td>
+                            <td>
+                                <select id="perc_pensao">
+                                    <option value="9.5">2020-01-01 (9.5%)</option>
+                                    <option value="10.5">2021-01-01 (10.5%)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Qtd. Dependentes:</td>
+                            <td><input style="width: 5em;" type="number" id="qtd_dep" name="qtd_dep" value="0" min="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>MNT LP 1.5:</td>
                             <td><input type="checkbox" id="chkMntlp" /> </td>
                         </tr>
                     </tbody>
                 </table>
-                <div style="padding-top: 8px;">
-                    <p><a id="btn_calcular" class="btn btn-default" href="#" role="button">Calcular</a></p>
+                <div style="padding: 8px 0px 8px 0px;">
+                    <a id="btn_calcular" class="btn btn-primary" href="#" role="button">Calcular</a>
+                    <a id="btn_reset" class="btn btn-info" href="#" role="button">Limpar</a>
                 </div>
                 <div>
                     <table id="tb_resultado" >
                         <tbody>
                             <tr>
                                 <td>
-                                    Salário Bruto
+                                    <span class="bp-bold">Salário Bruto:</span>
                                 </td>
                                 <td>
-                                    <span id="salario_bruto">0.0</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Pensão Militar
-                                </td>
-                                <td>
-                                    <span id="pensao_militar">0.0</span>
+                                    <span class="bp-bold resultado" id="salario_bruto">0.0</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    FUSMA
+                                    Pensão Militar:
                                 </td>
                                 <td>
-                                    <span id="fusma">0.0</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    FUSMA (Dependente)
-                                </td>
-                                <td>
-                                    <span id="fusma_dep">0.0</span>
+                                    <span class="resultado" id="pensao_militar">0.0</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    MNT LP 1.5
+                                    FUSMA:
                                 </td>
                                 <td>
-                                    <span id="mntlp">0.0</span>
+                                    <span class="resultado" id="fusma">0.0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    FUSMA (Dependente):
+                                </td>
+                                <td>
+                                    <span class="resultado" id="fusma_dep">0.0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    MNT LP 1.5:
+                                </td>
+                                <td>
+                                    <span class="resultado" id="mntlp">0.0</span>
                                 </td>
                             </tr>                            
                             <tr>
                                 <td>
-                                    Imposto de Renda
+                                    Imposto de Renda:
                                 </td>
                                 <td>
-                                    <span id="imposto_renda">0.0</span>
+                                    <span class="resultado" id="imposto_renda">0.0</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Salário Líquido
+                                    <span class="bp-bold">Salário Líquido:</span>
                                 </td>
                                 <td>
-                                    <span id="salario_liquido">0.0</span>
+                                    <span class="bp-bold resultado" id="salario_liquido">0.0</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -151,14 +206,7 @@
         <div class="container">
             <!-- Example row of columns -->
             <div class="row">
-                <div class="col-md-4">
-                    As parcelas:
-                    <ul>
-                        <li>Adicional de Compensação Orgânica, </li>
-                        <li>Adicional de Permanência e</li>
-                        <li>Gratificação de Representação</li>
-                    </ul>
-                    Estarão disponiveis em breve versão Premium :)
+                <div class="col-md-4" >
                 </div>
             </div>
 

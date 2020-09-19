@@ -15,8 +15,13 @@ table tr td {
     text-align: right;
 }
 
+.jumbotron {
+    margin:-20px;
+}
 
-
+.bp-bold {
+    font-weight: bold;
+}
 
 
 

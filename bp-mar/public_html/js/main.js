@@ -62,10 +62,18 @@ $(document).ready(function () {
     $("#btn_calcular").click(function () {
         calcular();
     });
+    
+    $('#btn_reset').click(function(){
+        $("select").prop('selectedIndex', 0);
+        $("#qtd_ad_permanencia").val(1);
+        $("#qtd_dep").val(0);
+        $(".resultado").html("0.0");
+    });
 
 });
 
 function calcular() {
+    
     let indexPosto = $('#patentes option:selected').index();
     let indexAdCompDisp = $('#ad_comp_disp option:selected').index();
     
@@ -73,6 +81,9 @@ function calcular() {
     formDados.adCompDisp = soldos.soldos[indexAdCompDisp].ad_comp_disp;
     formDados.adMilitar = soldos.soldos[indexPosto].ad_militar;
     formDados.adHab = parseInt( $('#ad_habilitacao_perc').val() );
+    formDados.gratRep = parseInt( $('#grat_rep').val() );
+    formDados.adCompOrg = parseInt( $('#ad_comp_org').val() );
+    formDados.adPermanencia = parseInt( $('#ad_permanencia').val() ) * parseInt( $('#qtd_ad_permanencia').val() );
     formDados.fusma = soldos.fusma;
     formDados.fusmaDep = soldos.fusma_dep;
     formDados.percPensao = parseFloat( $('#perc_pensao').val() );
@@ -82,7 +93,10 @@ function calcular() {
     let rendimentoBruto = formDados.posto.soldo 
             + ( formDados.posto.soldo * (formDados.adCompDisp/100) ) 
             + ( formDados.posto.soldo * (formDados.adMilitar/100) )
-            + ( formDados.posto.soldo * (formDados.adHab/100) );
+            + ( formDados.posto.soldo * (formDados.adHab/100) )
+            + ( formDados.posto.soldo * (formDados.gratRep/100) )
+            + ( formDados.posto.soldo * (formDados.adCompOrg/100) )
+            + ( formDados.posto.soldo * (formDados.adPermanencia/100) );
     
     formDados.rendimentoBruto = rendimentoBruto.toFixed(2);
     
@@ -98,10 +112,6 @@ function calcular() {
     
     console.log(descontos);
     formDados.descontos = parseFloat( descontos ).toFixed(2);
-    
-    console.log(formDados.rendimentoBruto);
-    console.log(formDados.descontos);
-    console.log(formDados.deducaoDependentes);
     
     formDados.baseCalculo = formDados.rendimentoBruto - formDados.descontos - formDados.deducaoDependentes;
     

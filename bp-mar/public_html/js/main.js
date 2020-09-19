@@ -68,6 +68,7 @@ $(document).ready(function () {
         $("#qtd_ad_permanencia").val(1);
         $("#qtd_dep").val(0);
         $(".resultado").html("0.0");
+        $("#ad_habilitacao_tipo").change();
     });
 
 });

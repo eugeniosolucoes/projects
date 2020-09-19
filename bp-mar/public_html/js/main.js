@@ -82,6 +82,7 @@ function calcular() {
     formDados.adMilitar = soldos.soldos[indexPosto].ad_militar;
     formDados.adHab = parseInt( $('#ad_habilitacao_perc').val() );
     formDados.gratRep = parseInt( $('#grat_rep').val() );
+    formDados.gratLocEsp = parseInt( $('#grat_loc_esp').val() );
     formDados.adCompOrg = parseInt( $('#ad_comp_org').val() );
     formDados.adPermanencia = parseInt( $('#ad_permanencia').val() ) * parseInt( $('#qtd_ad_permanencia').val() );
     formDados.fusma = soldos.fusma;
@@ -95,6 +96,7 @@ function calcular() {
             + ( formDados.posto.soldo * (formDados.adMilitar/100) )
             + ( formDados.posto.soldo * (formDados.adHab/100) )
             + ( formDados.posto.soldo * (formDados.gratRep/100) )
+            + ( formDados.posto.soldo * (formDados.gratLocEsp/100) )
             + ( formDados.posto.soldo * (formDados.adCompOrg/100) )
             + ( formDados.posto.soldo * (formDados.adPermanencia/100) );
     

@@ -64,6 +64,7 @@
                             <td>Posto/Graduação:</td>
                             <td>
                                 <select id="patentes"></select>
+                                <a href="#dica-1">?</a>
                             </td>
                         </tr>
                         <tr>
@@ -73,6 +74,8 @@
                             <td>Ad. Comp. Disp:</td>
                             <td>
                                 <select class="adicionais" id="ad_comp_disp"></select>
+                                <a href="#dica-2">?</a>
+
                             </td>
                         </tr>
                         <tr>
@@ -80,6 +83,18 @@
                             <td>
                                 <select class="adicionais" id="ad_habilitacao_tipo"></select>
                                 <select class="adicionais" id="ad_habilitacao_perc"></select>
+                                <a href="#dica-3">?</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Grat. Loc. Esp.:</td>
+                            <td>
+                                <select class="adicionais" id="grat_loc_esp">
+                                    <option value="0">N/A</option>
+                                    <option value="20">Cat. A (20%)</option>
+                                    <option value="10">Cat. B (10%)</option>
+                                </select>
+                                <a href="#dica-4">?</a>
                             </td>
                         </tr>
                         <tr>
@@ -87,9 +102,9 @@
                             <td>
                                 <select class="adicionais" id="grat_rep">
                                     <option value="0">N/A</option>
-                                    <option value="10">10</option>
-                                    <option value="2">2</option>
+                                    <option value="10">Of.Gen. Com. Dir. (10%)</option>
                                 </select>
+                                <a href="#dica-5">?</a>
                             </td>
                         </tr>
                         <tr>
@@ -97,9 +112,10 @@
                             <td>
                                 <select class="adicionais" id="ad_comp_org">
                                     <option value="0">N/A</option>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
+                                    <option value="20">Demais (20%)</option>
+                                    <option value="10">Rx. (10%)</option>
                                 </select>
+                                <a href="#dica-6">?</a>
                             </td>
                         </tr>
                         <tr>
@@ -110,27 +126,37 @@
                                     <option value="20">5</option>
                                 </select>
                                 <input style="width: 5em;" type="number" id="qtd_ad_permanencia" name="qtd_ad_permanencia" value="1" min="1" />
+                                <a href="#dica-7">?</a>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><span class="bp-bold">Descontos</span></td>
+                            <td colspan="2">
+                                <span class="bp-bold">Descontos</span>
+                            </td>
                         </tr>
                         <tr>
-                            <td>Pensão Militar(%):</td>
+                            <td>Pensão Militar:</td>
                             <td>
                                 <select id="perc_pensao">
                                     <option value="9.5">2020-01-01 (9.5%)</option>
                                     <option value="10.5">2021-01-01 (10.5%)</option>
                                 </select>
+                                <a href="#dica-8">?</a>
                             </td>
                         </tr>
                         <tr>
                             <td>FUSMA (Dependentes):</td>
-                            <td><input style="width: 5em;" type="number" id="qtd_dep" name="qtd_dep" value="0" min="0" /></td>
+                            <td>
+                                <input style="width: 5em;" type="number" id="qtd_dep" name="qtd_dep" value="0" min="0" />
+                                <a href="#dica-9">?</a>
+                            </td>
                         </tr>
                         <tr>
                             <td>MNT LP 1.5:</td>
-                            <td><input type="checkbox" id="chkMntlp" /> </td>
+                            <td>
+                                <input type="checkbox" id="chkMntlp" /> 
+                                <a href="#dica-10">?</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -206,7 +232,170 @@
         <div class="container">
             <!-- Example row of columns -->
             <div class="row">
-                <div class="col-md-4" >
+                <div class="col-md-10" >
+                    <div style="padding-top: 50px;"></div>
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Descrição</th>
+                                <th>Referências</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span id="dica-1" >Posto / Graduação</span>
+                                </td>
+                                <td>
+                                    <b>POSTO OU GRADUAÇÃO</b> de acordo com a tabela de soldos dos Oficiais e Praças.
+                                </td>
+                                <td>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="dica-2" >Ad. Comp. Disp:</span>
+                                </td>
+                                <td>
+                                    <b>ADICIONAL DE COMPENSAÇÃO POR DISPONIBILIDADE</b> militar, consiste na parcela remuneratória mensal devida ao militar em razão da disponibilidade permanente e da dedicação exclusiva, nos termos estabelecidos em regulamento.
+                                </td>
+                                <td>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm#art8" target="_blank">Art. 8º da Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                    <br/><br/>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/Decreto/D10471.htm" target="_blank">DECRETO Nº 10.471, DE 24 DE AGOSTO DE 2020</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="dica-3" >Ad. Habilitação:</span>
+                                </td>
+                                <td>
+                                    <b>ADICIONAL DE HABILITAÇÃO</b> - Art. 9º Os percentuais do adicional de habilitação, devido em razão de cursos realizados com aproveitamento pelo militar, são definidos no Anexo III a esta Lei e produzirão efeitos financeiros a partir das datas nele especificadas.
+                                </td>
+                                <td>
+                                    <a href="https://www.marinha.mil.br/spsm/sites/www.marinha.mil.br.spsm/files/BONO_436_27052019.pdf" target="_blank">BONO Nº 436 DE 27 DE MAIO DE 2019</a>
+                                    <br/><br/>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/Lei/L13954.htm" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="dica-4" >Grat. Loc. Esp.:</span>
+                                </td>
+                                <td>
+                                    <b>GRATIFICAÇÃO DE LOCALIDADE ESPECIAL</b> - ANEXO III - TABELAS DE GRATIFICAÇÕES - TABELA I
+                                    <br/>
+                                    20% - Categoria A.
+                                    <br/>
+                                    10% - Categoria B.
+                                </td>
+                                <td>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">Arts. 1º e 3º - MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="dica-5" >Grat. Rep.:</span>
+                                </td>
+                                <td>
+                                    <b>GRATIFICAÇÃO DE REPRESENTAÇÃO</b> - ANEXO III - TABELAS DE GRATIFICAÇÕES - TABELA II
+                                    <br/>
+                                    10% - Oficial General.
+                                    <br/>
+                                    10% - Oficial Superior, Intermediário e Subalterno em cargo de Comando, Direção ou Chefia.
+                                    <br/>
+                                    2% - Participante em viagem de representação, instrução, emprego operacional ou por estar às ordens de autoridade estrangeira, no País.
+                                </td>
+                                <td>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">Arts. 1º e 3º - MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="dica-6" >Ad. Comp. Org.:</span>
+                                </td>
+                                <td>
+                                    <b>ADICIONAL DE COMPENSAÇÃO ORGÂNICA</b> - ANEXO II - TABELAS DE ADICIONAIS - TABELA V 
+                                    <br/>
+                                    20%<br/>
+                                    <ul>
+                                        <li>
+                                            Vôo em aeronave militar como tripulante orgânico, observador meteorológico, observador aéreo e fotogramétrico.
+                                        </li>
+                                        <li>
+                                            Salto em pára-quedas, cumprindo missão militar.
+                                        </li>
+                                        <li>
+                                            Imersão no exercício de funções regulamentares a bordo de submarinos.
+                                        </li>
+                                        <li>
+                                            Mergulho com escafandro ou com aparelho.
+                                        </li>
+                                        <li>
+                                            Controle de Tráfego Aéreo.
+                                        </li>
+                                    </ul>
+                                    10%
+                                    <br/>
+                                    <ul>
+                                        <li>
+                                            Trabalho com Raios X ou substâncias radioativas.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="dica-7" >Ad. Perm.:</span>
+                                </td>
+                                <td>
+                                    <b>ADICIONAL DE PERMANÊNCIA</b>  - ANEXO II - TABELAS DE ADICIONAIS - TABELA VI<br/> 
+                                    5%<br/>
+                                    <ul>
+                                        <li>
+                                            Militar que, em atividade, a partir de 29 de dezembro de 2000, tenha completado, ou venha a completar, 720 dias a mais que o tempo requerido para transferência para a inatividade remunerada.
+                                        </li>
+                                    </ul>
+                                    5% a cada promoção<br/>
+                                    <ul>
+                                        <li>
+                                            Militar que, tendo satisfeito o requisito da alínea "a" acima, venha a ser promovido em atividade ao posto ou graduação superior.
+
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/MPV/2188-8.htm" target="_blank">MEDIDA PROVISÓRIA No 2.188-8, DE 27 DE JULHO DE 2001.</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span id="dica-8" >Pensão Militar:</span>
+                                </td>
+                                <td>
+                                    CAPÍTULO I<br/>
+                                    DOS CONTRIBUINTES, DAS CONTRIBUIÇÕES E DOS DESCONTOS<br/>
+                                    “Art. 1º São contribuintes obrigatórios da <b>pensão militar</b>, mediante desconto mensal em folha de pagamento, os militares das Forças Armadas e os seus pensionistas.<br/>
+                                    Parágrafo único. O desconto mensal da pensão militar de que trata o caput deste artigo será aplicado, a partir de 1º de janeiro de 2020, para:<br/>
+                                    .................................................................................................................................<br/>
+                                    III -   pensionistas.” (NR)<br/>
+                                    “Art. 3º-A. A contribuição para a pensão militar incidirá sobre as parcelas que compõem os proventos na inatividade e sobre o valor integral da quota-parte percebida a título de pensão militar.<br/>
+                                    § 1º ........................................................................................................................<br/>
+                                    § 2º A alíquota referida no § 1º deste artigo será:<br/>
+                                    I - de 9,5% (nove e meio por cento), a partir de 1º de janeiro de 2020;<br/>
+                                    II - de 10,5% (dez e meio por cento), a partir de 1º de janeiro de 2021.<br/>
+                                </td>
+                                <td>
+                                    <a href="http://www.planalto.gov.br/ccivil_03/_Ato2019-2022/2019/Lei/L13954.htm#art4" target="_blank">Lei nº 13.954, de 16 de dezembro de 2019</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

@@ -1,0 +1,17 @@
+{
+  "short_name": "BP-MAR",
+  "name": "BP-MAR",
+  "icons": [
+    {
+      "src": "images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/bpmar/index.html",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/bpmar/",
+  "theme_color": "#3367D6"
+}
+

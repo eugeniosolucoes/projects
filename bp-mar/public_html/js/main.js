@@ -113,7 +113,6 @@ function calcular() {
             + parseFloat( formDados.fusmaCalculadoDep )
             + parseFloat( formDados.mntlp );
     
-    console.log(descontos);
     formDados.descontos = parseFloat( descontos ).toFixed(2);
     
     formDados.baseCalculo = formDados.rendimentoBruto - formDados.descontos - formDados.deducaoDependentes;
@@ -131,8 +130,6 @@ function calcular() {
     formDados.impostoRenda = imposto.toFixed(2);
     
     formDados.salarioLiquido = parseFloat(formDados.rendimentoBruto - formDados.descontos - formDados.impostoRenda ).toFixed(2);
-    
-    console.log(formDados);
     
     $('#salario_bruto').html(formDados.rendimentoBruto);
     $('#pensao_militar').html(formDados.pensaoMilitar);

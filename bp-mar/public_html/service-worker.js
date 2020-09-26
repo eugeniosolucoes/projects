@@ -22,7 +22,7 @@ if (typeof files == 'undefined') {
   files.push('./');
 }
 
-var CACHE_NAME = 'bpmar-v1';
+var CACHE_NAME = 'bpmar-v1.1';
 
 self.addEventListener('activate', function(event) {
   console.log('[SW] Activate');

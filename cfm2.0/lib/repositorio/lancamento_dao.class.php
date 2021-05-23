@@ -55,18 +55,18 @@ class lancamento_dao extends core {
         $sql2 = "UPDATE lancamento set realizado = 0 WHERE inclusao > '$hoje'";
         try {
             $link = $this->get_conexao();
-            $result1 = mysql_query($sql1, $link);
+            $result1 = mysqli_query($link, $sql1);
             if (!$result1) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             }
-            $result2 = mysql_query($sql2, $link);
+            $result2 = mysqli_query($link, $sql2);
             if (!$result2) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
     }
 
     function get_categorias($id) {
@@ -74,18 +74,18 @@ class lancamento_dao extends core {
         $sql = 'SELECT categorias_id FROM lancamento_categoria WHERE lancamentos_id = ' . $id;
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql, $link);
+            $result = mysqli_query($link, $sql);
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $colecao[] = $row['categorias_id'];
                 }
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao;
     }
 
@@ -97,18 +97,18 @@ class lancamento_dao extends core {
             where l.id = ' . $id;
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql, $link);
+            $result = mysqli_query($link, $sql);
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $colecao[] = $row['descricao'];
                 }
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao;
     }
 
@@ -116,7 +116,7 @@ class lancamento_dao extends core {
         $sql_delete = 'DELETE FROM lancamento_categoria WHERE lancamentos_id = ' . $id_lancamento;
         try {
             $link = $this->get_conexao();
-            mysql_query($sql_delete, $link);
+            mysqli_query($link, $sql_delete);
             if ($categorias) {
                 $sql_insert = 'INSERT INTO lancamento_categoria (lancamentos_id, categorias_id) VALUES';
                 $valores = array();
@@ -124,12 +124,12 @@ class lancamento_dao extends core {
                     $valores[] = "($id_lancamento, $categoria)";
                 }
                 $sql_insert .= implode(',', $valores);
-                mysql_query($sql_insert, $link);
+                mysqli_query($link, $sql_insert);
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
     }
 
     function get_anos($usuario) {
@@ -137,18 +137,18 @@ class lancamento_dao extends core {
         $sql = sprintf("SELECT YEAR(inclusao) AS ano FROM lancamento WHERE usuario = %d GROUP BY 1", $usuario);
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql, $link);
+            $result = mysqli_query($link, $sql);
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $colecao[] = $row['ano'];
                 }
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao;
     }
 
@@ -161,18 +161,18 @@ class lancamento_dao extends core {
             AND tipo = 1;");
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql, $link);
+            $result = mysqli_query($link, $sql);
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $colecao[] = $row['creditos'];
                 }
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao[0];
     }
 
@@ -185,18 +185,18 @@ class lancamento_dao extends core {
             AND tipo = 0;");
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql, $link);
+            $result = mysqli_query($link, $sql);
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $colecao[] = $row['debitos'];
                 }
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao[0];
     }
 
@@ -210,18 +210,18 @@ class lancamento_dao extends core {
             AND realizado = 1;");
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql, $link);
+            $result = mysqli_query($link, $sql);
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $colecao[] = $row['creditos'];
                 }
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao[0];
     }
 
@@ -235,22 +235,81 @@ class lancamento_dao extends core {
             AND realizado = 1;");
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql, $link);
+            $result = mysqli_query($link, $sql);
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $colecao[] = $row['debitos'];
                 }
             }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao[0];
     }
 
     function pesquisar($obj, $usuario, $params, $sort) {
+        $colecao = array();
+        $params_formatados = array();
+        $api = new ReflectionClass($obj);
+        $periodo = array();
+        $inicio = '';
+        $fim = '';
+        foreach ($params as $value) {
+            if (preg_match("/inicio:\d\d\/\d\d\/\d\d\d\d/", $value, $periodo)) {
+                $date = DateTime::createFromFormat('d/m/Y', substr($periodo[0], 7));
+                $inicio = $date->format('Y-m-d');
+                continue;
+            }
+            if (preg_match("/fim:\d\d\/\d\d\/\d\d\d\d/", $value, $periodo)) {
+                $date = DateTime::createFromFormat('d/m/Y', substr($periodo[0], 4));
+                $fim = $date->format('Y-m-d');
+                continue;
+            }
+            $params_formatados[] = " ( remove_acentos(l.descricao) LIKE remove_acentos('%$value%')
+                OR remove_acentos(c.descricao) LIKE remove_acentos('%$value%')
+                OR remove_acentos(f.descricao) LIKE remove_acentos('%$value%')
+		OR l.link LIKE '%$value%' ) ";
+        }
+        $sql = "SELECT DISTINCT l.* from lancamento l 
+LEFT OUTER JOIN frequencia f ON f.id = l.frequencia 
+LEFT OUTER JOIN lancamento_categoria lc ON l.id = lc.lancamentos_id  
+LEFT OUTER JOIN categoria c ON c.id = lc.categorias_id 
+            WHERE l.usuario = $usuario AND " . implode(' AND ', $params_formatados);
+        if( $inicio && $fim ){
+            $sql .= " AND l.inclusao BETWEEN '$inicio' AND '$fim' ";
+        } elseif ( $inicio ) {
+            $sql .= " AND l.inclusao >= '$inicio'";
+        } elseif ( $fim ) {
+            $sql .= " AND l.inclusao <= '$fim'";
+        }
+        try {
+            $link = $this->get_conexao();
+            $result = mysqli_query($link, $sql . " ORDER BY $sort ");
+            if (!$result) {
+                throw new Exception('Invalid query: ' . mysqli_error($link));
+            } else {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $novo = $api->newInstance();
+                    $api_novo = new ReflectionClass($novo);
+                    foreach ($api_novo->getProperties() as $prop) {
+                        if (@$row[$prop->getName()]) {
+                            $prop->setValue($novo, $row[$prop->getName()]);
+                        }
+                    }
+                    $colecao[] = $novo;
+                }
+            }
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        mysqli_close($link);
+        return $colecao;
+    }
+    
+    function pesquisar_old($obj, $usuario, $params, $sort) {
         $colecao = array();
         $params_formatados = array();
         $api = new ReflectionClass($obj);
@@ -287,11 +346,11 @@ LEFT OUTER JOIN categoria c ON c.id = lc.categorias_id
         }
         try {
             $link = $this->get_conexao();
-            $result = mysql_query($sql . " ORDER BY $sort ", $link);
+            $result = mysqli_query($link, $sql . " ORDER BY $sort ");
             if (!$result) {
-                throw new Exception('Invalid query: ' . mysql_error());
+                throw new Exception('Invalid query: ' . mysqli_error($link));
             } else {
-                while ($row = mysql_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     $novo = $api->newInstance();
                     $api_novo = new ReflectionClass($novo);
                     foreach ($api_novo->getProperties() as $prop) {
@@ -305,7 +364,7 @@ LEFT OUTER JOIN categoria c ON c.id = lc.categorias_id
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-        mysql_close($link);
+        mysqli_close($link);
         return $colecao;
     }
 
@@ -331,18 +390,18 @@ LEFT OUTER JOIN categoria c ON c.id = lc.categorias_id
                 $sql .= implode("','", array_values($params)) . '\')';
                 $sql = str_replace("'[COPY_DATE]'", sprintf("DATE_ADD('%s', INTERVAL %s MONTH)", $lancamento->inclusao, $diff), $sql);
                 $link = $this->get_conexao();
-                $result = mysql_query($sql, $link);
-                $id = mysql_query("SELECT LAST_INSERT_ID();", $link);
-                while ($row = mysql_fetch_row($id)) {
+                $result = mysqli_query($link, $sql);
+                $id = mysqli_query($link, "SELECT LAST_INSERT_ID();");
+                while ($row = mysqli_fetch_row($id)) {
                     $lancamento->set_id($row[0]);
                 }
                 if (!$result) {
-                    throw new Exception('Invalid query: ' . mysql_error());
+                    throw new Exception('Invalid query: ' . mysqli_error($link));
                 }
             } catch (Exception $e) {
                 throw new Exception($e->getMessage());
             }
-            mysql_close($link);
+            mysqli_close($link);
 
 
             $categorias = $this->get_categorias($lancamento_id);
